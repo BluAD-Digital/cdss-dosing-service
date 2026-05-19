@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  dosing-service:
+    build: .
+    ports:
+      - "8001:8001"
+    env_file: .env
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+    restart: always
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - dosing-service
+    restart: always
