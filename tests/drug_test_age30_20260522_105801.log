@@ -1,0 +1,129 @@
+Starting | csv=/home/nathanivikas890_gmail_com/cdss-dosing-service/tests/Top_500_Indian_Brand_Drugs.csv | age=30 | age_groups=['adult', 'any']
+Log file → /home/nathanivikas890_gmail_com/cdss-dosing-service/tests/drug_test_age30_20260522_105801.log
+--------------------------------------------------------------------------------
+[  1/500] ? not_in_db       | Dolo 650                     | drug_id=N/A        | match_combo=-
+{"rank": "1", "brand_name": "Dolo 650", "composition": "Paracetamol 650mg", "category": "Analgesic/Antipyretic", "rx_otc": "OTC", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[  2/500] ? not_in_db       | Crocin Advance               | drug_id=N/A        | match_combo=-
+{"rank": "2", "brand_name": "Crocin Advance", "composition": "Paracetamol 500mg", "category": "Analgesic/Antipyretic", "rx_otc": "OTC", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[  3/500] ? not_in_db       | Calpol                       | drug_id=N/A        | match_combo=-
+{"rank": "3", "brand_name": "Calpol", "composition": "Paracetamol 500mg", "category": "Analgesic/Antipyretic", "rx_otc": "OTC", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[  4/500] ? not_in_db       | Combiflam                    | drug_id=N/A        | match_combo=-
+{"rank": "4", "brand_name": "Combiflam", "composition": "Ibuprofen 400mg + Paracetamol 325mg", "category": "Analgesic/NSAID", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[  5/500] ? not_in_db       | Saridon                      | drug_id=N/A        | match_combo=-
+{"rank": "5", "brand_name": "Saridon", "composition": "Propyphenazone + Paracetamol + Caffeine", "category": "Analgesic", "rx_otc": "OTC", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[  6/500] ? not_in_db       | Sumo                         | drug_id=N/A        | match_combo=-
+{"rank": "6", "brand_name": "Sumo", "composition": "Nimesulide 100mg + Paracetamol 325mg", "category": "Analgesic/NSAID", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[  7/500] ? not_in_db       | Zerodol-SP                   | drug_id=N/A        | match_combo=-
+{"rank": "7", "brand_name": "Zerodol-SP", "composition": "Aceclofenac + Paracetamol + Serratiopeptidase", "category": "Analgesic/NSAID", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[  8/500] ? not_in_db       | Zerodol-P                    | drug_id=N/A        | match_combo=-
+{"rank": "8", "brand_name": "Zerodol-P", "composition": "Aceclofenac 100mg + Paracetamol 325mg", "category": "Analgesic/NSAID", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[  9/500] ? not_in_db       | Voveran SR                   | drug_id=N/A        | match_combo=-
+{"rank": "9", "brand_name": "Voveran SR", "composition": "Diclofenac Sodium 100mg", "category": "NSAID", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 10/500] ? not_in_db       | Voveran                      | drug_id=N/A        | match_combo=-
+{"rank": "10", "brand_name": "Voveran", "composition": "Diclofenac Sodium 50mg", "category": "NSAID", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 11/500] ? not_in_db       | Brufen                       | drug_id=N/A        | match_combo=-
+{"rank": "11", "brand_name": "Brufen", "composition": "Ibuprofen 400mg", "category": "NSAID", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 12/500] ? not_in_db       | Flexon                       | drug_id=N/A        | match_combo=-
+{"rank": "12", "brand_name": "Flexon", "composition": "Ibuprofen 400mg + Paracetamol 325mg", "category": "Analgesic/NSAID", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 13/500] ? not_in_db       | Hifenac-P                    | drug_id=N/A        | match_combo=-
+{"rank": "13", "brand_name": "Hifenac-P", "composition": "Aceclofenac + Paracetamol", "category": "Analgesic/NSAID", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 14/500] ? not_in_db       | Meftal Spas                  | drug_id=N/A        | match_combo=-
+{"rank": "14", "brand_name": "Meftal Spas", "composition": "Mefenamic Acid + Dicyclomine", "category": "Antispasmodic/NSAID", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 15/500] ? not_in_db       | Meftal Forte                 | drug_id=N/A        | match_combo=-
+{"rank": "15", "brand_name": "Meftal Forte", "composition": "Mefenamic Acid 500mg", "category": "NSAID", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 16/500] ? not_in_db       | Naprosyn                     | drug_id=N/A        | match_combo=-
+{"rank": "16", "brand_name": "Naprosyn", "composition": "Naproxen 500mg", "category": "NSAID", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 17/500] ? not_in_db       | Ultracet                     | drug_id=N/A        | match_combo=-
+{"rank": "17", "brand_name": "Ultracet", "composition": "Tramadol + Paracetamol", "category": "Analgesic (Opioid)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 18/500] ? not_in_db       | Dolonex DT                   | drug_id=N/A        | match_combo=-
+{"rank": "18", "brand_name": "Dolonex DT", "composition": "Piroxicam 20mg", "category": "NSAID", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 19/500] ? not_in_db       | Volini Spray                 | drug_id=N/A        | match_combo=-
+{"rank": "19", "brand_name": "Volini Spray", "composition": "Diclofenac Diethylamine", "category": "Topical NSAID", "rx_otc": "OTC", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 20/500] ? not_in_db       | Moov                         | drug_id=N/A        | match_combo=-
+{"rank": "20", "brand_name": "Moov", "composition": "Diclofenac + Methyl Salicylate + Menthol + Linseed Oil", "category": "Topical Analgesic", "rx_otc": "OTC", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 21/500] ? not_in_db       | Crocin Pain Relief           | drug_id=N/A        | match_combo=-
+{"rank": "21", "brand_name": "Crocin Pain Relief", "composition": "Paracetamol + Caffeine", "category": "Analgesic", "rx_otc": "OTC", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 22/500] ? not_in_db       | Disprin                      | drug_id=N/A        | match_combo=-
+{"rank": "22", "brand_name": "Disprin", "composition": "Aspirin 350mg", "category": "Analgesic/Antipyretic", "rx_otc": "OTC", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 23/500] ? not_in_db       | Nise                         | drug_id=N/A        | match_combo=-
+{"rank": "23", "brand_name": "Nise", "composition": "Nimesulide 100mg", "category": "NSAID", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 24/500] ? not_in_db       | Dolopar                      | drug_id=N/A        | match_combo=-
+{"rank": "24", "brand_name": "Dolopar", "composition": "Paracetamol 650mg", "category": "Analgesic/Antipyretic", "rx_otc": "OTC", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 25/500] ? not_in_db       | Ace Proxyvon                 | drug_id=N/A        | match_combo=-
+{"rank": "25", "brand_name": "Ace Proxyvon", "composition": "Aceclofenac + Paracetamol + Rabeprazole", "category": "NSAID combo", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 26/500] ? not_in_db       | Augmentin                    | drug_id=N/A        | match_combo=-
+{"rank": "26", "brand_name": "Augmentin", "composition": "Amoxicillin + Clavulanic Acid", "category": "Antibiotic (Penicillin)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 27/500] ? not_in_db       | Moxikind-CV                  | drug_id=N/A        | match_combo=-
+{"rank": "27", "brand_name": "Moxikind-CV", "composition": "Amoxicillin + Clavulanic Acid", "category": "Antibiotic (Penicillin)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 28/500] ? not_in_db       | Azithral 500                 | drug_id=N/A        | match_combo=-
+{"rank": "28", "brand_name": "Azithral 500", "composition": "Azithromycin 500mg", "category": "Antibiotic (Macrolide)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 29/500] ? not_in_db       | Azee 500                     | drug_id=N/A        | match_combo=-
+{"rank": "29", "brand_name": "Azee 500", "composition": "Azithromycin 500mg", "category": "Antibiotic (Macrolide)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 30/500] ? not_in_db       | Ciplox 500                   | drug_id=N/A        | match_combo=-
+{"rank": "30", "brand_name": "Ciplox 500", "composition": "Ciprofloxacin 500mg", "category": "Antibiotic (Fluoroquinolone)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 31/500] ? not_in_db       | Cifran                       | drug_id=N/A        | match_combo=-
+{"rank": "31", "brand_name": "Cifran", "composition": "Ciprofloxacin 500mg", "category": "Antibiotic (Fluoroquinolone)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 32/500] ? not_in_db       | Monocef                      | drug_id=N/A        | match_combo=-
+{"rank": "32", "brand_name": "Monocef", "composition": "Ceftriaxone 1g", "category": "Antibiotic (Cephalosporin)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 33/500] ? not_in_db       | Taxim-O                      | drug_id=N/A        | match_combo=-
+{"rank": "33", "brand_name": "Taxim-O", "composition": "Cefixime 200mg", "category": "Antibiotic (Cephalosporin)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 34/500] ? not_in_db       | Zifi                         | drug_id=N/A        | match_combo=-
+{"rank": "34", "brand_name": "Zifi", "composition": "Cefixime 200mg", "category": "Antibiotic (Cephalosporin)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 35/500] ? not_in_db       | Ceftas                       | drug_id=N/A        | match_combo=-
+{"rank": "35", "brand_name": "Ceftas", "composition": "Cefixime 200mg", "category": "Antibiotic (Cephalosporin)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 36/500] ? not_in_db       | Orcef-O                      | drug_id=N/A        | match_combo=-
+{"rank": "36", "brand_name": "Orcef-O", "composition": "Cefixime + Ofloxacin", "category": "Antibiotic combo", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 37/500] ? not_in_db       | Levoflox 500                 | drug_id=N/A        | match_combo=-
+{"rank": "37", "brand_name": "Levoflox 500", "composition": "Levofloxacin 500mg", "category": "Antibiotic (Fluoroquinolone)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 38/500] ? not_in_db       | Levomac                      | drug_id=N/A        | match_combo=-
+{"rank": "38", "brand_name": "Levomac", "composition": "Levofloxacin 500mg", "category": "Antibiotic (Fluoroquinolone)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 39/500] ? not_in_db       | Oflomac                      | drug_id=N/A        | match_combo=-
+{"rank": "39", "brand_name": "Oflomac", "composition": "Ofloxacin 200mg", "category": "Antibiotic (Fluoroquinolone)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 40/500] ? not_in_db       | Norflox TZ                   | drug_id=N/A        | match_combo=-
+{"rank": "40", "brand_name": "Norflox TZ", "composition": "Norfloxacin + Tinidazole", "category": "Antibiotic + Antiprotozoal", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 41/500] ? not_in_db       | Metrogyl 400                 | drug_id=N/A        | match_combo=-
+{"rank": "41", "brand_name": "Metrogyl 400", "composition": "Metronidazole 400mg", "category": "Antibiotic/Antiprotozoal", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 42/500] ? not_in_db       | Flagyl                       | drug_id=N/A        | match_combo=-
+{"rank": "42", "brand_name": "Flagyl", "composition": "Metronidazole 400mg", "category": "Antibiotic/Antiprotozoal", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 43/500] ? not_in_db       | Doxycycline                  | drug_id=N/A        | match_combo=-
+{"rank": "43", "brand_name": "Doxycycline", "composition": "Doxycycline 100mg", "category": "Antibiotic (Tetracycline)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 44/500] ? not_in_db       | Amoxyclav                    | drug_id=N/A        | match_combo=-
+{"rank": "44", "brand_name": "Amoxyclav", "composition": "Amoxicillin + Clavulanic Acid 625mg", "category": "Antibiotic (Penicillin)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 45/500] ? not_in_db       | Clavam                       | drug_id=N/A        | match_combo=-
+{"rank": "45", "brand_name": "Clavam", "composition": "Amoxicillin + Clavulanic Acid", "category": "Antibiotic (Penicillin)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 46/500] ? not_in_db       | Bactoclav                    | drug_id=N/A        | match_combo=-
+{"rank": "46", "brand_name": "Bactoclav", "composition": "Amoxicillin + Clavulanic Acid", "category": "Antibiotic (Penicillin)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 47/500] ? not_in_db       | Cefpodoxime Proxetil         | drug_id=N/A        | match_combo=-
+{"rank": "47", "brand_name": "Cefpodoxime Proxetil", "composition": "Cefpodoxime 200mg", "category": "Antibiotic (Cephalosporin)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 48/500] ? not_in_db       | Mahacef Plus                 | drug_id=N/A        | match_combo=-
+{"rank": "48", "brand_name": "Mahacef Plus", "composition": "Cefixime + Clavulanic Acid", "category": "Antibiotic combo", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 49/500] ? not_in_db       | Orzid                        | drug_id=N/A        | match_combo=-
+{"rank": "49", "brand_name": "Orzid", "composition": "Cefixime + Ornidazole", "category": "Antibiotic combo", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 50/500] ? not_in_db       | O2                           | drug_id=N/A        | match_combo=-
+{"rank": "50", "brand_name": "O2", "composition": "Ofloxacin + Ornidazole", "category": "Antibiotic + Antiprotozoal", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 51/500] ? not_in_db       | Faronem                      | drug_id=N/A        | match_combo=-
+{"rank": "51", "brand_name": "Faronem", "composition": "Faropenem 200mg", "category": "Antibiotic (Penem)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 52/500] ? not_in_db       | Clarithromycin               | drug_id=N/A        | match_combo=-
+{"rank": "52", "brand_name": "Clarithromycin", "composition": "Clarithromycin 500mg", "category": "Antibiotic (Macrolide)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 53/500] ? not_in_db       | Linezolid                    | drug_id=N/A        | match_combo=-
+{"rank": "53", "brand_name": "Linezolid", "composition": "Linezolid 600mg", "category": "Antibiotic (Oxazolidinone)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 54/500] ? not_in_db       | Meronem                      | drug_id=N/A        | match_combo=-
+{"rank": "54", "brand_name": "Meronem", "composition": "Meropenem 1g", "category": "Antibiotic (Carbapenem)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 55/500] ? not_in_db       | Piptaz                       | drug_id=N/A        | match_combo=-
+{"rank": "55", "brand_name": "Piptaz", "composition": "Piperacillin + Tazobactam", "category": "Antibiotic (Penicillin combo)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 56/500] ? not_in_db       | Monotax                      | drug_id=N/A        | match_combo=-
+{"rank": "56", "brand_name": "Monotax", "composition": "Ceftriaxone + Sulbactam", "category": "Antibiotic (Cephalosporin combo)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 57/500] ? not_in_db       | Megapen                      | drug_id=N/A        | match_combo=-
+{"rank": "57", "brand_name": "Megapen", "composition": "Ampicillin + Cloxacillin", "category": "Antibiotic (Penicillin combo)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 58/500] ? not_in_db       | Althrocin                    | drug_id=N/A        | match_combo=-
+{"rank": "58", "brand_name": "Althrocin", "composition": "Erythromycin 500mg", "category": "Antibiotic (Macrolide)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 59/500] ? not_in_db       | T-Bact                       | drug_id=N/A        | match_combo=-
+{"rank": "59", "brand_name": "T-Bact", "composition": "Mupirocin 2%", "category": "Topical Antibiotic", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 60/500] ? not_in_db       | Baneocin                     | drug_id=N/A        | match_combo=-
+{"rank": "60", "brand_name": "Baneocin", "composition": "Bacitracin + Neomycin", "category": "Topical Antibiotic", "rx_otc": "OTC", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 61/500] ? not_in_db       | Glycomet GP                  | drug_id=N/A        | match_combo=-
+{"rank": "61", "brand_name": "Glycomet GP", "composition": "Metformin + Glimepiride", "category": "Antidiabetic (OHA combo)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 62/500] ? not_in_db       | Glycomet                     | drug_id=N/A        | match_combo=-
+{"rank": "62", "brand_name": "Glycomet", "composition": "Metformin 500mg", "category": "Antidiabetic (Biguanide)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}
+[ 63/500] ? not_in_db       | Gluconorm G                  | drug_id=N/A        | match_combo=-
+{"rank": "63", "brand_name": "Gluconorm G", "composition": "Metformin + Glimepiride", "category": "Antidiabetic (OHA combo)", "rx_otc": "Rx", "age_groups": ["adult", "any"], "drug_id_1mg": null, "db_brand_name": null, "db_salt_composition": null, "match_combinations": null, "result": "not_in_db"}

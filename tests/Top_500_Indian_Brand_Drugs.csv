@@ -1,0 +1,501 @@
+Rank,Brand Name,Composition / Salt(s),Dosage Form,Manufacturer,Therapeutic Category,Rx/OTC
+1,Dolo 650,Paracetamol 650mg,Tablet,Micro Labs,Analgesic/Antipyretic,OTC
+2,Crocin Advance,Paracetamol 500mg,Tablet,GSK Consumer,Analgesic/Antipyretic,OTC
+3,Calpol,Paracetamol 500mg,Tablet,GSK Pharma,Analgesic/Antipyretic,OTC
+4,Combiflam,Ibuprofen 400mg + Paracetamol 325mg,Tablet,Sanofi India,Analgesic/NSAID,Rx
+5,Saridon,Propyphenazone + Paracetamol + Caffeine,Tablet,Bayer,Analgesic,OTC
+6,Sumo,Nimesulide 100mg + Paracetamol 325mg,Tablet,Alkem Labs,Analgesic/NSAID,Rx
+7,Zerodol-SP,Aceclofenac + Paracetamol + Serratiopeptidase,Tablet,Ipca Labs,Analgesic/NSAID,Rx
+8,Zerodol-P,Aceclofenac 100mg + Paracetamol 325mg,Tablet,Ipca Labs,Analgesic/NSAID,Rx
+9,Voveran SR,Diclofenac Sodium 100mg,Tablet,Novartis India,NSAID,Rx
+10,Voveran,Diclofenac Sodium 50mg,Tablet,Novartis India,NSAID,Rx
+11,Brufen,Ibuprofen 400mg,Tablet,Abbott India,NSAID,Rx
+12,Flexon,Ibuprofen 400mg + Paracetamol 325mg,Tablet,Aristo Pharma,Analgesic/NSAID,Rx
+13,Hifenac-P,Aceclofenac + Paracetamol,Tablet,Intas Pharma,Analgesic/NSAID,Rx
+14,Meftal Spas,Mefenamic Acid + Dicyclomine,Tablet,Blue Cross Labs,Antispasmodic/NSAID,Rx
+15,Meftal Forte,Mefenamic Acid 500mg,Tablet,Blue Cross Labs,NSAID,Rx
+16,Naprosyn,Naproxen 500mg,Tablet,RPG Life Sciences,NSAID,Rx
+17,Ultracet,Tramadol + Paracetamol,Tablet,Johnson & Johnson,Analgesic (Opioid),Rx
+18,Dolonex DT,Piroxicam 20mg,Tablet,Pfizer,NSAID,Rx
+19,Volini Spray,Diclofenac Diethylamine,Spray,Sun Pharma,Topical NSAID,OTC
+20,Moov,Diclofenac + Methyl Salicylate + Menthol + Linseed Oil,Cream,Reckitt,Topical Analgesic,OTC
+21,Crocin Pain Relief,Paracetamol + Caffeine,Tablet,GSK Consumer,Analgesic,OTC
+22,Disprin,Aspirin 350mg,Tablet,Reckitt,Analgesic/Antipyretic,OTC
+23,Nise,Nimesulide 100mg,Tablet,Dr. Reddy's,NSAID,Rx
+24,Dolopar,Paracetamol 650mg,Tablet,Aristo Pharma,Analgesic/Antipyretic,OTC
+25,Ace Proxyvon,Aceclofenac + Paracetamol + Rabeprazole,Capsule,Nicholas Piramal,NSAID combo,Rx
+26,Augmentin,Amoxicillin + Clavulanic Acid,Tablet,GSK Pharma,Antibiotic (Penicillin),Rx
+27,Moxikind-CV,Amoxicillin + Clavulanic Acid,Tablet,Mankind Pharma,Antibiotic (Penicillin),Rx
+28,Azithral 500,Azithromycin 500mg,Tablet,Alembic Pharma,Antibiotic (Macrolide),Rx
+29,Azee 500,Azithromycin 500mg,Tablet,Cipla,Antibiotic (Macrolide),Rx
+30,Ciplox 500,Ciprofloxacin 500mg,Tablet,Cipla,Antibiotic (Fluoroquinolone),Rx
+31,Cifran,Ciprofloxacin 500mg,Tablet,Sun Pharma,Antibiotic (Fluoroquinolone),Rx
+32,Monocef,Ceftriaxone 1g,Injection,Aristo Pharma,Antibiotic (Cephalosporin),Rx
+33,Taxim-O,Cefixime 200mg,Tablet,Alkem Labs,Antibiotic (Cephalosporin),Rx
+34,Zifi,Cefixime 200mg,Tablet,FDC Ltd,Antibiotic (Cephalosporin),Rx
+35,Ceftas,Cefixime 200mg,Tablet,Lupin,Antibiotic (Cephalosporin),Rx
+36,Orcef-O,Cefixime + Ofloxacin,Tablet,Orchid Pharma,Antibiotic combo,Rx
+37,Levoflox 500,Levofloxacin 500mg,Tablet,Cipla,Antibiotic (Fluoroquinolone),Rx
+38,Levomac,Levofloxacin 500mg,Tablet,Macleods Pharma,Antibiotic (Fluoroquinolone),Rx
+39,Oflomac,Ofloxacin 200mg,Tablet,Macleods Pharma,Antibiotic (Fluoroquinolone),Rx
+40,Norflox TZ,Norfloxacin + Tinidazole,Tablet,Cipla,Antibiotic + Antiprotozoal,Rx
+41,Metrogyl 400,Metronidazole 400mg,Tablet,J.B. Chemicals,Antibiotic/Antiprotozoal,Rx
+42,Flagyl,Metronidazole 400mg,Tablet,Sanofi India,Antibiotic/Antiprotozoal,Rx
+43,Doxycycline,Doxycycline 100mg,Capsule,Various,Antibiotic (Tetracycline),Rx
+44,Amoxyclav,Amoxicillin + Clavulanic Acid 625mg,Tablet,Cipla,Antibiotic (Penicillin),Rx
+45,Clavam,Amoxicillin + Clavulanic Acid,Tablet,Alkem Labs,Antibiotic (Penicillin),Rx
+46,Bactoclav,Amoxicillin + Clavulanic Acid,Tablet,Zydus Cadila,Antibiotic (Penicillin),Rx
+47,Cefpodoxime Proxetil,Cefpodoxime 200mg,Tablet,Various,Antibiotic (Cephalosporin),Rx
+48,Mahacef Plus,Cefixime + Clavulanic Acid,Tablet,Mankind Pharma,Antibiotic combo,Rx
+49,Orzid,Cefixime + Ornidazole,Tablet,Orchid Pharma,Antibiotic combo,Rx
+50,O2,Ofloxacin + Ornidazole,Tablet,Cipla,Antibiotic + Antiprotozoal,Rx
+51,Faronem,Faropenem 200mg,Tablet,Cipla,Antibiotic (Penem),Rx
+52,Clarithromycin,Clarithromycin 500mg,Tablet,Various,Antibiotic (Macrolide),Rx
+53,Linezolid,Linezolid 600mg,Tablet,Various,Antibiotic (Oxazolidinone),Rx
+54,Meronem,Meropenem 1g,Injection,Pfizer,Antibiotic (Carbapenem),Rx
+55,Piptaz,Piperacillin + Tazobactam,Injection,Cipla,Antibiotic (Penicillin combo),Rx
+56,Monotax,Ceftriaxone + Sulbactam,Injection,Zydus Cadila,Antibiotic (Cephalosporin combo),Rx
+57,Megapen,Ampicillin + Cloxacillin,Capsule,Aristo Pharma,Antibiotic (Penicillin combo),Rx
+58,Althrocin,Erythromycin 500mg,Tablet,Alembic Pharma,Antibiotic (Macrolide),Rx
+59,T-Bact,Mupirocin 2%,Ointment,GSK Pharma,Topical Antibiotic,Rx
+60,Baneocin,Bacitracin + Neomycin,Ointment,Sandoz,Topical Antibiotic,OTC
+61,Glycomet GP,Metformin + Glimepiride,Tablet,USV,Antidiabetic (OHA combo),Rx
+62,Glycomet,Metformin 500mg,Tablet,USV,Antidiabetic (Biguanide),Rx
+63,Gluconorm G,Metformin + Glimepiride,Tablet,Lupin,Antidiabetic (OHA combo),Rx
+64,Amaryl M,Glimepiride + Metformin,Tablet,Sanofi India,Antidiabetic (OHA combo),Rx
+65,Amaryl,Glimepiride,Tablet,Sanofi India,Antidiabetic (Sulfonylurea),Rx
+66,Jalra M,Vildagliptin + Metformin,Tablet,Novartis India,Antidiabetic (DPP-4i combo),Rx
+67,Galvus Met,Vildagliptin + Metformin,Tablet,Novartis India,Antidiabetic (DPP-4i combo),Rx
+68,Januvia,Sitagliptin 100mg,Tablet,MSD,Antidiabetic (DPP-4i),Rx
+69,Janumet,Sitagliptin + Metformin,Tablet,MSD,Antidiabetic (DPP-4i combo),Rx
+70,Trajenta,Linagliptin 5mg,Tablet,Boehringer Ingelheim,Antidiabetic (DPP-4i),Rx
+71,Forxiga,Dapagliflozin 10mg,Tablet,AstraZeneca,Antidiabetic (SGLT2i),Rx
+72,Jardiance,Empagliflozin 25mg,Tablet,Boehringer Ingelheim,Antidiabetic (SGLT2i),Rx
+73,Invokana,Canagliflozin 100mg,Tablet,Johnson & Johnson,Antidiabetic (SGLT2i),Rx
+74,Lantus,Insulin Glargine,Injection (Pen),Sanofi India,Insulin (Basal),Rx
+75,Novorapid,Insulin Aspart,Injection (Pen),Novo Nordisk,Insulin (Rapid-acting),Rx
+76,Mixtard 30,Human Insulin 30/70,Injection,Novo Nordisk,Insulin (Premix),Rx
+77,Huminsulin,Human Insulin,Injection,Eli Lilly,Insulin,Rx
+78,Ryzodeg,Insulin Degludec + Insulin Aspart,Injection (Pen),Novo Nordisk,Insulin (Premix),Rx
+79,Pioz,Pioglitazone 15mg,Tablet,USV,Antidiabetic (Thiazolidinedione),Rx
+80,Glimy,Glimepiride,Tablet,USV,Antidiabetic (Sulfonylurea),Rx
+81,Daonil,Glibenclamide 5mg,Tablet,Sanofi India,Antidiabetic (Sulfonylurea),Rx
+82,Teneligliptin,Teneligliptin 20mg,Tablet,Various,Antidiabetic (DPP-4i),Rx
+83,Gluformin G,Glimepiride + Metformin,Tablet,Abbott India,Antidiabetic (OHA combo),Rx
+84,Voglibose,Voglibose 0.3mg,Tablet,Various,Antidiabetic (Alpha-glucosidase inhibitor),Rx
+85,Glucobay,Acarbose 50mg,Tablet,Bayer,Antidiabetic (Alpha-glucosidase inhibitor),Rx
+86,Ozempic,Semaglutide,Injection (Pen),Novo Nordisk,Antidiabetic (GLP-1 RA),Rx
+87,Victoza,Liraglutide,Injection (Pen),Novo Nordisk,Antidiabetic (GLP-1 RA),Rx
+88,Trulicity,Dulaglutide,Injection (Pen),Eli Lilly,Antidiabetic (GLP-1 RA),Rx
+89,Dibizide,Glipizide 5mg,Tablet,USV,Antidiabetic (Sulfonylurea),Rx
+90,Tenepride M,Teneligliptin + Metformin,Tablet,Mankind Pharma,Antidiabetic (DPP-4i combo),Rx
+91,Telma H,Telmisartan + Hydrochlorothiazide,Tablet,Glenmark,Antihypertensive (ARB combo),Rx
+92,Telma,Telmisartan 40mg,Tablet,Glenmark,Antihypertensive (ARB),Rx
+93,Telmikind H,Telmisartan + Hydrochlorothiazide,Tablet,Mankind Pharma,Antihypertensive (ARB combo),Rx
+94,Amlong,Amlodipine 5mg,Tablet,Micro Labs,Antihypertensive (CCB),Rx
+95,Stamlo,Amlodipine 5mg,Tablet,Dr. Reddy's,Antihypertensive (CCB),Rx
+96,Amlokind-AT,Amlodipine + Atenolol,Tablet,Mankind Pharma,Antihypertensive (CCB + Beta-blocker),Rx
+97,Telma AM,Telmisartan + Amlodipine,Tablet,Glenmark,Antihypertensive (ARB + CCB),Rx
+98,Olmetrack,Olmesartan 20mg,Tablet,Micro Labs,Antihypertensive (ARB),Rx
+99,Olmezest,Olmesartan 20mg,Tablet,Sun Pharma,Antihypertensive (ARB),Rx
+100,Losartan,Losartan 50mg,Tablet,Various,Antihypertensive (ARB),Rx
+101,Cardace,Ramipril 5mg,Tablet,Sanofi India,Antihypertensive (ACE inhibitor),Rx
+102,Envas,Enalapril 5mg,Tablet,Cadila Pharma,Antihypertensive (ACE inhibitor),Rx
+103,Aten,Atenolol 50mg,Tablet,Zydus Cadila,Antihypertensive (Beta-blocker),Rx
+104,Concor,Bisoprolol 5mg,Tablet,Merck,Antihypertensive (Beta-blocker),Rx
+105,Met XL,Metoprolol Succinate 50mg,Tablet,Sun Pharma,Antihypertensive (Beta-blocker),Rx
+106,Betaloc,Metoprolol 50mg,Tablet,AstraZeneca,Antihypertensive (Beta-blocker),Rx
+107,Nebicard,Nebivolol 5mg,Tablet,Torrent Pharma,Antihypertensive (Beta-blocker),Rx
+108,Cilacar,Cilnidipine 10mg,Tablet,J.B. Chemicals,Antihypertensive (CCB),Rx
+109,Dilzem,Diltiazem 60mg,Tablet,Torrent Pharma,Antihypertensive (CCB),Rx
+110,Prazopress,Prazosin 5mg,Tablet,Sun Pharma,Antihypertensive (Alpha-blocker),Rx
+111,Ecosprin,Aspirin 75mg,Tablet,USV,Antiplatelet,Rx
+112,Ecosprin AV,Aspirin + Atorvastatin,Capsule,USV,Antiplatelet + Statin,Rx
+113,Ecosprin Gold,Aspirin + Clopidogrel + Atorvastatin,Capsule,USV,CV Triple combo,Rx
+114,Clopitab A,Clopidogrel + Aspirin,Tablet,Lupin,Antiplatelet combo,Rx
+115,Plavix,Clopidogrel 75mg,Tablet,Sanofi India,Antiplatelet,Rx
+116,Clopilet,Clopidogrel 75mg,Tablet,Sun Pharma,Antiplatelet,Rx
+117,Atorva,Atorvastatin 10mg,Tablet,Zydus Cadila,Statin (Lipid-lowering),Rx
+118,Lipitor,Atorvastatin 20mg,Tablet,Pfizer,Statin (Lipid-lowering),Rx
+119,Rozavel,Rosuvastatin 10mg,Tablet,Sun Pharma,Statin (Lipid-lowering),Rx
+120,Crestor,Rosuvastatin 10mg,Tablet,AstraZeneca,Statin (Lipid-lowering),Rx
+121,Rosuvas,Rosuvastatin 10mg,Tablet,Ranbaxy/Sun,Statin (Lipid-lowering),Rx
+122,Tonact,Atorvastatin 10mg,Tablet,Lupin,Statin (Lipid-lowering),Rx
+123,Sorbitrate,Isosorbide Dinitrate 5mg,Tablet,Sun Pharma,Antianginal (Nitrate),Rx
+124,Nitrocontin,Nitroglycerin 2.6mg,Tablet,Sun Pharma,Antianginal (Nitrate),Rx
+125,Minipress XL,Prazosin 5mg XL,Tablet,Pfizer,Antihypertensive,Rx
+126,Torsemide,Torsemide 10mg,Tablet,Various,Loop Diuretic,Rx
+127,Dytor,Torsemide 10mg,Tablet,Cipla,Loop Diuretic,Rx
+128,Lasix,Furosemide 40mg,Tablet,Sanofi India,Loop Diuretic,Rx
+129,Fruselac,Furosemide + Spironolactone,Tablet,Sanofi India,Diuretic combo,Rx
+130,Aldactone,Spironolactone 25mg,Tablet,RPG Life Sciences,Potassium-sparing Diuretic,Rx
+131,Eliquis,Apixaban 5mg,Tablet,Pfizer,Anticoagulant (DOAC),Rx
+132,Xarelto,Rivaroxaban 20mg,Tablet,Bayer,Anticoagulant (DOAC),Rx
+133,Acitrom,Acenocoumarol 2mg,Tablet,Abbott India,Anticoagulant (VKA),Rx
+134,Warf,Warfarin 5mg,Tablet,Cipla,Anticoagulant (VKA),Rx
+135,Clexane,Enoxaparin 40mg,Injection,Sanofi India,Anticoagulant (LMWH),Rx
+136,Digoxin,Digoxin 0.25mg,Tablet,Various,Cardiac Glycoside,Rx
+137,Lanoxin,Digoxin 0.25mg,Tablet,GSK Pharma,Cardiac Glycoside,Rx
+138,Amiodarone,Amiodarone 200mg,Tablet,Various,Antiarrhythmic,Rx
+139,Cordarone,Amiodarone 200mg,Tablet,Sanofi India,Antiarrhythmic,Rx
+140,Fenofibrate,Fenofibrate 160mg,Tablet,Various,Lipid-lowering (Fibrate),Rx
+141,Lipikind,Atorvastatin 10mg,Tablet,Mankind Pharma,Statin,Rx
+142,Telmikind,Telmisartan 40mg,Tablet,Mankind Pharma,Antihypertensive (ARB),Rx
+143,Sacubitril/Valsartan (Entresto),Sacubitril + Valsartan,Tablet,Novartis India,Heart Failure (ARNI),Rx
+144,Ivabrad,Ivabradine 5mg,Tablet,Lupin,Heart Rate reducer,Rx
+145,Trimetazidine,Trimetazidine 35mg MR,Tablet,Various,Anti-ischemic,Rx
+146,Pan-D,Pantoprazole + Domperidone,Capsule,Alkem Labs,PPI + Prokinetic,Rx
+147,Pan 40,Pantoprazole 40mg,Tablet,Alkem Labs,PPI,Rx
+148,Rantac,Ranitidine 150mg,Tablet,J.B. Chemicals,H2 Blocker,OTC
+149,Omez,Omeprazole 20mg,Capsule,Dr. Reddy's,PPI,Rx
+150,Omez D,Omeprazole + Domperidone,Capsule,Dr. Reddy's,PPI + Prokinetic,Rx
+151,Rabemac DSR,Rabeprazole + Domperidone SR,Capsule,Macleods Pharma,PPI + Prokinetic,Rx
+152,Razo,Rabeprazole 20mg,Tablet,Dr. Reddy's,PPI,Rx
+153,Nexpro RD,Esomeprazole + Domperidone,Capsule,Torrent Pharma,PPI + Prokinetic,Rx
+154,Nexium,Esomeprazole 40mg,Tablet,AstraZeneca,PPI,Rx
+155,Zantac,Ranitidine 150mg,Tablet,GSK Pharma,H2 Blocker,OTC
+156,Mucaine,Aluminium/Magnesium Hydroxide + Oxetacaine,Gel/Suspension,Pfizer,Antacid + Anaesthetic,OTC
+157,Gelusil MPS,Dried Aluminium Hydroxide + Magnesium Hydroxide + Simethicone,Tablet/Syrup,Pfizer,Antacid,OTC
+158,Digene,Aluminium/Magnesium Hydroxide + Simethicone,Tablet/Syrup,Abbott India,Antacid,OTC
+159,Perinorm,Metoclopramide 10mg,Tablet,Ipca Labs,Prokinetic/Antiemetic,Rx
+160,Domstal,Domperidone 10mg,Tablet,Torrent Pharma,Prokinetic,Rx
+161,Emeset,Ondansetron 4mg,Tablet,Cipla,Antiemetic (5-HT3 antagonist),Rx
+162,Ondem,Ondansetron 4mg,Tablet,Alkem Labs,Antiemetic (5-HT3 antagonist),Rx
+163,Cremaffin,Liquid Paraffin + Milk of Magnesia,Syrup,Abbott India,Laxative,OTC
+164,Dulcolax,Bisacodyl 5mg,Tablet,Sanofi India,Laxative,OTC
+165,Looz,Lactulose 10g/15ml,Syrup,Cipla,Osmotic Laxative,Rx
+166,Duphalac,Lactulose 10g/15ml,Syrup,Abbott India,Osmotic Laxative,Rx
+167,Isabgol (Sat-Isabgol),Psyllium Husk,Powder,Various,Bulk-forming Laxative,OTC
+168,Norflox,Norfloxacin 400mg,Tablet,Cipla,Antibiotic (for GI infections),Rx
+169,Oflox-OZ,Ofloxacin + Ornidazole,Tablet,Cipla,Antibiotic + Antiprotozoal,Rx
+170,Econorm,Saccharomyces boulardii,Capsule,Dr. Reddy's,Probiotic,OTC
+171,Vizylac,Lactic Acid Bacillus,Capsule,Torrent Pharma,Probiotic,OTC
+172,Entero Germina,Bacillus clausii,Suspension,Sanofi India,Probiotic,OTC
+173,Rifagut,Rifaximin 400mg,Tablet,Sun Pharma,Antibiotic (GI-specific),Rx
+174,Ursocol,Ursodeoxycholic Acid 300mg,Tablet,Sun Pharma,Hepatoprotective,Rx
+175,Udiliv,Ursodeoxycholic Acid 300mg,Tablet,Abbott India,Hepatoprotective,Rx
+176,Liv 52,Herbal Hepatoprotective,Tablet/Syrup,Himalaya,Hepatoprotective (Herbal),OTC
+177,Hepamerz,L-Ornithine L-Aspartate,Granules/IV,Merz Pharma,Hepatoprotective,Rx
+178,Montair LC,Montelukast + Levocetirizine,Tablet,Cipla,Anti-allergy (LTRA + Antihistamine),Rx
+179,Montair,Montelukast 10mg,Tablet,Cipla,Anti-allergy (LTRA),Rx
+180,Allegra,Fexofenadine 120mg,Tablet,Sanofi India,Antihistamine,Rx
+181,Cetrizine,Cetirizine 10mg,Tablet,Various,Antihistamine,OTC
+182,Okacet,Cetirizine 10mg,Tablet,Cipla,Antihistamine,OTC
+183,Levocet,Levocetirizine 5mg,Tablet,Various,Antihistamine,Rx
+184,Xyzal,Levocetirizine 5mg,Tablet,UCB/Sanofi,Antihistamine,Rx
+185,Avil,Pheniramine Maleate,Tablet,Sanofi India,Antihistamine (1st gen),OTC
+186,Benadryl,Diphenhydramine + Ammonium Chloride,Syrup,Johnson & Johnson,Cough Suppressant/Antihistamine,OTC
+187,Cheston Cold,Cetirizine + Paracetamol + Phenylephrine,Tablet,Cipla,Cold & Flu combo,OTC
+188,Sinarest,Paracetamol + Phenylephrine + Chlorpheniramine + Caffeine,Tablet,Centaur Pharma,Cold & Flu combo,OTC
+189,Vicks Action 500 Advance,Paracetamol + Phenylephrine + Caffeine,Tablet,P&G Health,Cold & Flu,OTC
+190,D-Cold Total,Paracetamol + Phenylephrine + Cetirizine + Caffeine,Tablet,Reckitt,Cold & Flu combo,OTC
+191,Alex,Dextromethorphan + Chlorpheniramine,Syrup,Glenmark,Cough Suppressant,OTC
+192,Grilinctus,Dextromethorphan + Phenylephrine + Chlorpheniramine,Syrup,Franco-Indian,Cough Suppressant,OTC
+193,Ascoril,Salbutamol + Bromhexine + Guaifenesin + Menthol,Syrup,Glenmark,Expectorant/Bronchodilator,Rx
+194,Ascoril LS,Ambroxol + Levosalbutamol + Guaifenesin,Syrup,Glenmark,Expectorant/Bronchodilator,Rx
+195,Ambrodil-S,Ambroxol + Salbutamol,Syrup,Aristo Pharma,Mucolytic + Bronchodilator,Rx
+196,Asthalin,Salbutamol 100mcg,Inhaler (MDI),Cipla,Bronchodilator (SABA),Rx
+197,Duolin,Ipratropium + Levosalbutamol,Inhaler/Respules,Cipla,Bronchodilator (SAMA + SABA),Rx
+198,Foracort,Formoterol + Budesonide,Inhaler,Cipla,ICS + LABA,Rx
+199,Seroflo,Salmeterol + Fluticasone,Inhaler,Cipla,ICS + LABA,Rx
+200,Seretide,Salmeterol + Fluticasone,Inhaler,GSK Pharma,ICS + LABA,Rx
+201,Budecort,Budesonide 200mcg,Inhaler/Respules,Sun Pharma,ICS,Rx
+202,Tiova,Tiotropium 18mcg,Inhaler,Cipla,Bronchodilator (LAMA),Rx
+203,Deriphyllin,Theophylline + Etofylline,Tablet,Zydus Cadila,Bronchodilator (Xanthine),Rx
+204,Montek LC,Montelukast + Levocetirizine,Tablet,Sun Pharma,Anti-allergy,Rx
+205,Omnacortil,Prednisolone 5mg,Tablet,Macleods Pharma,Corticosteroid,Rx
+206,Wysolone,Prednisolone 5mg,Tablet,Pfizer,Corticosteroid,Rx
+207,Deflazacort,Deflazacort 6mg,Tablet,Various,Corticosteroid,Rx
+208,Budamate,Formoterol + Budesonide,Inhaler,Lupin,ICS + LABA,Rx
+209,Otrivin,Xylometazoline,Nasal Drops/Spray,GSK Consumer,Nasal Decongestant,OTC
+210,Nasivion,Oxymetazoline,Nasal Drops,Merck,Nasal Decongestant,OTC
+211,Flonase/Flomist,Fluticasone Propionate,Nasal Spray,GSK Pharma/Cipla,Intranasal Corticosteroid,Rx
+212,Mucinex,Guaifenesin 600mg,Tablet,Reckitt,Expectorant,OTC
+213,Tussq-D,Dextromethorphan + Chlorpheniramine,Syrup,Micro Labs,Cough Suppressant,OTC
+214,Nexito,Escitalopram 10mg,Tablet,Sun Pharma,Antidepressant (SSRI),Rx
+215,Rexipra,Escitalopram 10mg,Tablet,Torrent Pharma,Antidepressant (SSRI),Rx
+216,Cipralex,Escitalopram 10mg,Tablet,Lundbeck,Antidepressant (SSRI),Rx
+217,Flunil,Fluoxetine 20mg,Capsule,Intas Pharma,Antidepressant (SSRI),Rx
+218,Fludac,Fluoxetine 20mg,Capsule,Cadila Pharma,Antidepressant (SSRI),Rx
+219,Prodep,Fluoxetine 20mg,Capsule,Sun Pharma,Antidepressant (SSRI),Rx
+220,Sertraline,Sertraline 50mg,Tablet,Various,Antidepressant (SSRI),Rx
+221,Daxid,Sertraline 50mg,Tablet,Pfizer,Antidepressant (SSRI),Rx
+222,Venlafaxine,Venlafaxine 75mg XR,Capsule,Various,Antidepressant (SNRI),Rx
+223,Veniz XR,Venlafaxine 75mg XR,Capsule,Sun Pharma,Antidepressant (SNRI),Rx
+224,Amitriptyline,Amitriptyline 25mg,Tablet,Various,Antidepressant (TCA),Rx
+225,Tryptomer,Amitriptyline 10mg,Tablet,Merind,Antidepressant (TCA),Rx
+226,Nexito Plus,Escitalopram + Clonazepam,Tablet,Sun Pharma,SSRI + Benzodiazepine,Rx
+227,Clonazepam,Clonazepam 0.5mg,Tablet,Various,Benzodiazepine,Rx
+228,Clonotril,Clonazepam 0.5mg,Tablet,Torrent Pharma,Benzodiazepine,Rx
+229,Alprax,Alprazolam 0.25mg,Tablet,Torrent Pharma,Benzodiazepine,Rx
+230,Restyl,Alprazolam 0.25mg,Tablet,Sun Pharma,Benzodiazepine,Rx
+231,Calmpose,Diazepam 5mg,Tablet,Ranbaxy/Sun,Benzodiazepine,Rx
+232,Nitrest,Zolpidem 10mg,Tablet,Sun Pharma,Sedative/Hypnotic,Rx
+233,Oleanz,Olanzapine 5mg,Tablet,Sun Pharma,Antipsychotic (Atypical),Rx
+234,Olanex,Olanzapine 5mg,Tablet,Intas Pharma,Antipsychotic (Atypical),Rx
+235,Risnia,Risperidone 2mg,Tablet,Cipla,Antipsychotic (Atypical),Rx
+236,Sizodon,Risperidone 2mg,Tablet,Sun Pharma,Antipsychotic (Atypical),Rx
+237,Quetiapine,Quetiapine 25mg,Tablet,Various,Antipsychotic (Atypical),Rx
+238,Eptus,Levetiracetam 500mg,Tablet,Sun Pharma,Antiepileptic,Rx
+239,Levera,Levetiracetam 500mg,Tablet,Intas Pharma,Antiepileptic,Rx
+240,Valparin,Sodium Valproate 200mg,Tablet,Sanofi India,Antiepileptic,Rx
+241,Valparin Chrono,Sodium Valproate + Valproic Acid CR,Tablet,Sanofi India,Antiepileptic,Rx
+242,Tegretol,Carbamazepine 200mg,Tablet,Novartis India,Antiepileptic,Rx
+243,Oxetol,Oxcarbazepine 300mg,Tablet,Sun Pharma,Antiepileptic,Rx
+244,Lamitor,Lamotrigine 25mg,Tablet,Torrent Pharma,Antiepileptic/Mood Stabilizer,Rx
+245,Lithosun,Lithium Carbonate 300mg,Tablet,Sun Pharma,Mood Stabilizer,Rx
+246,Gabapin,Gabapentin 300mg,Capsule,Intas Pharma,Neuropathic Pain/Antiepileptic,Rx
+247,Pregabalin (Pregalin),Pregabalin 75mg,Capsule,Torrent Pharma,Neuropathic Pain,Rx
+248,Lyrica,Pregabalin 75mg,Capsule,Pfizer,Neuropathic Pain,Rx
+249,Donep,Donepezil 5mg,Tablet,Sun Pharma,Anti-Alzheimer's,Rx
+250,Syndopa,Levodopa + Carbidopa,Tablet,Sun Pharma,Anti-Parkinson's,Rx
+251,Pacitane,Trihexyphenidyl 2mg,Tablet,Wyeth/Pfizer,Anticholinergic (Parkinson's),Rx
+252,Stugeron,Cinnarizine 25mg,Tablet,Johnson & Johnson,Vertigo/Migraine,Rx
+253,Vertin,Betahistine 16mg,Tablet,Abbott India,Vertigo,Rx
+254,Vasograin,Ergotamine + Caffeine + Paracetamol + Prochlorperazine,Tablet,Cadila Pharma,Migraine,Rx
+255,Sumatriptan (Suminat),Sumatriptan 50mg,Tablet,Sun Pharma,Migraine (Triptan),Rx
+256,Flunarizine (Flunavert),Flunarizine 10mg,Tablet,Torrent Pharma,Migraine Prophylaxis,Rx
+257,Mirtazapine,Mirtazapine 15mg,Tablet,Various,Antidepressant (NaSSA),Rx
+258,Bupropion,Bupropion 150mg SR,Tablet,Various,Antidepressant (NDRI),Rx
+259,Modafinil (Modalert),Modafinil 200mg,Tablet,Sun Pharma,Wakefulness-promoting,Rx
+260,Melatonin,Melatonin 3mg,Tablet,Various,Sleep Aid,OTC
+261,Betnovate,Betamethasone Valerate 0.1%,Cream/Ointment,GSK Pharma,Topical Corticosteroid,Rx
+262,Betnovate-N,Betamethasone + Neomycin,Cream,GSK Pharma,Topical Steroid + Antibiotic,Rx
+263,Betnovate-C,Betamethasone + Clioquinol,Cream,GSK Pharma,Topical Steroid + Antifungal,Rx
+264,Clobetasol (Tenovate),Clobetasol Propionate 0.05%,Cream,GSK Pharma,Topical Corticosteroid (Super potent),Rx
+265,Panderm Plus,Clobetasol + Ofloxacin + Miconazole + Zinc Sulphate,Cream,Macleods Pharma,Topical Steroid combo,Rx
+266,Quadriderm RF,Beclomethasone + Neomycin + Clotrimazole + Chlorocresol,Cream,Piramal,Topical Steroid combo,Rx
+267,Candid B,Clotrimazole + Beclomethasone,Cream,Glenmark,Antifungal + Steroid,Rx
+268,Candid,Clotrimazole 1%,Cream/Dusting Powder,Glenmark,Topical Antifungal,OTC
+269,Ring Guard,Tolnaftate + Clotrimazole,Cream,Bayer,Topical Antifungal,OTC
+270,Terbinafine (Lamisil),Terbinafine 1%,Cream,Novartis/Various,Topical Antifungal,OTC
+271,Fluconazole (Zocon),Fluconazole 150mg,Tablet,Sun Pharma,Systemic Antifungal,Rx
+272,Itraconazole (Canditral),Itraconazole 100mg,Capsule,Glenmark,Systemic Antifungal,Rx
+273,Griseofulvin,Griseofulvin 500mg,Tablet,Various,Systemic Antifungal,Rx
+274,Permethrin (Scabper),Permethrin 5%,Lotion,Various,Scabicide,Rx
+275,Ivermectin (Ivecop),Ivermectin 12mg,Tablet,Menarini,Antiparasitic,Rx
+276,Soframycin,Framycetin 1%,Cream,Sanofi India,Topical Antibiotic,OTC
+277,Silver Sulfadiazine (Silverex),Silver Sulfadiazine 1%,Cream,Ranbaxy/Sun,Burn Wound care,Rx
+278,Acne Star,Benzoyl Peroxide 2.5%,Gel,Mankind Pharma,Anti-acne,OTC
+279,Adapalene (Deriva),Adapalene 0.1%,Gel,Glenmark,Anti-acne (Retinoid),Rx
+280,Clindamycin (Clindac A),Clindamycin 1%,Gel,Alkem Labs,Anti-acne (Antibiotic),Rx
+281,Kojivit,Kojic Acid + Arbutin + Vitamin C,Gel,Curatio,Skin Lightening,OTC
+282,Lacto Calamine,Kaolin + Zinc Oxide + Glycerin,Lotion,Piramal,Skin Protectant,OTC
+283,Calamine Lotion,Calamine + Zinc Oxide,Lotion,Various,Skin Protectant,OTC
+284,Emolene,Liquid Paraffin/Cetrimide,Cream,Abbott India,Emollient/Moisturizer,OTC
+285,Cetaphil,Cetyl Alcohol + Propylene Glycol,Lotion,Galderma,Moisturizer,OTC
+286,Mometasone (Elocon),Mometasone Furoate 0.1%,Cream,MSD,Topical Corticosteroid,Rx
+287,Tacrolimus (Pimecrolimus/Tacroz),Tacrolimus 0.03%,Ointment,Glenmark,Topical Calcineurin Inhibitor,Rx
+288,Isotretinoin (Tretiva),Isotretinoin 20mg,Capsule,Intas Pharma,Systemic Retinoid (Acne),Rx
+289,Hydroxychloroquine (HCQS),Hydroxychloroquine 200mg,Tablet,Ipca Labs,Antimalarial/Autoimmune,Rx
+290,Minoxidil (Tugain),Minoxidil 5%,Solution,Cipla,Hair Growth (Topical),OTC
+291,Shelcal 500,Calcium + Vitamin D3,Tablet,Torrent Pharma,Calcium Supplement,OTC
+292,Calcimax,Calcium + Vitamin D3 + Zinc,Tablet,Meyer Organics,Calcium Supplement,OTC
+293,Supracal,Calcium Carbonate + Vitamin D3,Tablet,GSK Consumer,Calcium Supplement,OTC
+294,Tayo 60K,Cholecalciferol 60000 IU,Capsule,Eris Lifesciences,Vitamin D3,Rx
+295,Uprise D3 60K,Cholecalciferol 60000 IU,Tablet,Alkem Labs,Vitamin D3,Rx
+296,Arachitol,Cholecalciferol 600000 IU,Injection/Capsule,Abbott India,Vitamin D3,Rx
+297,Becosules,B-Complex + Vitamin C,Capsule,Pfizer,B-Complex Supplement,OTC
+298,Neurobion Forte,Vitamin B1 + B6 + B12,Tablet,Merck/P&G Health,B-Vitamin Supplement,OTC
+299,Methylcobalamin (Meconerv),Methylcobalamin 1500mcg,Tablet,Sun Pharma,Vitamin B12,Rx
+300,Nurokind Plus,Methylcobalamin + Alpha Lipoic Acid + Folic Acid + Pyridoxine,Tablet,Mankind Pharma,Neuropathy Supplement,Rx
+301,Nervijen Plus,Methylcobalamin + Alpha Lipoic Acid + Pyridoxine + Folic Acid,Capsule,Jenburkt Pharma,Neuropathy Supplement,Rx
+302,Pregnerv,Pregabalin + Methylcobalamin,Capsule,Various,Neuropathy combo,Rx
+303,Zincovit,Multivitamin + Multimineral,Tablet,Apex Laboratories,Multivitamin,OTC
+304,Supradyn,Multivitamin + Multimineral,Tablet,Bayer,Multivitamin,OTC
+305,Revital H,Multivitamin + Ginseng,Capsule,Sun Pharma,Multivitamin + Tonic,OTC
+306,Livogen,Iron + Folic Acid,Tablet,Merck,Iron Supplement,Rx
+307,Autrin,Iron + Folic Acid + B12,Capsule,Allergan/AbbVie,Iron Supplement,Rx
+308,Orofer XT,Iron + Folic Acid + Zinc,Tablet,Emcure Pharma,Iron Supplement,Rx
+309,Folvite,Folic Acid 5mg,Tablet,Pfizer,Folic Acid Supplement,Rx
+310,Evion 400,Vitamin E 400mg,Capsule,Merck,Vitamin E Supplement,OTC
+311,Limcee,Vitamin C 500mg,Tablet,Abbott India,Vitamin C Supplement,OTC
+312,Celin,Vitamin C 500mg,Tablet,GSK Consumer,Vitamin C Supplement,OTC
+313,Ostocalcium,Calcium + Vitamin D3 + Phosphorus,Tablet/Syrup,GSK Consumer,Calcium Supplement,OTC
+314,CoQ10 (Coenzyme Q10),Coenzyme Q10 100mg,Capsule,Various,Antioxidant Supplement,OTC
+315,Omega-3 (Maxepa),EPA + DHA Fish Oil,Capsule,Merck,Omega-3 Supplement,OTC
+316,L-Carnitine (Carnisure),L-Carnitine 500mg,Tablet,Sun Pharma,Metabolic Supplement,OTC
+317,Zinc (Zinconia),Zinc Acetate 50mg,Tablet,Various,Zinc Supplement,OTC
+318,Potassium Chloride (K-Lor),Potassium Chloride 600mg,Tablet,Various,Potassium Supplement,Rx
+319,Thyronorm,Levothyroxine 25/50/75/100mcg,Tablet,Abbott India,Thyroid Replacement,Rx
+320,Eltroxin,Levothyroxine 50mcg,Tablet,GSK Pharma,Thyroid Replacement,Rx
+321,Thyrox,Levothyroxine 50mcg,Tablet,Macleods Pharma,Thyroid Replacement,Rx
+322,Neomercazole,Carbimazole 5mg,Tablet,Abbott India,Anti-thyroid,Rx
+323,Methimazole,Methimazole 5mg,Tablet,Various,Anti-thyroid,Rx
+324,Cabergoline (Cabgolin),Cabergoline 0.5mg,Tablet,Sun Pharma,Dopamine Agonist (Prolactinoma),Rx
+325,Prednisolone,Prednisolone 10mg,Tablet,Various,Systemic Corticosteroid,Rx
+326,Dexamethasone,Dexamethasone 0.5mg,Tablet,Various,Systemic Corticosteroid,Rx
+327,Budecort,Budesonide 200mcg,Inhaler,Sun Pharma,ICS,Rx
+328,Urimax,Tamsulosin 0.4mg,Capsule,Cipla,Alpha-blocker (BPH),Rx
+329,Urimax D,Tamsulosin + Dutasteride,Capsule,Cipla,BPH combo,Rx
+330,Veltam,Tamsulosin 0.4mg,Tablet,Intas Pharma,Alpha-blocker (BPH),Rx
+331,Dutas,Dutasteride 0.5mg,Capsule,Dr. Reddy's,5-alpha Reductase Inhibitor (BPH),Rx
+332,Finasteride (Finax),Finasteride 5mg,Tablet,Dr. Reddy's,5-alpha Reductase Inhibitor,Rx
+333,Silodosin (Silodal),Silodosin 8mg,Capsule,Sun Pharma,Alpha-blocker (BPH),Rx
+334,Solifenacin (Vesicare),Solifenacin 5mg,Tablet,Astellas,Anticholinergic (OAB),Rx
+335,Potassium Citrate (K-Cit),Potassium Citrate,Tablet/Syrup,Various,Urinary Alkalinizer,Rx
+336,Cystone,Herbal (Didymocarpus + Saxifraga),Tablet,Himalaya,Kidney Stone (Herbal),OTC
+337,Febuxostat (Feburic),Febuxostat 40mg,Tablet,Sun Pharma,Antigout (XO inhibitor),Rx
+338,Allopurinol (Zyloric),Allopurinol 100mg,Tablet,GSK Pharma,Antigout (XO inhibitor),Rx
+339,Colchicine,Colchicine 0.5mg,Tablet,Various,Antigout (Acute),Rx
+340,Mifepristone (Mifeprin),Mifepristone 200mg,Tablet,Cipla,Abortifacient,Rx
+341,Misoprostol (Misoprost),Misoprostol 200mcg,Tablet,Cipla,Prostaglandin,Rx
+342,Progesterone (Susten),Progesterone 200mg,Capsule/Gel,Sun Pharma,Progestogen,Rx
+343,Duphaston,Dydrogesterone 10mg,Tablet,Abbott India,Progestogen,Rx
+344,Deviry,Medroxyprogesterone 10mg,Tablet,Torrent Pharma,Progestogen,Rx
+345,Norethisterone (Primolut N),Norethisterone 5mg,Tablet,Bayer,Progestogen,Rx
+346,Ethinyl Estradiol + Levonorgestrel (Ovral L),Ethinyl Estradiol 0.03mg + Levonorgestrel 0.15mg,Tablet,Pfizer,Oral Contraceptive,Rx
+347,Mala-D,Ethinyl Estradiol + Levonorgestrel,Tablet,Govt. of India (HLL),Oral Contraceptive,Rx
+348,Novelon,Ethinyl Estradiol + Desogestrel,Tablet,Organon/MSD,Oral Contraceptive,Rx
+349,Diane-35,Cyproterone Acetate + Ethinyl Estradiol,Tablet,Bayer,OCP (Anti-androgenic),Rx
+350,I-Pill,Levonorgestrel 1.5mg,Tablet,Piramal,Emergency Contraceptive,OTC
+351,Unwanted 72,Levonorgestrel 1.5mg,Tablet,Mankind Pharma,Emergency Contraceptive,OTC
+352,Clomifene (Siphene),Clomiphene Citrate 50mg,Tablet,Serum Institute,Ovulation Inducer,Rx
+353,Letrozole (Letoval),Letrozole 2.5mg,Tablet,Sun Pharma,Ovulation Inducer/Aromatase Inhibitor,Rx
+354,Oxytocin,Oxytocin 5 IU,Injection,Various,Uterotonic,Rx
+355,Conjugated Estrogens (Premarin),Conjugated Estrogens 0.625mg,Tablet,Pfizer,HRT,Rx
+356,Raloxifene (Evista),Raloxifene 60mg,Tablet,Eli Lilly,SERM (Osteoporosis),Rx
+357,Tranexamic Acid (Pause),Tranexamic Acid 500mg,Tablet,Cipla,Antifibrinolytic,Rx
+358,Moxifloxacin Eye Drops (Vigamox/Milflox),Moxifloxacin 0.5%,Eye Drops,Alcon/Sun Pharma,Ophthalmic Antibiotic,Rx
+359,Tobramycin Eye Drops (Tobrex),Tobramycin 0.3%,Eye Drops,Alcon,Ophthalmic Antibiotic,Rx
+360,Ciprofloxacin Eye Drops (Ciplox Eye),Ciprofloxacin 0.3%,Eye Drops,Cipla,Ophthalmic Antibiotic,Rx
+361,Timolol Eye Drops (Glucomol),Timolol 0.5%,Eye Drops,Allergan/Various,Glaucoma (Beta-blocker),Rx
+362,Latanoprost (Xalatan),Latanoprost 0.005%,Eye Drops,Pfizer,Glaucoma (Prostaglandin),Rx
+363,Tropicamide (Tropicacyl),Tropicamide 1%,Eye Drops,Sun Pharma,Mydriatic,Rx
+364,Artificial Tears (Refresh Tears),Carboxymethylcellulose 0.5%,Eye Drops,Allergan,Lubricant Eye Drop,OTC
+365,Itone,Herbal Eye Drops,Eye Drops,Dey's Medical,Herbal Eye Care,OTC
+366,Prednisolone Eye Drops (Pred Forte),Prednisolone Acetate 1%,Eye Drops,Allergan,Ophthalmic Steroid,Rx
+367,Nepafenac (Nevanac),Nepafenac 0.1%,Eye Drops,Alcon,Ophthalmic NSAID,Rx
+368,Brimonidine (Alphagan),Brimonidine 0.15%,Eye Drops,Allergan,Glaucoma (Alpha-agonist),Rx
+369,Dorzolamide + Timolol (Cosopt),Dorzolamide + Timolol,Eye Drops,MSD,Glaucoma combo,Rx
+370,Olopatadine (Pataday),Olopatadine 0.1%,Eye Drops,Alcon,Ophthalmic Antiallergy,Rx
+371,Candid Ear Drops,Clotrimazole 1%,Ear Drops,Glenmark,Antifungal Ear Drop,Rx
+372,Otogesic,Antipyrine + Benzocaine,Ear Drops,Various,Otic Analgesic,OTC
+373,Neosporin H,Polymyxin B + Neomycin + Hydrocortisone,Ear Drops,Pfizer,Otic Antibiotic + Steroid,Rx
+374,Betadine Gargle,Povidone-Iodine 2%,Gargle,Win-Medicare,Antiseptic Gargle,OTC
+375,Strepsils,Dichlorobenzyl Alcohol + Amylmetacresol,Lozenge,Reckitt,Throat Lozenge,OTC
+376,Acyclovir (Zovirax),Acyclovir 400mg,Tablet,GSK Pharma/Various,Antiviral (HSV),Rx
+377,Valacyclovir (Valcivir),Valacyclovir 1000mg,Tablet,Cipla,Antiviral (HSV),Rx
+378,Oseltamivir (Fluvir),Oseltamivir 75mg,Capsule,Hetero,Antiviral (Influenza),Rx
+379,Tenofovir + Emtricitabine (Tenvir-EM),Tenofovir + Emtricitabine,Tablet,Cipla,Antiretroviral (HIV),Rx
+380,Efavirenz (Stocrin/Sustiva),Efavirenz 600mg,Tablet,Various,Antiretroviral (HIV),Rx
+381,Sofosbuvir + Velpatasvir (Velpanat),Sofosbuvir + Velpatasvir,Tablet,Natco Pharma,Antiviral (HCV),Rx
+382,Albendazole (Zentel),Albendazole 400mg,Tablet,GSK Pharma,Anthelmintic,Rx
+383,Mebendazole,Mebendazole 100mg,Tablet,Various,Anthelmintic,Rx
+384,Artesunate + Lumefantrine,Artesunate + Lumefantrine,Tablet,Various,Antimalarial,Rx
+385,Chloroquine,Chloroquine 250mg,Tablet,Various,Antimalarial,Rx
+386,Nitazoxanide (Nizonide),Nitazoxanide 500mg,Tablet,Lupin,Antiprotozoal,Rx
+387,Secnidazole,Secnidazole 1g,Tablet,Various,Antiprotozoal,Rx
+388,Fluconazole (Forcan),Fluconazole 150mg,Capsule,Cipla,Systemic Antifungal,Rx
+389,Amphotericin B (Fungizone),Amphotericin B,Injection,Various,Systemic Antifungal (IV),Rx
+390,Voriconazole (Vfend),Voriconazole 200mg,Tablet,Pfizer,Systemic Antifungal,Rx
+391,Calcium + Calcitriol (CCM),Calcium + Calcitriol,Tablet,Various,Bone Health,Rx
+392,Alendronate (Osteofos),Alendronate 70mg,Tablet,Cipla,Bisphosphonate (Osteoporosis),Rx
+393,Zoledronic Acid (Zoldria),Zoledronic Acid 5mg,Injection,Cipla,Bisphosphonate (IV),Rx
+394,Glucosamine + Chondroitin (Artho Guard),Glucosamine + Chondroitin + MSM,Tablet,Various,Joint Health Supplement,OTC
+395,Diacerein (Dynapar AQ),Diacerein 50mg,Capsule,Troikaa Pharma,Osteoarthritis,Rx
+396,Etoricoxib (Nucoxia),Etoricoxib 60mg,Tablet,Dr. Reddy's,NSAID (COX-2 selective),Rx
+397,Celecoxib (Celebrex),Celecoxib 200mg,Capsule,Pfizer,NSAID (COX-2 selective),Rx
+398,Thiocolchicoside (Myoril),Thiocolchicoside 4mg,Capsule,Sanofi India,Muscle Relaxant,Rx
+399,Tizanidine (Tizan),Tizanidine 2mg,Tablet,Sun Pharma,Muscle Relaxant,Rx
+400,Chlorzoxazone + Paracetamol (Flexon MR),Chlorzoxazone + Paracetamol,Tablet,Aristo Pharma,Muscle Relaxant combo,Rx
+401,Etoricoxib + Thiocolchicoside (Nucoxia MR),Etoricoxib + Thiocolchicoside,Tablet,Dr. Reddy's,NSAID + Muscle Relaxant,Rx
+402,Methotrexate (Folitrax),Methotrexate 7.5mg,Tablet,Ipca Labs,DMARD (Rheumatoid Arthritis),Rx
+403,Sulfasalazine (Saaz),Sulfasalazine 500mg,Tablet,Wallace Pharma,DMARD,Rx
+404,Leflunomide (Lefno),Leflunomide 20mg,Tablet,Cipla,DMARD,Rx
+405,Tamoxifen (Nolvadex),Tamoxifen 20mg,Tablet,AstraZeneca,SERM (Breast Cancer),Rx
+406,Imatinib (Veenat),Imatinib 400mg,Tablet,Natco Pharma,TKI (CML),Rx
+407,Capecitabine (Capegard),Capecitabine 500mg,Tablet,Cipla,Antimetabolite (Oncology),Rx
+408,Cisplatin,Cisplatin 50mg,Injection,Various,Platinum Chemotherapy,Rx
+409,Paclitaxel (Taxol),Paclitaxel 260mg,Injection,Various,Taxane Chemotherapy,Rx
+410,Anastrozole (Arimidex),Anastrozole 1mg,Tablet,AstraZeneca,Aromatase Inhibitor (Breast Cancer),Rx
+411,Erlotinib (Tarceva),Erlotinib 150mg,Tablet,Roche,TKI (NSCLC),Rx
+412,Bicalutamide (Calutide),Bicalutamide 50mg,Tablet,Cipla,Anti-androgen (Prostate Cancer),Rx
+413,Adrenaline (Epinephrine),Adrenaline 1mg/ml,Injection,Various,Vasopressor/Anaphylaxis,Rx
+414,Atropine,Atropine 0.6mg,Injection,Various,Anticholinergic (Emergency),Rx
+415,Noradrenaline,Noradrenaline 2mg/ml,Injection,Various,Vasopressor (ICU),Rx
+416,Dopamine,Dopamine 200mg/5ml,Injection,Various,Vasopressor/Inotrope,Rx
+417,Dobutamine,Dobutamine 250mg,Injection,Various,Inotrope (Heart Failure),Rx
+418,Midazolam (Fulsed),Midazolam 5mg,Injection,Sun Pharma,Sedative (ICU),Rx
+419,Propofol (Diprivan),Propofol 200mg/20ml,Injection,Various,General Anaesthetic,Rx
+420,Ketamine,Ketamine 500mg/10ml,Injection,Various,General Anaesthetic,Rx
+421,Lignocaine (Xylocaine),Lidocaine 2%,Injection/Gel,AstraZeneca,Local Anaesthetic,Rx
+422,Bupivacaine,Bupivacaine 0.5%,Injection,Various,Local Anaesthetic,Rx
+423,Mannitol,Mannitol 20%,IV Solution,Various,Osmotic Diuretic,Rx
+424,Dexamethasone Injection,Dexamethasone 4mg/ml,Injection,Various,Corticosteroid (IV),Rx
+425,Hydrocortisone (Efcorlin),Hydrocortisone 100mg,Injection,GSK Pharma,Corticosteroid (IV),Rx
+426,Normal Saline,Sodium Chloride 0.9%,IV Solution,Various,IV Fluid,Rx
+427,Ringer Lactate,Ringer Lactate Solution,IV Solution,Various,IV Fluid,Rx
+428,Dextrose 5%,Dextrose 5% in Water,IV Solution,Various,IV Fluid,Rx
+429,Human Albumin (Alburel),Human Albumin 20%,Injection,Reliance Life Sciences,Plasma Expander,Rx
+430,ORS (Electral),Oral Rehydration Salts,Powder,FDC Ltd,Rehydration,OTC
+431,Tetanus Toxoid (TT),Tetanus Toxoid,Injection,Various,Vaccine,Rx
+432,Rabies Vaccine (Rabipur),Rabies Vaccine,Injection,GSK Pharma,Vaccine,Rx
+433,Hepatitis B Vaccine (Engerix-B),Hepatitis B Vaccine,Injection,GSK Pharma,Vaccine,Rx
+434,Anti-D (RhoGAM/Rhoclone),Anti-D Immunoglobulin,Injection,Bharat Serums,Rh Prophylaxis,Rx
+435,Naloxone,Naloxone 0.4mg,Injection,Various,Opioid Antagonist,Rx
+436,Flumazenil,Flumazenil 0.5mg,Injection,Various,Benzodiazepine Antagonist,Rx
+437,AKT-4,Isoniazid + Rifampicin + Pyrazinamide + Ethambutol,Kit,Lupin,Anti-TB (HRZE),Rx
+438,R-Cinex,Rifampicin + Isoniazid,Capsule,Lupin,Anti-TB (RH),Rx
+439,Mycobutol,Ethambutol 800mg,Tablet,Lupin,Anti-TB,Rx
+440,Pyrazinamide,Pyrazinamide 500mg,Tablet,Various,Anti-TB,Rx
+441,Ketotifen (Asthafen),Ketotifen 1mg,Tablet,Sun Pharma,Mast Cell Stabilizer,Rx
+442,Montelukast (Montair/Montek),Montelukast 10mg,Tablet,Cipla/Sun Pharma,LTRA,Rx
+443,Bilastine (Bilaxten),Bilastine 20mg,Tablet,Menarini,Antihistamine (2nd gen),Rx
+444,Desloratadine (Deslor),Desloratadine 5mg,Tablet,Various,Antihistamine (2nd gen),Rx
+445,Ebastine (Ebast),Ebastine 10mg,Tablet,Various,Antihistamine (2nd gen),Rx
+446,Hexidine,Chlorhexidine 0.2%,Mouthwash,Icpa Health,Antiseptic Mouthwash,OTC
+447,Orasore,Benzalkonium Chloride + Choline Salicylate,Gel,Zydus Cadila,Oral Ulcer Gel,OTC
+448,Smyle Mouth Ulcer Gel,Choline Salicylate + Lignocaine,Gel,Various,Oral Ulcer Relief,OTC
+449,Tacrolimus (Pangraf),Tacrolimus 0.5mg,Capsule,Panacea Biotec,Immunosuppressant,Rx
+450,Mycophenolate (Cellcept),Mycophenolate Mofetil 500mg,Tablet,Roche,Immunosuppressant,Rx
+451,Azathioprine (Imuran),Azathioprine 50mg,Tablet,Various,Immunosuppressant,Rx
+452,Ciclosporin (Sandimmun),Ciclosporin 25mg,Capsule,Novartis India,Immunosuppressant,Rx
+453,Mesalamine (Mesacol),Mesalamine 400mg,Tablet,Sun Pharma,5-ASA (IBD),Rx
+454,Dapsone,Dapsone 100mg,Tablet,Various,Sulfone (Leprosy/Dermatitis Herpetiformis),Rx
+455,Erythropoietin (Eprex),Epoetin alfa 4000 IU,Injection,Johnson & Johnson,Erythropoietin,Rx
+456,Filgrastim (Neupogen/Grafeel),Filgrastim 300mcg,Injection,Dr. Reddy's,G-CSF,Rx
+457,Hydroxyurea (Hydrea),Hydroxyurea 500mg,Capsule,Bristol-Myers Squibb,Myelosuppressive,Rx
+458,Deferasirox (Asunra),Deferasirox 400mg,Tablet,Novartis India,Iron Chelator,Rx
+459,Vitamin K (Konakion),Phytomenadione 10mg,Injection,Roche,Vitamin K (Coagulation),Rx
+460,Calpol Syrup,Paracetamol 120mg/5ml,Syrup,GSK Pharma,Pediatric Antipyretic,OTC
+461,Meftal-P,Mefenamic Acid 50mg/5ml,Suspension,Blue Cross Labs,Pediatric NSAID,Rx
+462,Ibugesic Plus,Ibuprofen + Paracetamol,Suspension,Cipla,Pediatric Analgesic,OTC
+463,Augmentin DDS,Amoxicillin + Clavulanic Acid,Suspension,GSK Pharma,Pediatric Antibiotic,Rx
+464,Azithral Syrup,Azithromycin 200mg/5ml,Suspension,Alembic Pharma,Pediatric Antibiotic,Rx
+465,Cefixime (Taxim-O) DS,Cefixime 50mg/5ml,Suspension,Alkem Labs,Pediatric Antibiotic,Rx
+466,Ondem Syrup,Ondansetron 2mg/5ml,Syrup,Alkem Labs,Pediatric Antiemetic,Rx
+467,Domperidone (Domstal) Drops,Domperidone 5mg/5ml,Drops,Torrent Pharma,Pediatric Prokinetic,Rx
+468,Colicaid,Simethicone + Dill Oil + Fennel Oil,Drops,Meyer Organics,Pediatric Colic,OTC
+469,Gripe Water (Woodward's),Dill Seed Oil + Sodium Bicarbonate,Liquid,Various,Pediatric Colic,OTC
+470,Bonnisan,Herbal Digestive,Drops/Syrup,Himalaya,Pediatric Digestive (Herbal),OTC
+471,Junior Lanzol,Lansoprazole 15mg,Capsule,Cipla,Pediatric PPI,Rx
+472,Asthalin Syrup,Salbutamol 2mg/5ml,Syrup,Cipla,Pediatric Bronchodilator,Rx
+473,Sinarest Drops,Paracetamol + Chlorpheniramine + Phenylephrine,Drops,Centaur Pharma,Pediatric Cold/Flu,OTC
+474,Nasivion Baby,Oxymetazoline 0.01%,Nasal Drops,Merck,Pediatric Nasal Decongestant,OTC
+475,Pantocid DSR,Pantoprazole + Domperidone SR,Capsule,Sun Pharma,PPI + Prokinetic,Rx
+476,Rablet D,Rabeprazole + Domperidone,Capsule,Lupin,PPI + Prokinetic,Rx
+477,Aztor,Atorvastatin 10mg,Tablet,Sun Pharma,Statin,Rx
+478,Torvacard,Atorvastatin 10mg,Tablet,Torrent Pharma,Statin,Rx
+479,Telmisartan + Chlorthalidone (Cresar Plus),Telmisartan + Chlorthalidone,Tablet,Cipla,Antihypertensive combo,Rx
+480,Amlodipine + Olmesartan (Olmesar A),Amlodipine + Olmesartan,Tablet,Macleods Pharma,Antihypertensive combo,Rx
+481,Clavpod,Cefpodoxime + Clavulanic Acid,Tablet,Alkem Labs,Antibiotic combo,Rx
+482,Taxim AZ,Cefixime + Azithromycin,Tablet,Alkem Labs,Antibiotic combo,Rx
+483,Cifran OZ,Ciprofloxacin + Ornidazole,Tablet,Sun Pharma,Antibiotic combo,Rx
+484,Metrogyl DG,Metronidazole Dental Gel,Gel,J.B. Chemicals,Dental Antibiotic,Rx
+485,Doxt-SL,Doxycycline 100mg,Capsule,Dr. Reddy's,Antibiotic (Tetracycline),Rx
+486,Pan D (Cipla),Pantoprazole + Domperidone,Capsule,Cipla,PPI + Prokinetic,Rx
+487,Rantac D,Ranitidine + Domperidone,Tablet,J.B. Chemicals,H2 Blocker + Prokinetic,Rx
+488,Glyciphage,Metformin 500mg,Tablet,Franco-Indian,Antidiabetic (Biguanide),Rx
+489,Glucoryl MV,Glimepiride + Metformin + Voglibose,Tablet,Sun Pharma,Antidiabetic triple combo,Rx
+490,Tenali M,Teneligliptin + Metformin,Tablet,Zydus Cadila,Antidiabetic combo,Rx
+491,Cilnidipine + Telmisartan (Cilacar T),Cilnidipine + Telmisartan,Tablet,J.B. Chemicals,Antihypertensive combo,Rx
+492,S Numlo,S-Amlodipine 2.5mg,Tablet,Sun Pharma,Antihypertensive (CCB),Rx
+493,Arkamin,Clonidine 0.1mg,Tablet,Torrent Pharma,Antihypertensive (Central alpha-agonist),Rx
+494,Norvasc,Amlodipine 5mg,Tablet,Pfizer,Antihypertensive (CCB),Rx
+495,Clopidogrel + Aspirin (Clavix AS),Clopidogrel + Aspirin,Tablet,Cipla,Antiplatelet combo,Rx
+496,Prasugrel (Prasita),Prasugrel 10mg,Tablet,USV,Antiplatelet,Rx
+497,Ticagrelor (Brilinta),Ticagrelor 90mg,Tablet,AstraZeneca,Antiplatelet,Rx
+498,Sacubitril + Valsartan (Vymada),Sacubitril + Valsartan,Tablet,Sun Pharma,Heart Failure (ARNI),Rx
+499,Ivabradine + Metoprolol,Ivabradine + Metoprolol,Tablet,Various,Heart Rate combo,Rx
+500,Nicorandil (Korandil),Nicorandil 5mg,Tablet,Torrent Pharma,Antianginal (K+ channel opener),Rx
