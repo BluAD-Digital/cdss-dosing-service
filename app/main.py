@@ -4,8 +4,10 @@ from contextlib import asynccontextmanager
 
 import asyncpg
 from fastapi import FastAPI, Request, Response
+from fastapi.exceptions import HTTPException as FastAPIHTTPException
 from fastapi.openapi.utils import get_openapi
 from fastapi.responses import JSONResponse
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.api.v1.routers.dosing import router as dosing_router
 from app.cache.redis import close_redis, create_redis, get_cached
@@ -85,19 +87,23 @@ async def request_logging_middleware(request: Request, call_next):
 
 
 # ── Exception handlers ──────────────────────────────────────────────────────────
-@app.exception_handler(404)
-async def not_found_handler(request: Request, exc):
-    return JSONResponse(
-        status_code=404,
-        content={"error": "not_found", "message": "The requested resource was not found"},
-    )
+_STATUS_DEFAULTS = {
+    404: {"error": "not_found", "message": "The requested resource was not found"},
+    422: {"error": "validation_error", "message": "Request validation failed"},
+    500: {"error": "internal_error", "message": "An internal server error occurred"},
+}
 
 
-@app.exception_handler(422)
-async def validation_error_handler(request: Request, exc):
+@app.exception_handler(StarletteHTTPException)
+async def http_exception_handler(request: Request, exc: StarletteHTTPException):
+    if isinstance(exc.detail, dict):
+        return JSONResponse(status_code=exc.status_code, content=exc.detail)
     return JSONResponse(
-        status_code=422,
-        content={"error": "validation_error", "message": str(exc)},
+        status_code=exc.status_code,
+        content=_STATUS_DEFAULTS.get(
+            exc.status_code,
+            {"error": str(exc.status_code), "message": str(exc.detail)},
+        ),
     )
 
 
@@ -106,7 +112,7 @@ async def internal_error_handler(request: Request, exc):
     logger.error("unhandled exception", error=str(exc), exc_info=True)
     return JSONResponse(
         status_code=500,
-        content={"error": "internal_error", "message": "An internal server error occurred"},
+        content=_STATUS_DEFAULTS[500],
     )
 
 

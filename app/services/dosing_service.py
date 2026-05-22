@@ -37,16 +37,23 @@ async def get_dosing(
 
     t0 = time.perf_counter()
     try:
-        rows = await dosing_repo.fetch_dosing(pool, drug_id_1mg, age_groups)
+        exists = await dosing_repo.drug_exists(pool, drug_id_1mg)
+        rows = await dosing_repo.fetch_dosing(pool, drug_id_1mg, age_groups) if exists else []
     except asyncpg.PostgresError:
         raise HTTPException(status_code=500, detail={"error": "internal_error", "message": "Database error"})
 
     elapsed_ms = (time.perf_counter() - t0) * 1000
 
+    if not exists:
+        raise HTTPException(
+            status_code=404,
+            detail={"error": "drug_not_found", "message": f"Drug ID '{drug_id_1mg}' not found"},
+        )
+
     if not rows:
         raise HTTPException(
             status_code=404,
-            detail={"error": "not_found", "message": f"No dosing data found for drug_id_1mg={drug_id_1mg}, age={age}"},
+            detail={"error": "no_dosing_data", "message": f"Drug '{drug_id_1mg}' found but no dosing records available for age={age}"},
         )
 
     first = rows[0]

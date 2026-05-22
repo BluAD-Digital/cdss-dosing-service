@@ -8,6 +8,20 @@ logger = get_logger(__name__)
 
 _SQL = (Path(__file__).parent.parent.parent / "queries" / "dosing.sql").read_text()
 
+_DRUG_EXISTS_SQL = """
+SELECT 1
+FROM drugdb.indian_brand
+WHERE drug_id_1mg = $1
+  AND match_combination NOT IN ('drugbank', 'us_unapproved')
+LIMIT 1
+"""
+
+
+async def drug_exists(pool: asyncpg.Pool, drug_id_1mg: str) -> bool:
+    async with pool.acquire() as conn:
+        row = await conn.fetchrow(_DRUG_EXISTS_SQL, drug_id_1mg)
+    return row is not None
+
 
 async def fetch_dosing(
     pool: asyncpg.Pool,

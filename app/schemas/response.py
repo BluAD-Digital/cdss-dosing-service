@@ -1,6 +1,11 @@
 from pydantic import BaseModel
 
 
+class ErrorResponse(BaseModel):
+    error: str
+    message: str
+
+
 class DosingRow(BaseModel):
     frequency: str | None
     frequency_meaning: str | None

@@ -4,7 +4,7 @@ from redis.asyncio import Redis
 
 from app.api.deps import get_cache, get_db
 from app.schemas.request import DosingRequest
-from app.schemas.response import DosingResponse
+from app.schemas.response import DosingResponse, ErrorResponse
 from app.services import dosing_service
 from app.utils.logger import get_logger
 
@@ -13,7 +13,14 @@ logger = get_logger(__name__)
 router = APIRouter(tags=["dosing"])
 
 
-@router.post("/dosing", response_model=DosingResponse)
+@router.post(
+    "/dosing",
+    response_model=DosingResponse,
+    responses={
+        404: {"model": ErrorResponse, "description": "Drug not found or no dosing data available"},
+        500: {"model": ErrorResponse, "description": "Internal server error"},
+    },
+)
 async def get_dosing(
     body: DosingRequest,
     pool: asyncpg.Pool = Depends(get_db),
