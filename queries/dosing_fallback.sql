@@ -4,16 +4,24 @@ WITH salt_ingredients AS (
   WHERE ib.drug_id_1mg = $1
   LIMIT 1
 ),
-ingredient_uniis AS (
-  SELECT DISTINCT i.unii
+resolvable_rxcuis AS (
+  SELECT DISTINCT r.rxcui, dml.master_linkage_id
   FROM salt_ingredients si
-  JOIN drugdb.ingredients i ON i.rxcui = ANY(si.rxcui)
+  CROSS JOIN LATERAL unnest(si.rxcui) AS r(rxcui)
+  JOIN drugdb.ingredients i ON i.rxcui = r.rxcui
+  JOIN public."DrugMasterLinkage" dml ON dml.unii_ids @> ARRAY[i.unii::text]
   WHERE i.unii IS NOT NULL
+    AND array_length(dml.rxcui_ids, 1) = 1
+),
+all_pass_check AS (
+  SELECT 1
+  FROM salt_ingredients si
+  WHERE (SELECT COUNT(DISTINCT rxcui) FROM resolvable_rxcuis) = array_length(si.rxcui, 1)
 ),
 linkage AS (
-  SELECT DISTINCT dml.master_linkage_id
-  FROM public."DrugMasterLinkage" dml
-  JOIN ingredient_uniis iu ON iu.unii = ANY(dml.unii_ids)
+  SELECT DISTINCT master_linkage_id
+  FROM resolvable_rxcuis
+  WHERE EXISTS (SELECT 1 FROM all_pass_check)
 ),
 candidate_formulations AS (
   SELECT

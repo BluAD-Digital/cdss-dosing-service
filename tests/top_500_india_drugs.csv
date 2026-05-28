@@ -1,0 +1,610 @@
+#,Brand Name (India),Salt Composition,Therapeutic Category
+1,Dolo 650,Paracetamol 650mg,Analgesic/Antipyretic
+2,Crocin 500,Paracetamol 500mg,Analgesic/Antipyretic
+3,Calpol 500,Paracetamol 500mg,Analgesic/Antipyretic
+4,Crocin Advance,Paracetamol 500mg,Analgesic/Antipyretic
+5,Paracip 500,Paracetamol 500mg,Analgesic/Antipyretic
+6,Dolopar 650,Paracetamol 650mg,Analgesic/Antipyretic
+7,Meftal Spas,Mefenamic Acid 250mg + Dicyclomine 10mg,Analgesic/Antispasmodic
+8,Meftal P,Mefenamic Acid 100mg/5ml Suspension,Analgesic/Antipyretic
+9,Combiflam,Ibuprofen 400mg + Paracetamol 325mg,Analgesic/Antipyretic
+10,Brufen 400,Ibuprofen 400mg,Analgesic/Anti-inflammatory
+11,Voveran 50,Diclofenac Sodium 50mg,Analgesic/Anti-inflammatory
+12,Voveran SR 100,Diclofenac Sodium SR 100mg,Analgesic/Anti-inflammatory
+13,Hifenac P,Aceclofenac 100mg + Paracetamol 325mg,Analgesic/Anti-inflammatory
+14,Aceclo Plus,Aceclofenac 100mg + Paracetamol 325mg,Analgesic/Anti-inflammatory
+15,Zerodol P,Aceclofenac 100mg + Paracetamol 325mg,Analgesic/Anti-inflammatory
+16,Zerodol SP,Aceclofenac 100mg + Paracetamol 325mg + Serratiopeptidase 15mg,Analgesic/Anti-inflammatory
+17,Dolokind Plus,Aceclofenac 100mg + Paracetamol 325mg,Analgesic/Anti-inflammatory
+18,Nimesulide,Nimesulide 100mg,Analgesic/Anti-inflammatory
+19,Nise 100,Nimesulide 100mg,Analgesic/Anti-inflammatory
+20,Nimulid 100,Nimesulide 100mg,Analgesic/Anti-inflammatory
+21,Ketorol DT,Ketorolac 10mg,Analgesic
+22,Ultracet,Tramadol 37.5mg + Paracetamol 325mg,Analgesic/Opioid
+23,Tramazac,Tramadol 50mg,Analgesic/Opioid
+24,Nucoxia 90,Etoricoxib 90mg,Analgesic/COX-2 inhibitor
+25,Nucoxia 60,Etoricoxib 60mg,Analgesic/COX-2 inhibitor
+26,Arcoxia 90,Etoricoxib 90mg,Analgesic/COX-2 inhibitor
+27,Celebrex 200,Celecoxib 200mg,Analgesic/COX-2 inhibitor
+28,Dolonex DT,Piroxicam 20mg,Analgesic/Anti-inflammatory
+29,Naprosyn 500,Naproxen 500mg,Analgesic/Anti-inflammatory
+30,Flexon,Ibuprofen 400mg + Paracetamol 325mg,Analgesic/Antipyretic
+31,Augmentin 625,Amoxycillin 500mg + Clavulanic Acid 125mg,Antibiotic
+32,Clavam 625,Amoxycillin 500mg + Clavulanic Acid 125mg,Antibiotic
+33,Moxikind CV 625,Amoxycillin 500mg + Clavulanic Acid 125mg,Antibiotic
+34,Amoxil 500,Amoxycillin 500mg,Antibiotic
+35,Novamox 500,Amoxycillin 500mg,Antibiotic
+36,Azithral 500,Azithromycin 500mg,Antibiotic
+37,Azee 500,Azithromycin 500mg,Antibiotic
+38,Zithromax 500,Azithromycin 500mg,Antibiotic
+39,Azithrocin 250,Azithromycin 250mg,Antibiotic
+40,Ciplox 500,Ciprofloxacin 500mg,Antibiotic
+41,Cifran 500,Ciprofloxacin 500mg,Antibiotic
+42,Oflox 200,Ofloxacin 200mg,Antibiotic
+43,Zanocin 200,Ofloxacin 200mg,Antibiotic
+44,Levoflox 500,Levofloxacin 500mg,Antibiotic
+45,Levobact 500,Levofloxacin 500mg,Antibiotic
+46,Nuvox 500,Levofloxacin 500mg,Antibiotic
+47,Moxiflox 400,Moxifloxacin 400mg,Antibiotic
+48,Avelox 400,Moxifloxacin 400mg,Antibiotic
+49,Doxycycline 100,Doxycycline 100mg,Antibiotic
+50,Biodoxi 100,Doxycycline 100mg,Antibiotic
+51,Cdiff 200,Cefpodoxime 200mg,Antibiotic
+52,Cepodem 200,Cefpodoxime 200mg,Antibiotic
+53,Taxim O 200,Cefixime 200mg,Antibiotic
+54,Zifi 200,Cefixime 200mg,Antibiotic
+55,Ceftas 200,Cefixime 200mg,Antibiotic
+56,Monocef 1g,Ceftriaxone 1g,Antibiotic
+57,Oframax 1g,Ceftriaxone 1g,Antibiotic
+58,Taxim 1g,Cefotaxime 1g,Antibiotic
+59,Magnex 1.5g,Cefoperazone 1g + Sulbactam 500mg,Antibiotic
+60,Sulbacin 1.5g,Cefoperazone 1g + Sulbactam 500mg,Antibiotic
+61,Clindac A,Clindamycin 1% Gel,Antibiotic/Topical
+62,Clindamycin 300,Clindamycin 300mg,Antibiotic
+63,Metrogyl 400,Metronidazole 400mg,Antibiotic/Antiprotozoal
+64,Flagyl 400,Metronidazole 400mg,Antibiotic/Antiprotozoal
+65,Tiniba 500,Tinidazole 500mg,Antibiotic/Antiprotozoal
+66,Fasigyn 500,Tinidazole 500mg,Antibiotic/Antiprotozoal
+67,Norflox 400,Norfloxacin 400mg,Antibiotic
+68,Norflox TZ,Norfloxacin 400mg + Tinidazole 600mg,Antibiotic/Antiprotozoal
+69,Enteroquinol,Clioquinol 250mg,Antibiotic/Intestinal
+70,Althrocin 250,Erythromycin 250mg,Antibiotic
+71,Bactrim DS,Trimethoprim 160mg + Sulfamethoxazole 800mg,Antibiotic
+72,Septran DS,Trimethoprim 160mg + Sulfamethoxazole 800mg,Antibiotic
+73,Doxilin 100,Doxycycline 100mg,Antibiotic
+74,Meronem 1g,Meropenem 1g,Antibiotic
+75,Meromer 1g,Meropenem 1g,Antibiotic
+76,Imipenem Cilastatin 500,Imipenem 500mg + Cilastatin 500mg,Antibiotic
+77,Vancomycin 500,Vancomycin 500mg,Antibiotic
+78,Linezolid 600,Linezolid 600mg,Antibiotic
+79,Lizolid 600,Linezolid 600mg,Antibiotic
+80,Rifampicin 450,Rifampicin 450mg,Anti-tubercular
+81,Pyrazinamide 750,Pyrazinamide 750mg,Anti-tubercular
+82,Isoniazid 300,Isoniazid 300mg,Anti-tubercular
+83,Ethambutol 800,Ethambutol 800mg,Anti-tubercular
+84,Akurit 4,Rifampicin 75mg+Isoniazid 37.5mg+Pyrazinamide 200mg+Ethambutol 275mg (Paediatric),Anti-tubercular
+85,Combutol 800,Ethambutol 800mg,Anti-tubercular
+86,Cefdinir 300,Cefdinir 300mg,Antibiotic
+87,Omnicef 300,Cefdinir 300mg,Antibiotic
+88,Doxt-S,Doxycycline 100mg + Serratiopeptidase 10mg,Antibiotic
+89,Ampiclox,Ampicillin 250mg + Cloxacillin 250mg,Antibiotic
+90,Fluclox 500,Flucloxacillin 500mg,Antibiotic
+91,Fluconazole 150,Fluconazole 150mg,Antifungal
+92,Forcan 150,Fluconazole 150mg,Antifungal
+93,Zocon 150,Fluconazole 150mg,Antifungal
+94,Itraconazole 200,Itraconazole 200mg,Antifungal
+95,Canditral 200,Itraconazole 200mg,Antifungal
+96,Sporanox 100,Itraconazole 100mg,Antifungal
+97,Terbicip 250,Terbinafine 250mg,Antifungal
+98,Lamisil 250,Terbinafine 250mg,Antifungal
+99,Voritek 200,Voriconazole 200mg,Antifungal
+100,Vfend 200,Voriconazole 200mg,Antifungal
+101,Clotrimazole Dusting,Clotrimazole 1% Powder,Antifungal/Topical
+102,Candid B Cream,Clotrimazole 1% + Beclometasone 0.025% Cream,Antifungal/Topical
+103,Zovirax 400,Acyclovir 400mg,Antiviral
+104,Acivir 400,Acyclovir 400mg,Antiviral
+105,Valcivir 500,Valacyclovir 500mg,Antiviral
+106,Valcivir 1000,Valacyclovir 1000mg,Antiviral
+107,Oseltamivir 75,Oseltamivir 75mg,Antiviral
+108,Antiflu 75,Oseltamivir 75mg,Antiviral
+109,Tenofovir 300,Tenofovir Disoproxil Fumarate 300mg,Antiviral/Antiretroviral
+110,Lamivudine 150,Lamivudine 150mg,Antiviral/Antiretroviral
+111,Efavirenz 600,Efavirenz 600mg,Antiviral/Antiretroviral
+112,Emtriva 200,Emtricitabine 200mg,Antiviral/Antiretroviral
+113,Zentel 400,Albendazole 400mg,Antiparasitic
+114,Bandy 400,Albendazole 400mg,Antiparasitic
+115,Mebex 100,Mebendazole 100mg,Antiparasitic
+116,Ivermectin 12,Ivermectin 12mg,Antiparasitic
+117,Ivecop 12,Ivermectin 12mg,Antiparasitic
+118,Niclocide 500,Niclosamide 500mg,Antiparasitic
+119,Chloroquine 250,Chloroquine Phosphate 250mg,Antimalarial
+120,Lariago 250,Chloroquine Phosphate 250mg,Antimalarial
+121,Primaquine 7.5,Primaquine 7.5mg,Antimalarial
+122,Falcimax,Artesunate 50mg + Mefloquine 250mg,Antimalarial
+123,Coartem,Artemether 20mg + Lumefantrine 120mg,Antimalarial
+124,Malarid,Atovaquone 250mg + Proguanil 100mg,Antimalarial
+125,Glycomet 500,Metformin 500mg,Antidiabetic
+126,Glycomet 850,Metformin 850mg,Antidiabetic
+127,Glycomet 1g,Metformin 1000mg,Antidiabetic
+128,Cetapin 500,Metformin 500mg,Antidiabetic
+129,Glucophage 500,Metformin 500mg,Antidiabetic
+130,Amaryl 1,Glimepiride 1mg,Antidiabetic
+131,Amaryl 2,Glimepiride 2mg,Antidiabetic
+132,Glimestar 2,Glimepiride 2mg,Antidiabetic
+133,Glimy 1,Glimepiride 1mg,Antidiabetic
+134,Glycomet GP 1,Glimepiride 1mg + Metformin 500mg,Antidiabetic
+135,Glycomet GP 2,Glimepiride 2mg + Metformin 500mg,Antidiabetic
+136,Glynase MF 5,Glipizide 5mg + Metformin 500mg,Antidiabetic
+137,Glipizide 5,Glipizide 5mg,Antidiabetic
+138,Diabenyl 5,Glibenclamide 5mg,Antidiabetic
+139,Daonil 5,Glibenclamide 5mg,Antidiabetic
+140,Januvia 100,Sitagliptin 100mg,Antidiabetic/DPP-4
+141,Janumet 50/500,Sitagliptin 50mg + Metformin 500mg,Antidiabetic/DPP-4
+142,Janumet 50/1000,Sitagliptin 50mg + Metformin 1000mg,Antidiabetic/DPP-4
+143,Galvus 50,Vildagliptin 50mg,Antidiabetic/DPP-4
+144,Galvus Met 50/500,Vildagliptin 50mg + Metformin 500mg,Antidiabetic/DPP-4
+145,Onglyza 5,Saxagliptin 5mg,Antidiabetic/DPP-4
+146,Nesina 25,Alogliptin 25mg,Antidiabetic/DPP-4
+147,Jardiance 10,Empagliflozin 10mg,Antidiabetic/SGLT-2
+148,Jardiance 25,Empagliflozin 25mg,Antidiabetic/SGLT-2
+149,Forxiga 10,Dapagliflozin 10mg,Antidiabetic/SGLT-2
+150,Farxiga 10,Dapagliflozin 10mg,Antidiabetic/SGLT-2
+151,Invokana 100,Canagliflozin 100mg,Antidiabetic/SGLT-2
+152,Ozempic 0.5,Semaglutide 0.5mg/dose Injection,Antidiabetic/GLP-1
+153,Victoza 1.2,Liraglutide 1.2mg/dose Injection,Antidiabetic/GLP-1
+154,Actos 15,Pioglitazone 15mg,Antidiabetic/TZD
+155,Pioglit 15,Pioglitazone 15mg,Antidiabetic/TZD
+156,Glitazone MF 15/500,Pioglitazone 15mg + Metformin 500mg,Antidiabetic/TZD
+157,Mixtard 30,Biphasic Isophane Insulin 30% Soluble + 70% NPH 100IU/ml,Insulin
+158,Huminsulin 30/70,Biphasic Human Insulin 30/70 100IU/ml,Insulin
+159,Lantus,Insulin Glargine 100IU/ml,Insulin/Long-acting
+160,Basalin,Insulin Glargine 100IU/ml,Insulin/Long-acting
+161,Tresiba 100,Insulin Degludec 100IU/ml,Insulin/Ultra long-acting
+162,Novorapid,Insulin Aspart 100IU/ml,Insulin/Rapid-acting
+163,Humalog,Insulin Lispro 100IU/ml,Insulin/Rapid-acting
+164,Apidra,Insulin Glulisine 100IU/ml,Insulin/Rapid-acting
+165,Storvas 10,Atorvastatin 10mg,Cardiovascular/Statin
+166,Storvas 20,Atorvastatin 20mg,Cardiovascular/Statin
+167,Atorlip 10,Atorvastatin 10mg,Cardiovascular/Statin
+168,Lipitor 20,Atorvastatin 20mg,Cardiovascular/Statin
+169,Tonact 10,Atorvastatin 10mg,Cardiovascular/Statin
+170,Rosave 10,Rosuvastatin 10mg,Cardiovascular/Statin
+171,Rosave 20,Rosuvastatin 20mg,Cardiovascular/Statin
+172,Crestor 10,Rosuvastatin 10mg,Cardiovascular/Statin
+173,Rozucor 10,Rosuvastatin 10mg,Cardiovascular/Statin
+174,Ecosprin 75,Aspirin 75mg,Cardiovascular/Antiplatelet
+175,Ecosprin 150,Aspirin 150mg,Cardiovascular/Antiplatelet
+176,Aspirin 325,Aspirin 325mg,Cardiovascular/Antiplatelet
+177,Plavix 75,Clopidogrel 75mg,Cardiovascular/Antiplatelet
+178,Clopilet 75,Clopidogrel 75mg,Cardiovascular/Antiplatelet
+179,Deplatt 75,Clopidogrel 75mg,Cardiovascular/Antiplatelet
+180,Prasita 10,Prasugrel 10mg,Cardiovascular/Antiplatelet
+181,Effient 10,Prasugrel 10mg,Cardiovascular/Antiplatelet
+182,Brilinta 90,Ticagrelor 90mg,Cardiovascular/Antiplatelet
+183,Ecosprin AV 75/20,Aspirin 75mg + Atorvastatin 20mg,Cardiovascular
+184,Deplatt A 75,Clopidogrel 75mg + Aspirin 75mg,Cardiovascular/Antiplatelet
+185,Loprin 150,Aspirin 150mg,Cardiovascular/Antiplatelet
+186,Atenolol 25,Atenolol 25mg,Cardiovascular/Beta-blocker
+187,Atenolol 50,Atenolol 50mg,Cardiovascular/Beta-blocker
+188,Tenormin 50,Atenolol 50mg,Cardiovascular/Beta-blocker
+189,Metolar XR 25,Metoprolol Succinate 25mg,Cardiovascular/Beta-blocker
+190,Metolar XR 50,Metoprolol Succinate 50mg,Cardiovascular/Beta-blocker
+191,Betaloc ZOK 25,Metoprolol Succinate 25mg,Cardiovascular/Beta-blocker
+192,Carvedilol 6.25,Carvedilol 6.25mg,Cardiovascular/Beta-blocker
+193,Carloc 6.25,Carvedilol 6.25mg,Cardiovascular/Beta-blocker
+194,Bisoprolol 2.5,Bisoprolol 2.5mg,Cardiovascular/Beta-blocker
+195,Concor 5,Bisoprolol 5mg,Cardiovascular/Beta-blocker
+196,Nebicard 5,Nebivolol 5mg,Cardiovascular/Beta-blocker
+197,Cardivas 3.125,Carvedilol 3.125mg,Cardiovascular/Beta-blocker
+198,Amlodipine 5,Amlodipine 5mg,Cardiovascular/CCB
+199,Amlodipine 10,Amlodipine 10mg,Cardiovascular/CCB
+200,Amlong 5,Amlodipine 5mg,Cardiovascular/CCB
+201,Norvasc 5,Amlodipine 5mg,Cardiovascular/CCB
+202,Stamlo 5,Amlodipine 5mg,Cardiovascular/CCB
+203,Felodipine 5,Felodipine 5mg,Cardiovascular/CCB
+204,Diltiazem CD 90,Diltiazem 90mg,Cardiovascular/CCB
+205,Dilzem CD 90,Diltiazem 90mg,Cardiovascular/CCB
+206,Verapamil SR 120,Verapamil 120mg,Cardiovascular/CCB
+207,Ramipril 5,Ramipril 5mg,Cardiovascular/ACE Inhibitor
+208,Cardace 5,Ramipril 5mg,Cardiovascular/ACE Inhibitor
+209,Hopace 5,Ramipril 5mg,Cardiovascular/ACE Inhibitor
+210,Enalapril 5,Enalapril 5mg,Cardiovascular/ACE Inhibitor
+211,Envas 5,Enalapril 5mg,Cardiovascular/ACE Inhibitor
+212,Lisinopril 10,Lisinopril 10mg,Cardiovascular/ACE Inhibitor
+213,Listril 5,Lisinopril 5mg,Cardiovascular/ACE Inhibitor
+214,Perindopril 4,Perindopril 4mg,Cardiovascular/ACE Inhibitor
+215,Coversyl 4,Perindopril 4mg,Cardiovascular/ACE Inhibitor
+216,Losartan 50,Losartan 50mg,Cardiovascular/ARB
+217,Losartan 25,Losartan 25mg,Cardiovascular/ARB
+218,Covance 50,Losartan 50mg,Cardiovascular/ARB
+219,Repace 50,Losartan 50mg,Cardiovascular/ARB
+220,Olsar 20,Olmesartan 20mg,Cardiovascular/ARB
+221,Olmezest 20,Olmesartan 20mg,Cardiovascular/ARB
+222,Telma 40,Telmisartan 40mg,Cardiovascular/ARB
+223,Telma 80,Telmisartan 80mg,Cardiovascular/ARB
+224,Micardis 40,Telmisartan 40mg,Cardiovascular/ARB
+225,Arbitel 40,Telmisartan 40mg,Cardiovascular/ARB
+226,Valsartan 80,Valsartan 80mg,Cardiovascular/ARB
+227,Diovan 80,Valsartan 80mg,Cardiovascular/ARB
+228,Irbesartan 150,Irbesartan 150mg,Cardiovascular/ARB
+229,Avapro 150,Irbesartan 150mg,Cardiovascular/ARB
+230,Hydrochlorothiazide 25,Hydrochlorothiazide 25mg,Cardiovascular/Diuretic
+231,Esidrex 25,Hydrochlorothiazide 25mg,Cardiovascular/Diuretic
+232,Lasix 40,Furosemide 40mg,Cardiovascular/Diuretic
+233,Furosemide 40,Furosemide 40mg,Cardiovascular/Diuretic
+234,Aldactone 25,Spironolactone 25mg,Cardiovascular/Diuretic
+235,Lasilactone 50,Furosemide 20mg + Spironolactone 50mg,Cardiovascular/Diuretic
+236,Torsemide 10,Torsemide 10mg,Cardiovascular/Diuretic
+237,Dytor 10,Torsemide 10mg,Cardiovascular/Diuretic
+238,Amiodarone 200,Amiodarone 200mg,Cardiovascular/Antiarrhythmic
+239,Cordarone 200,Amiodarone 200mg,Cardiovascular/Antiarrhythmic
+240,Digoxin 0.25,Digoxin 0.25mg,Cardiovascular/Cardiac glycoside
+241,Lanoxin 0.25,Digoxin 0.25mg,Cardiovascular/Cardiac glycoside
+242,Isordil 5,Isosorbide Dinitrate 5mg,Cardiovascular/Nitrate
+243,Nitrocontin 2.6,Nitroglycerine 2.6mg,Cardiovascular/Nitrate
+244,Nicorandil 5,Nicorandil 5mg,Cardiovascular/Antianginal
+245,Ikorel 5,Nicorandil 5mg,Cardiovascular/Antianginal
+246,Trimetazidine 35,Trimetazidine 35mg,Cardiovascular/Antianginal
+247,Vastarel MR 35,Trimetazidine MR 35mg,Cardiovascular/Antianginal
+248,Ranolazine 500,Ranolazine 500mg,Cardiovascular/Antianginal
+249,Ranexa 500,Ranolazine 500mg,Cardiovascular/Antianginal
+250,Warfarin 5,Warfarin 5mg,Cardiovascular/Anticoagulant
+251,Warf 5,Warfarin 5mg,Cardiovascular/Anticoagulant
+252,Rivaroxaban 20,Rivaroxaban 20mg,Cardiovascular/Anticoagulant
+253,Xarelto 20,Rivaroxaban 20mg,Cardiovascular/Anticoagulant
+254,Apixaban 5,Apixaban 5mg,Cardiovascular/Anticoagulant
+255,Eliquis 5,Apixaban 5mg,Cardiovascular/Anticoagulant
+256,Dabigatran 150,Dabigatran 150mg,Cardiovascular/Anticoagulant
+257,Pradaxa 150,Dabigatran 150mg,Cardiovascular/Anticoagulant
+258,Enoxaparin 40,Enoxaparin 40mg/0.4ml Injection,Cardiovascular/Anticoagulant
+259,Clexane 40,Enoxaparin 40mg/0.4ml Injection,Cardiovascular/Anticoagulant
+260,Heparin 5000,Heparin 5000IU Injection,Cardiovascular/Anticoagulant
+261,Ivabradine 5,Ivabradine 5mg,Cardiovascular/If-channel blocker
+262,Procoralan 5,Ivabradine 5mg,Cardiovascular/If-channel blocker
+263,Sacubitril Valsartan 49/51,Sacubitril 49mg + Valsartan 51mg,Cardiovascular/ARNi
+264,Vymada 49/51,Sacubitril 49mg + Valsartan 51mg,Cardiovascular/ARNi
+265,Fenofibrate 145,Fenofibrate 145mg,Cardiovascular/Fibrate
+266,Tricor 145,Fenofibrate 145mg,Cardiovascular/Fibrate
+267,Ezetimibe 10,Ezetimibe 10mg,Cardiovascular/Lipid-lowering
+268,Ezedoc 10,Ezetimibe 10mg,Cardiovascular/Lipid-lowering
+269,Rosuvas EZ 10/10,Rosuvastatin 10mg + Ezetimibe 10mg,Cardiovascular/Lipid-lowering
+270,Pan 40,Pantoprazole 40mg,Gastroenterology/PPI
+271,Pantocid 40,Pantoprazole 40mg,Gastroenterology/PPI
+272,Pan-D,Pantoprazole 40mg + Domperidone 10mg,Gastroenterology/PPI
+273,Omez 20,Omeprazole 20mg,Gastroenterology/PPI
+274,Omeprazole 20,Omeprazole 20mg,Gastroenterology/PPI
+275,Losec 20,Omeprazole 20mg,Gastroenterology/PPI
+276,Nexpro 40,Esomeprazole 40mg,Gastroenterology/PPI
+277,Nexium 40,Esomeprazole 40mg,Gastroenterology/PPI
+278,Rablet 20,Rabeprazole 20mg,Gastroenterology/PPI
+279,Razo 20,Rabeprazole 20mg,Gastroenterology/PPI
+280,Razo D,Rabeprazole 20mg + Domperidone 30mg SR,Gastroenterology/PPI
+281,Lansoprazole 30,Lansoprazole 30mg,Gastroenterology/PPI
+282,Lanzol 30,Lansoprazole 30mg,Gastroenterology/PPI
+283,Rantac 150,Ranitidine 150mg,Gastroenterology/H2 blocker
+284,Zinetac 150,Ranitidine 150mg,Gastroenterology/H2 blocker
+285,Famotidine 20,Famotidine 20mg,Gastroenterology/H2 blocker
+286,Pepcid 20,Famotidine 20mg,Gastroenterology/H2 blocker
+287,Reglan 10,Metoclopramide 10mg,Gastroenterology/Prokinetic
+288,Perinorm 10,Metoclopramide 10mg,Gastroenterology/Prokinetic
+289,Domstal 10,Domperidone 10mg,Gastroenterology/Prokinetic
+290,Motilium 10,Domperidone 10mg,Gastroenterology/Prokinetic
+291,Mosapride 5,Mosapride 5mg,Gastroenterology/Prokinetic
+292,Mosid 5,Mosapride 5mg,Gastroenterology/Prokinetic
+293,Duspatalin 135,Mebeverine 135mg,Gastroenterology/Antispasmodic
+294,Buscopan 10,Hyoscine Butylbromide 10mg,Gastroenterology/Antispasmodic
+295,Drotaverine 80,Drotaverine 80mg,Gastroenterology/Antispasmodic
+296,Drotin 80,Drotaverine 80mg,Gastroenterology/Antispasmodic
+297,Dicyclomine 20,Dicyclomine 20mg,Gastroenterology/Antispasmodic
+298,Antacid Syrup,Aluminium Hydroxide + Magnesium Hydroxide Syrup,Gastroenterology/Antacid
+299,Digene Syrup,Aluminium Hydroxide 300mg + Magnesium Hydroxide 150mg + Simethicone 50mg,Gastroenterology/Antacid
+300,Gelusil MPS,Aluminium Hydroxide + Magnesium Trisilicate + Dimethicone Suspension,Gastroenterology/Antacid
+301,ENO,Sodium Bicarbonate + Citric Acid + Sodium Carbonate Granules,Gastroenterology/Antacid
+302,Ondansetron 4,Ondansetron 4mg,Gastroenterology/Antiemetic
+303,Emeset 4,Ondansetron 4mg,Gastroenterology/Antiemetic
+304,Odanset 4,Ondansetron 4mg,Gastroenterology/Antiemetic
+305,Granisetron 1,Granisetron 1mg,Gastroenterology/Antiemetic
+306,Kytril 1,Granisetron 1mg,Gastroenterology/Antiemetic
+307,Sucralfate 1g,Sucralfate 1g/10ml Suspension,Gastroenterology/Mucoprotective
+308,Sucral,Sucralfate 1g/10ml Suspension,Gastroenterology/Mucoprotective
+309,Loperamide 2,Loperamide 2mg,Gastroenterology/Antidiarrheal
+310,Imodium 2,Loperamide 2mg,Gastroenterology/Antidiarrheal
+311,Norflox TZ,Norfloxacin 400mg + Tinidazole 600mg,Gastroenterology/Antidiarrheal
+312,ORS,Oral Rehydration Salts (WHO formula),Gastroenterology/Rehydration
+313,Electrobion,Sodium Chloride + Potassium Chloride + Sodium Citrate + Glucose Sachets,Gastroenterology/Rehydration
+314,Cremaffin Plus,Liquid Paraffin + Milk of Magnesia + Sodium Picosulphate Suspension,Gastroenterology/Laxative
+315,Duphalac,Lactulose 10g/15ml Solution,Gastroenterology/Laxative
+316,Softovac,Ispaghula Husk + Lactulose + Senna Granules,Gastroenterology/Laxative
+317,Bisacodyl 5,Bisacodyl 5mg,Gastroenterology/Laxative
+318,Dulcolax 5,Bisacodyl 5mg,Gastroenterology/Laxative
+319,Rifaximin 400,Rifaximin 400mg,Gastroenterology/Antibiotic
+320,Xifaxan 400,Rifaximin 400mg,Gastroenterology/Antibiotic
+321,Mesacol 400,Mesalamine 400mg,Gastroenterology/IBD
+322,Asacol 400,Mesalamine 400mg,Gastroenterology/IBD
+323,Ursodiol 300,Ursodeoxycholic Acid 300mg,Gastroenterology/Hepatoprotective
+324,Urdox 300,Ursodeoxycholic Acid 300mg,Gastroenterology/Hepatoprotective
+325,Liv 52 DS,Himsra (Capparis spinosa) + Kasani (Cichorium intybus) Herbal,Gastroenterology/Hepatoprotective
+326,Silymarin 140,Silymarin 140mg,Gastroenterology/Hepatoprotective
+327,Legalon 140,Silymarin 140mg,Gastroenterology/Hepatoprotective
+328,Foracort 400,Formoterol 12mcg + Budesonide 400mcg Inhaler,Respiratory
+329,Foracort 200,Formoterol 6mcg + Budesonide 200mcg Inhaler,Respiratory
+330,Symbicort 160/4.5,Formoterol 4.5mcg + Budesonide 160mcg Inhaler,Respiratory
+331,Seretide 250,Salmeterol 25mcg + Fluticasone 250mcg Inhaler,Respiratory
+332,Seroflo 250,Salmeterol 25mcg + Fluticasone 250mcg Inhaler,Respiratory
+333,Asthalin 2.5,Salbutamol 2.5mg/2.5ml Nebulization Solution,Respiratory
+334,Asthalin Inhaler,Salbutamol 100mcg/puff MDI,Respiratory
+335,Ventolin Inhaler,Salbutamol 100mcg/puff MDI,Respiratory
+336,Duolin Respules,Ipratropium 0.5mg + Levosalbutamol 1.25mg Nebulization,Respiratory
+337,Duolin Inhaler,Ipratropium 20mcg + Salbutamol 100mcg Inhaler,Respiratory
+338,Tiova Rotacap,Tiotropium 18mcg Rotacap,Respiratory/COPD
+339,Spiriva 18,Tiotropium 18mcg Inhaler,Respiratory/COPD
+340,Ultibro,Glycopyrronium 50mcg + Indacaterol 110mcg Inhaler,Respiratory/COPD
+341,Anoro Ellipta,Umeclidinium 62.5mcg + Vilanterol 25mcg Inhaler,Respiratory/COPD
+342,Budesonide Rotacap 200,Budesonide 200mcg Rotacap,Respiratory
+343,Pulmicort 200,Budesonide 200mcg Turbuhaler,Respiratory
+344,Montek LC,Montelukast 10mg + Levocetirizine 5mg,Respiratory/Allergy
+345,Montair LC,Montelukast 10mg + Levocetirizine 5mg,Respiratory/Allergy
+346,Montek 10,Montelukast 10mg,Respiratory
+347,Singulair 10,Montelukast 10mg,Respiratory
+348,Theophylline SR 200,Theophylline SR 200mg,Respiratory
+349,Deriphyllin Retard,Theophylline 200mg + Etofylline 300mg SR,Respiratory
+350,Ambroxol 30,Ambroxol 30mg,Respiratory/Mucolytic
+351,Mucosolvan 30,Ambroxol 30mg,Respiratory/Mucolytic
+352,Bromhexine 8,Bromhexine 8mg,Respiratory/Mucolytic
+353,Benadryl Cough,Diphenhydramine 14.08mg + Ammonium Chloride 138mg + Sodium Citrate 57.03mg/5ml Syrup,Respiratory/Cough
+354,Alex Syrup,Chlorpheniramine 2mg + Dextromethorphan 10mg + Phenylephrine 5mg/5ml,Respiratory/Cough
+355,Koflet Syrup,Adulsa + Tulsi + Yashthimadhu Herbal Syrup,Respiratory/Cough
+356,Dextromethorphan 10,Dextromethorphan 10mg,Respiratory/Cough
+357,Codeine Linctus,Codeine Phosphate 10mg/5ml Syrup,Respiratory/Cough
+358,Levolin 1.25,Levosalbutamol 1.25mg/2.5ml Nebulization,Respiratory
+359,Phenytoin 100,Phenytoin 100mg,Neurology/Antiepileptic
+360,Eptoin 100,Phenytoin 100mg,Neurology/Antiepileptic
+361,Carbamazepine 200,Carbamazepine 200mg,Neurology/Antiepileptic
+362,Tegretol 200,Carbamazepine 200mg,Neurology/Antiepileptic
+363,Valproate 500,Sodium Valproate 500mg,Neurology/Antiepileptic
+364,Valparin CR 500,Sodium Valproate CR 500mg,Neurology/Antiepileptic
+365,Encorate 500,Sodium Valproate 500mg,Neurology/Antiepileptic
+366,Lamitor 25,Lamotrigine 25mg,Neurology/Antiepileptic
+367,Lamictal 25,Lamotrigine 25mg,Neurology/Antiepileptic
+368,Levetiracetam 500,Levetiracetam 500mg,Neurology/Antiepileptic
+369,Levipil 500,Levetiracetam 500mg,Neurology/Antiepileptic
+370,Keppra 500,Levetiracetam 500mg,Neurology/Antiepileptic
+371,Topamax 25,Topiramate 25mg,Neurology/Antiepileptic
+372,Topamac 25,Topiramate 25mg,Neurology/Antiepileptic
+373,Clonazepam 0.5,Clonazepam 0.5mg,Neurology/Antiepileptic
+374,Rivotril 0.5,Clonazepam 0.5mg,Neurology/Antiepileptic
+375,Gabapentin 300,Gabapentin 300mg,Neurology/Neuropathic pain
+376,Gabapin 300,Gabapentin 300mg,Neurology/Neuropathic pain
+377,Pregabalin 75,Pregabalin 75mg,Neurology/Neuropathic pain
+378,Lyrica 75,Pregabalin 75mg,Neurology/Neuropathic pain
+379,Pregalin 75,Pregabalin 75mg,Neurology/Neuropathic pain
+380,Sumatriptan 50,Sumatriptan 50mg,Neurology/Migraine
+381,Suminat 50,Sumatriptan 50mg,Neurology/Migraine
+382,Rizatriptan 10,Rizatriptan 10mg,Neurology/Migraine
+383,Rizact 10,Rizatriptan 10mg,Neurology/Migraine
+384,Syndopa 110,Levodopa 100mg + Carbidopa 10mg,Neurology/Parkinson
+385,Sinemet 110,Levodopa 100mg + Carbidopa 10mg,Neurology/Parkinson
+386,Pramipex 0.5,Pramipexole 0.5mg,Neurology/Parkinson
+387,Mirapex 0.5,Pramipexole 0.5mg,Neurology/Parkinson
+388,Donecept 5,Donepezil 5mg,Neurology/Dementia
+389,Aricept 5,Donepezil 5mg,Neurology/Dementia
+390,Rivastigmine 1.5,Rivastigmine 1.5mg,Neurology/Dementia
+391,Exelon 1.5,Rivastigmine 1.5mg,Neurology/Dementia
+392,Memantine 5,Memantine 5mg,Neurology/Dementia
+393,Admenta 5,Memantine 5mg,Neurology/Dementia
+394,Diazepam 5,Diazepam 5mg,Neurology/Anxiolytic
+395,Calmpose 5,Diazepam 5mg,Neurology/Anxiolytic
+396,Lorazepam 1,Lorazepam 1mg,Neurology/Anxiolytic
+397,Ativan 1,Lorazepam 1mg,Neurology/Anxiolytic
+398,Alprazolam 0.25,Alprazolam 0.25mg,Psychiatry/Anxiolytic
+399,Alprax 0.25,Alprazolam 0.25mg,Psychiatry/Anxiolytic
+400,Etizolam 0.5,Etizolam 0.5mg,Psychiatry/Anxiolytic
+401,Etizest 0.5,Etizolam 0.5mg,Psychiatry/Anxiolytic
+402,Zolpidem 10,Zolpidem 10mg,Neurology/Hypnotic
+403,Ambien 10,Zolpidem 10mg,Neurology/Hypnotic
+404,Nitrazepam 5,Nitrazepam 5mg,Neurology/Hypnotic
+405,Nitrosun 5,Nitrazepam 5mg,Neurology/Hypnotic
+406,Fluoxetine 20,Fluoxetine 20mg,Psychiatry/SSRI
+407,Fludac 20,Fluoxetine 20mg,Psychiatry/SSRI
+408,Prozac 20,Fluoxetine 20mg,Psychiatry/SSRI
+409,Sertraline 50,Sertraline 50mg,Psychiatry/SSRI
+410,Zoloft 50,Sertraline 50mg,Psychiatry/SSRI
+411,Serta 50,Sertraline 50mg,Psychiatry/SSRI
+412,Escitalopram 10,Escitalopram 10mg,Psychiatry/SSRI
+413,Nexito 10,Escitalopram 10mg,Psychiatry/SSRI
+414,Cipralex 10,Escitalopram 10mg,Psychiatry/SSRI
+415,Paroxetine 20,Paroxetine 20mg,Psychiatry/SSRI
+416,Paxil 20,Paroxetine 20mg,Psychiatry/SSRI
+417,Venlafaxine 75,Venlafaxine 75mg,Psychiatry/SNRI
+418,Effexor XR 75,Venlafaxine XR 75mg,Psychiatry/SNRI
+419,Veniz XR 75,Venlafaxine XR 75mg,Psychiatry/SNRI
+420,Duloxetine 30,Duloxetine 30mg,Psychiatry/SNRI
+421,Cymbalta 30,Duloxetine 30mg,Psychiatry/SNRI
+422,Duzela 30,Duloxetine 30mg,Psychiatry/SNRI
+423,Amitriptyline 10,Amitriptyline 10mg,Psychiatry/TCA
+424,Tryptomer 10,Amitriptyline 10mg,Psychiatry/TCA
+425,Imipramine 25,Imipramine 25mg,Psychiatry/TCA
+426,Mirtazapine 15,Mirtazapine 15mg,Psychiatry/Antidepressant
+427,Mirtaz 15,Mirtazapine 15mg,Psychiatry/Antidepressant
+428,Bupropion 150,Bupropion 150mg,Psychiatry/Antidepressant
+429,Wellbutrin 150,Bupropion 150mg,Psychiatry/Antidepressant
+430,Haloperidol 5,Haloperidol 5mg,Psychiatry/Antipsychotic
+431,Serenace 5,Haloperidol 5mg,Psychiatry/Antipsychotic
+432,Olanzapine 5,Olanzapine 5mg,Psychiatry/Antipsychotic
+433,Oleanz 5,Olanzapine 5mg,Psychiatry/Antipsychotic
+434,Oliza 10,Olanzapine 10mg,Psychiatry/Antipsychotic
+435,Risperidone 2,Risperidone 2mg,Psychiatry/Antipsychotic
+436,Sizodon 2,Risperidone 2mg,Psychiatry/Antipsychotic
+437,Risperdal 2,Risperidone 2mg,Psychiatry/Antipsychotic
+438,Quetiapine 25,Quetiapine 25mg,Psychiatry/Antipsychotic
+439,Seroquel 25,Quetiapine 25mg,Psychiatry/Antipsychotic
+440,Petril 25,Quetiapine 25mg,Psychiatry/Antipsychotic
+441,Aripiprazole 10,Aripiprazole 10mg,Psychiatry/Antipsychotic
+442,Abilify 10,Aripiprazole 10mg,Psychiatry/Antipsychotic
+443,Astron 10,Aripiprazole 10mg,Psychiatry/Antipsychotic
+444,Clozapine 25,Clozapine 25mg,Psychiatry/Antipsychotic
+445,Sizoril 25,Clozapine 25mg,Psychiatry/Antipsychotic
+446,Lithium 300,Lithium Carbonate 300mg,Psychiatry/Mood stabilizer
+447,Licab 300,Lithium Carbonate 300mg,Psychiatry/Mood stabilizer
+448,Sodium Valproate ER 500,Sodium Valproate ER 500mg,Psychiatry/Mood stabilizer
+449,Propranolol 40,Propranolol 40mg,Psychiatry/Beta-blocker
+450,Inderal 40,Propranolol 40mg,Psychiatry/Beta-blocker
+451,Buspirone 10,Buspirone 10mg,Psychiatry/Anxiolytic
+452,Buspar 10,Buspirone 10mg,Psychiatry/Anxiolytic
+453,Eltroxin 50,Levothyroxine 50mcg,Thyroid
+454,Thyrox 50,Levothyroxine 50mcg,Thyroid
+455,Eltroxin 100,Levothyroxine 100mcg,Thyroid
+456,Thyrox 100,Levothyroxine 100mcg,Thyroid
+457,Neomercazole 5,Carbimazole 5mg,Thyroid/Antithyroid
+458,Carbimazole 5,Carbimazole 5mg,Thyroid/Antithyroid
+459,Propylthiouracil 50,Propylthiouracil 50mg,Thyroid/Antithyroid
+460,Primolut N 5,Norethisterone 5mg,Gynaecology
+461,Gestofit 200,Progesterone 200mg Soft Gelatin,Gynaecology
+462,Susten 200,Progesterone 200mg Vaginal Gel,Gynaecology
+463,Duphaston 10,Dydrogesterone 10mg,Gynaecology
+464,Yasmin,Drospirenone 3mg + Ethinyl Estradiol 30mcg,Oral Contraceptive
+465,Loette,Levonorgestrel 100mcg + Ethinyl Estradiol 20mcg,Oral Contraceptive
+466,Mala-N,Norethindrone 1mg + Ethinyl Estradiol 35mcg,Oral Contraceptive
+467,Unwanted 72,Levonorgestrel 1.5mg,Emergency Contraceptive
+468,iPill,Levonorgestrel 1.5mg,Emergency Contraceptive
+469,Oxytocin 5IU,Oxytocin 5IU Injection,Gynaecology/Uterotonic
+470,Syntocinon 5IU,Oxytocin 5IU Injection,Gynaecology/Uterotonic
+471,Methergine 0.2,Methylergometrine 0.2mg,Gynaecology/Uterotonic
+472,Misoprostol 200,Misoprostol 200mcg,Gynaecology
+473,Cytotec 200,Misoprostol 200mcg,Gynaecology
+474,Folic Acid 5,Folic Acid 5mg,Gynaecology/Supplement
+475,Duvadilan,Isoxsuprine 10mg,Gynaecology/Tocolytic
+476,Flomax 0.4,Tamsulosin 0.4mg,Urology/Alpha-blocker
+477,Urimax 0.4,Tamsulosin 0.4mg,Urology/Alpha-blocker
+478,Rapido 0.4,Tamsulosin 0.4mg,Urology/Alpha-blocker
+479,Alfuzosin 10,Alfuzosin 10mg,Urology/Alpha-blocker
+480,Xatral 10,Alfuzosin 10mg,Urology/Alpha-blocker
+481,Finasteride 5,Finasteride 5mg,Urology/5-alpha reductase
+482,Finpecia 1,Finasteride 1mg,Urology/5-alpha reductase
+483,Sildenafil 50,Sildenafil 50mg,Urology/PDE-5 inhibitor
+484,Manforce 50,Sildenafil 50mg,Urology/PDE-5 inhibitor
+485,Caverta 100,Sildenafil 100mg,Urology/PDE-5 inhibitor
+486,Tadalafil 20,Tadalafil 20mg,Urology/PDE-5 inhibitor
+487,Tadalis 20,Tadalafil 20mg,Urology/PDE-5 inhibitor
+488,Cialis 20,Tadalafil 20mg,Urology/PDE-5 inhibitor
+489,Furesem 40,Furosemide 40mg,Urology/Diuretic
+490,Solifenacin 5,Solifenacin 5mg,Urology/Anticholinergic
+491,Vesicare 5,Solifenacin 5mg,Urology/Anticholinergic
+492,Betnovate C Cream,Betamethasone 0.1% + Clioquinol 3% Cream,Dermatology
+493,Betnovate N Cream,Betamethasone 0.1% + Neomycin 0.5% Cream,Dermatology
+494,Betnovate GM Cream,Betamethasone 0.05% + Gentamicin 0.1% + Miconazole 2% Cream,Dermatology
+495,Candid B Cream,Clotrimazole 1% + Beclometasone 0.025% Cream,Dermatology/Antifungal
+496,Momate Cream,Mometasone Furoate 0.1% Cream,Dermatology
+497,Elocon Cream,Mometasone Furoate 0.1% Cream,Dermatology
+498,Hydrocortisone 1%,Hydrocortisone 1% Cream,Dermatology
+499,Fucidin Cream,Fusidic Acid 2% Cream,Dermatology/Antibiotic
+500,Mupirocin 2%,Mupirocin 2% Ointment,Dermatology/Antibiotic
+501,Bactroban 2%,Mupirocin 2% Ointment,Dermatology/Antibiotic
+502,Retin-A 0.025%,Tretinoin 0.025% Cream,Dermatology/Retinoid
+503,Isotretinoin 20,Isotretinoin 20mg,Dermatology/Retinoid
+504,Oratane 20,Isotretinoin 20mg,Dermatology/Retinoid
+505,Acne Aid,Clindamycin 1% + Benzoyl Peroxide 2.5% Gel,Dermatology
+506,Duac Gel,Clindamycin 1% + Benzoyl Peroxide 5% Gel,Dermatology
+507,Permethrin 5%,Permethrin 5% Cream,Dermatology/Scabicide
+508,Scabizma 5%,Permethrin 5% Cream,Dermatology/Scabicide
+509,Lindane 1%,Gamma Benzene Hexachloride 1% Lotion,Dermatology/Scabicide
+510,Calamine Lotion,Calamine 8% + Zinc Oxide 3% Lotion,Dermatology/Soothing
+511,Tacrolimus 0.1%,Tacrolimus 0.1% Ointment,Dermatology/Immunosuppressant
+512,Protopic 0.1%,Tacrolimus 0.1% Ointment,Dermatology/Immunosuppressant
+513,Halobetasol 0.05%,Halobetasol 0.05% Cream,Dermatology
+514,Clobetasol 0.05%,Clobetasol Propionate 0.05% Cream,Dermatology
+515,Tenovate Cream,Clobetasol Propionate 0.05% Cream,Dermatology
+516,Timolol 0.5% Eye,Timolol 0.5% Eye Drops,Ophthalmology/Glaucoma
+517,Timoptic 0.5%,Timolol 0.5% Eye Drops,Ophthalmology/Glaucoma
+518,Latanoprost 0.005%,Latanoprost 0.005% Eye Drops,Ophthalmology/Glaucoma
+519,Xalatan 0.005%,Latanoprost 0.005% Eye Drops,Ophthalmology/Glaucoma
+520,Bimatoprost 0.03%,Bimatoprost 0.03% Eye Drops,Ophthalmology/Glaucoma
+521,Lumigan 0.03%,Bimatoprost 0.03% Eye Drops,Ophthalmology/Glaucoma
+522,Ciprofloxacin Eye,Ciprofloxacin 0.3% Eye Drops,Ophthalmology/Antibiotic
+523,Moxifloxacin Eye,Moxifloxacin 0.5% Eye Drops,Ophthalmology/Antibiotic
+524,Vigamox 0.5%,Moxifloxacin 0.5% Eye Drops,Ophthalmology/Antibiotic
+525,Dexamethasone Eye,Dexamethasone 0.1% Eye Drops,Ophthalmology/Steroid
+526,Maxidex 0.1%,Dexamethasone 0.1% Eye Drops,Ophthalmology/Steroid
+527,Ofloxacin Eye,Ofloxacin 0.3% Eye Drops,Ophthalmology/Antibiotic
+528,Exocin 0.3%,Ofloxacin 0.3% Eye Drops,Ophthalmology/Antibiotic
+529,Sodium Chloride Eye,Sodium Chloride 0.9% Eye Drops (Lubricant),Ophthalmology
+530,Tear Natural,Polyvinyl Alcohol + Povidone Eye Drops,Ophthalmology/Lubricant
+531,Becosules,Vitamin B-Complex + Vitamin C Capsules,Supplement
+532,Neurobion Forte,Vitamin B1 + B6 + B12 Tablets,Supplement
+533,Methylcobalamin 500,Methylcobalamin 500mcg,Supplement
+534,Mecobalamin 500,Methylcobalamin 500mcg,Supplement
+535,Nurokind Plus,Methylcobalamin 1500mcg + Niacinamide + Folic Acid,Supplement
+536,Vitamin D3 60000IU,Cholecalciferol 60000 IU Sachet,Supplement
+537,Uprise D3,Cholecalciferol 60000 IU Sachet,Supplement
+538,Arachitol 6L,Cholecalciferol 6 Lakh IU/ml Injection,Supplement
+539,Calcium Carbonate 500,Calcium Carbonate 500mg + Vitamin D3 200IU,Supplement
+540,Shelcal 500,Calcium Carbonate 1250mg equivalent Calcium 500mg + Vitamin D3 250IU,Supplement
+541,Caltrate 600,Calcium Carbonate 1500mg (Calcium 600mg) + Vitamin D3 400IU,Supplement
+542,Ferrous Sulphate 150,Ferrous Sulphate 150mg,Supplement/Iron
+543,Orofer XT,Ferrous Ascorbate 100mg + Folic Acid 1.5mg + Zinc Sulphate 61.8mg,Supplement/Iron
+544,Autrin,Ferrous Fumarate + Folic Acid + Zinc + Vitamin B12,Supplement/Iron
+545,Dexorange Capsule,Ferric Ammonium Citrate 160mg + Folic Acid 0.5mg + Cyanocobalamin 7.5mcg,Supplement/Iron
+546,Zinc 20,Zinc Sulphate 20mg,Supplement
+547,Zincovit,Zinc + Multivitamins + Minerals,Supplement
+548,Evion 400,Vitamin E 400mg,Supplement
+549,Limcee 500,Vitamin C 500mg,Supplement
+550,Thiamine 100,Thiamine 100mg,Supplement
+551,Pyridoxine 40,Pyridoxine 40mg,Supplement
+552,Folic Acid 1,Folic Acid 1mg,Supplement
+553,Dexamethasone 0.5,Dexamethasone 0.5mg,Corticosteroid
+554,Dexona 0.5,Dexamethasone 0.5mg,Corticosteroid
+555,Methylprednisolone 4,Methylprednisolone 4mg,Corticosteroid
+556,Medrol 4,Methylprednisolone 4mg,Corticosteroid
+557,Solu-Medrol 500,Methylprednisolone 500mg Injection,Corticosteroid
+558,Prednisolone 5,Prednisolone 5mg,Corticosteroid
+559,Wysolone 5,Prednisolone 5mg,Corticosteroid
+560,Hydrocortisone 100,Hydrocortisone 100mg Injection,Corticosteroid
+561,Efcorlin 100,Hydrocortisone 100mg Injection,Corticosteroid
+562,Fludrocortisone 0.1,Fludrocortisone 0.1mg,Corticosteroid/Mineralocorticoid
+563,Florinef 0.1,Fludrocortisone 0.1mg,Corticosteroid/Mineralocorticoid
+564,Hydroxychloroquine 200,Hydroxychloroquine 200mg,Rheumatology/DMARD
+565,HCQS 200,Hydroxychloroquine Sulphate 200mg,Rheumatology/DMARD
+566,Methotrexate 2.5,Methotrexate 2.5mg,Rheumatology/DMARD
+567,Folitrax 2.5,Methotrexate 2.5mg,Rheumatology/DMARD
+568,Sulfasalazine 500,Sulfasalazine 500mg,Rheumatology/DMARD
+569,Azathioprine 50,Azathioprine 50mg,Rheumatology/Immunosuppressant
+570,Imuran 50,Azathioprine 50mg,Rheumatology/Immunosuppressant
+571,Cyclosporine 25,Cyclosporine 25mg,Rheumatology/Immunosuppressant
+572,Panimun 25,Cyclosporine 25mg,Rheumatology/Immunosuppressant
+573,Tacrolimus 1,Tacrolimus 1mg,Rheumatology/Immunosuppressant
+574,Pangraf 1,Tacrolimus 1mg,Rheumatology/Immunosuppressant
+575,Mycophenolate 500,Mycophenolate Mofetil 500mg,Rheumatology/Immunosuppressant
+576,Cellcept 500,Mycophenolate Mofetil 500mg,Rheumatology/Immunosuppressant
+577,Colchicine 0.5,Colchicine 0.5mg,Rheumatology/Gout
+578,Colcibra 0.5,Colchicine 0.5mg,Rheumatology/Gout
+579,Allopurinol 100,Allopurinol 100mg,Rheumatology/Gout
+580,Zyloric 100,Allopurinol 100mg,Rheumatology/Gout
+581,Febuxostat 40,Febuxostat 40mg,Rheumatology/Gout
+582,Febuget 40,Febuxostat 40mg,Rheumatology/Gout
+583,Tamoxifen 20,Tamoxifen 20mg,Oncology/Hormonal
+584,Nolvadex 20,Tamoxifen 20mg,Oncology/Hormonal
+585,Letrozole 2.5,Letrozole 2.5mg,Oncology/Aromatase inhibitor
+586,Femara 2.5,Letrozole 2.5mg,Oncology/Aromatase inhibitor
+587,Anastrozole 1,Anastrozole 1mg,Oncology/Aromatase inhibitor
+588,Arimidex 1,Anastrozole 1mg,Oncology/Aromatase inhibitor
+589,Imatinib 400,Imatinib 400mg,Oncology/TKI
+590,Gleevec 400,Imatinib 400mg,Oncology/TKI
+591,Capecitabine 500,Capecitabine 500mg,Oncology
+592,Xeloda 500,Capecitabine 500mg,Oncology
+593,Ondansetron 8,Ondansetron 8mg,Oncology/Antiemetic
+594,Zofran 8,Ondansetron 8mg,Oncology/Antiemetic
+595,Granisetron 2,Granisetron 2mg,Oncology/Antiemetic
+596,Dexamethasone 4,Dexamethasone 4mg,Oncology/Antiemetic adjunct
+597,Sodium Bicarbonate 500,Sodium Bicarbonate 500mg,Nephrology
+598,Calcium Acetate 667,Calcium Acetate 667mg,Nephrology/Phosphate binder
+599,Sevelamer 800,Sevelamer Carbonate 800mg,Nephrology/Phosphate binder
+600,Renvela 800,Sevelamer Carbonate 800mg,Nephrology/Phosphate binder
+601,Erythropoietin 2000,Erythropoietin 2000IU Injection,Nephrology/Anemia
+602,Eprex 4000,Epoetin Alfa 4000IU Injection,Nephrology/Anemia
+603,Iron Sucrose 100,Iron Sucrose 100mg/5ml Injection,Nephrology/Anemia
+604,Feronia XT Inj,Iron Sucrose 100mg Injection,Nephrology/Anemia
+605,Hydroxyurea 500,Hydroxyurea 500mg,Haematology
+606,Hydrea 500,Hydroxyurea 500mg,Haematology
+607,Deferoxamine 500,Deferoxamine 500mg Injection,Haematology/Iron chelation
+608,Desirox 250,Deferasirox 250mg Dispersible Tablet,Haematology/Iron chelation
+609,Exjade 250,Deferasirox 250mg Dispersible Tablet,Haematology/Iron chelation

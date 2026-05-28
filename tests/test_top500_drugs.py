@@ -193,15 +193,16 @@ async def classify_drug(conn, drug_id: str, age_groups: list[str]) -> str:
 
 
 async def test_one(conn, csv_row: dict, age_groups: list[str]) -> dict:
-    brand_name = csv_row["Brand Name"]
+    # Support both old CSV format ("Brand Name") and new ("Brand Name (India)")
+    brand_name = csv_row.get("Brand Name") or csv_row.get("Brand Name (India)", "")
     db_rows = await find_drug(conn, brand_name)
 
     base = {
-        "rank":            csv_row["Rank"],
+        "rank":            csv_row.get("Rank") or csv_row.get("#", ""),
         "brand_name":      brand_name,
-        "composition":     csv_row["Composition / Salt(s)"],
-        "category":        csv_row["Therapeutic Category"],
-        "rx_otc":          csv_row["Rx/OTC"],
+        "composition":     csv_row.get("Composition / Salt(s)") or csv_row.get("Salt Composition", ""),
+        "category":        csv_row.get("Therapeutic Category", ""),
+        "rx_otc":          csv_row.get("Rx/OTC", ""),
         "age_groups":      age_groups,
         "drug_id_1mg":     None,
         "db_brand_name":   None,
@@ -258,9 +259,10 @@ async def main(csv_path: str, age: int) -> None:
             counts[result["result"]] += 1
 
             icon = ICONS[result["result"]]
+            brand_col = row.get("Brand Name") or row.get("Brand Name (India)", "")
             logger.info(
-                f"[{i:3d}/500] {icon} {result['result']:<15} | "
-                f"{row['Brand Name'][:28]:<28} | "
+                f"[{i:3d}/{len(drugs)}] {icon} {result['result']:<15} | "
+                f"{brand_col[:28]:<28} | "
                 f"drug_id={result['drug_id_1mg'] or 'N/A':<10} | "
                 f"match_combo={result['match_combinations'] or '-'}"
             )
