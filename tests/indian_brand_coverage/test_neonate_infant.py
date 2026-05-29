@@ -2,12 +2,8 @@
 """
 Indian-brand age-coverage: NEONATE + INFANT  (combined)
 
-Fetches every drug_id_1mg from drugdb.indian_brand and checks both
-neonate and infant age groups in a single pass for each drug.
-
-Age-group SQL lists used:
-  neonate → ["neonate"]
-  infant  → ["infant", "neonate"]
+Hits POST /api/v1/dosing with age=0 (neonate) and age=1 (infant) for every
+drug_id_1mg in drugdb.indian_brand. The service maps ages to groups internally.
 
 Run standalone : python tests/indian_brand_coverage/test_neonate_infant.py
 Run all 4      : python tests/indian_brand_coverage/run_all.py
@@ -26,8 +22,8 @@ from _common import run_coverage  # noqa: E402
 LABEL = "neonate_infant"
 
 AGE_GROUP_MAP = {
-    "neonate": ["neonate"],
-    "infant":  ["infant", "neonate"],
+    "neonate": 0,   # age=0 → service resolves to ["neonate"]
+    "infant":  1,   # age=1 → service resolves to ["infant", "neonate"]
 }
 
 

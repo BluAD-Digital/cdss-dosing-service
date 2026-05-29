@@ -39,9 +39,11 @@ async def get_dosing(
     try:
         exists = await dosing_repo.drug_exists(pool, drug_id_1mg)
         rows = await dosing_repo.fetch_dosing(pool, drug_id_1mg, age_groups) if exists else []
+        source = "primary"
         if not rows:
             logger.info("primary miss, trying fallback", drug_id_1mg=drug_id_1mg, exists=exists)
             rows = await dosing_repo.fetch_dosing_fallback(pool, drug_id_1mg, age_groups)
+            source = "fallback"
     except asyncpg.PostgresError:
         raise HTTPException(status_code=500, detail={"error": "internal_error", "message": "Database error"})
 
@@ -75,6 +77,7 @@ async def get_dosing(
         salt_composition=first["salt_composition"] or "",
         generic_name=first["generic_name"] or "",
         age_group=primary_group,
+        source=source,
         dosing=dosing_rows,
         cached=False,
         query_time_ms=round(elapsed_ms, 2),

@@ -2,11 +2,8 @@
 """
 Run all 4 indian_brand age-coverage tests simultaneously.
 
-Optimisations vs. v1:
-  - One shared asyncpg pool (max 130 connections) — no connection competition.
-  - Drug list fetched ONCE with the fast GROUP BY query and shared across all 4
-    runners — eliminates 3 redundant heavy fetches.
-  - All 4 runners fire concurrently via asyncio.gather() with CONCURRENCY=30 each.
+Hits the live /api/v1/dosing endpoint — no raw SQL, 100% faithful to real
+service behaviour. All 4 files fire concurrently via asyncio.gather().
 
 Usage (from project root):
     python3 tests/indian_brand_coverage/run_all.py
@@ -20,6 +17,7 @@ _HERE = Path(__file__).resolve().parent
 if str(_HERE) not in sys.path:
     sys.path.insert(0, str(_HERE))
 
+import aiohttp
 import asyncpg
 from dotenv import load_dotenv
 import os
@@ -30,6 +28,8 @@ DB_URL = os.environ["DATABASE_URL"]
 from _common import (
     FETCH_ALL_DRUGS_SQL,
     CONCURRENCY,
+    BASE_URL,
+    API_KEY,
     run_coverage,
     find_latest_log,
 )
@@ -42,10 +42,11 @@ from test_geriatric      import AGE_GROUP_MAP as AGE_GERIATRIC,      LABEL as LA
 async def main() -> None:
     print("=" * 80)
     print("indian_brand age-coverage  —  all 4 age-group files starting NOW")
-    print("  File 1 : neonate + infant   (age groups: neonate, infant)")
-    print("  File 2 : pediatric          (age groups: pediatric, any)")
-    print("  File 3 : adult              (age groups: adult, any)")
-    print("  File 4 : geriatric          (age groups: geriatric, adult, any)")
+    print(f"  Endpoint : {BASE_URL}")
+    print("  File 1 : neonate (age=0)  + infant (age=1)")
+    print("  File 2 : pediatric        (age=10)")
+    print("  File 3 : adult            (age=30)")
+    print("  File 4 : geriatric        (age=70)")
     print("=" * 80)
 
     # ── Auto-detect prior logs for resume ─────────────────────────────────────
@@ -64,32 +65,27 @@ async def main() -> None:
 
     t0 = time.perf_counter()
 
-    # ── Shared pool: 4 runners × CONCURRENCY connections + headroom ──────────
-    shared_pool = await asyncpg.create_pool(
-        DB_URL,
-        min_size=10,
-        max_size=CONCURRENCY * 4 + 10,   # 130 connections
-        command_timeout=60,
-    )
-
-    # ── Fetch drug list ONCE (fast GROUP BY query) ────────────────────────────
+    # ── Fetch drug list once from DB ──────────────────────────────────────────
     print("Fetching drug list from drugdb.indian_brand …", flush=True)
     t_fetch = time.perf_counter()
-    async with shared_pool.acquire() as conn:
+    pool = await asyncpg.create_pool(DB_URL, min_size=1, max_size=3, command_timeout=30)
+    async with pool.acquire() as conn:
         drugs = await conn.fetch(FETCH_ALL_DRUGS_SQL)
+    await pool.close()
     print(f"  → {len(drugs):,} drug_ids fetched in {time.perf_counter()-t_fetch:.1f}s")
     print("─" * 80)
 
-    # ── Fire all 4 runners simultaneously ────────────────────────────────────
-    all_stats = await asyncio.gather(
-        run_coverage(label=LABEL_NI,    age_group_map=AGE_NEONATE_INFANT, pool=shared_pool, drugs=drugs, resume_log=prior_logs[LABEL_NI]),
-        run_coverage(label=LABEL_PED,   age_group_map=AGE_PEDIATRIC,      pool=shared_pool, drugs=drugs, resume_log=prior_logs[LABEL_PED]),
-        run_coverage(label=LABEL_ADULT, age_group_map=AGE_ADULT,          pool=shared_pool, drugs=drugs, resume_log=prior_logs[LABEL_ADULT]),
-        run_coverage(label=LABEL_GER,   age_group_map=AGE_GERIATRIC,      pool=shared_pool, drugs=drugs, resume_log=prior_logs[LABEL_GER]),
-        return_exceptions=True,
-    )
+    # ── Shared aiohttp session: 4 files × CONCURRENCY concurrent connections ──
+    connector = aiohttp.TCPConnector(limit=CONCURRENCY * 4)
+    async with aiohttp.ClientSession(connector=connector, headers={"X-API-Key": API_KEY}) as session:
+        all_stats = await asyncio.gather(
+            run_coverage(label=LABEL_NI,    age_group_map=AGE_NEONATE_INFANT, session=session, drugs=drugs, resume_log=prior_logs[LABEL_NI]),
+            run_coverage(label=LABEL_PED,   age_group_map=AGE_PEDIATRIC,      session=session, drugs=drugs, resume_log=prior_logs[LABEL_PED]),
+            run_coverage(label=LABEL_ADULT, age_group_map=AGE_ADULT,          session=session, drugs=drugs, resume_log=prior_logs[LABEL_ADULT]),
+            run_coverage(label=LABEL_GER,   age_group_map=AGE_GERIATRIC,      session=session, drugs=drugs, resume_log=prior_logs[LABEL_GER]),
+            return_exceptions=True,
+        )
 
-    await shared_pool.close()
     elapsed = time.perf_counter() - t0
 
     labels = [LABEL_NI, LABEL_PED, LABEL_ADULT, LABEL_GER]

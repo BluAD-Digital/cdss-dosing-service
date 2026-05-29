@@ -21,7 +21,7 @@ from _common import run_coverage  # noqa: E402
 LABEL = "adult"
 
 AGE_GROUP_MAP = {
-    "adult": ["adult", "any"],
+    "adult": 30,  # age=30 → service resolves to ["adult", "any"]
 }
 
 

@@ -64,8 +64,11 @@ best_formulation AS (
       AND dr.pregnancy_status = 'any'
       AND dr.frequency        IS NOT NULL
       AND UPPER(COALESCE(dr.dose_amount, '')) != 'CONTRAINDICATED'
-      AND (dr.administration_notes NOT ILIKE '%pediatric%'
-           OR dr.administration_notes IS NULL)
+      AND (
+        $2::text[] && ARRAY['pediatric','neonate','infant']
+        OR dr.administration_notes NOT ILIKE '%pediatric%'
+        OR dr.administration_notes IS NULL
+      )
     GROUP BY
       cf.formulation_id, cf.rxcui,
       cf.has_dailymed, cf.has_openfda, cf.has_drugbank, cf.has_rxnorm,
@@ -120,8 +123,11 @@ ranked AS (
     AND dr.dose_basis       IS NOT DISTINCT FROM bf.best_dose_basis
     AND dr.frequency        IS NOT NULL
     AND UPPER(COALESCE(dr.dose_amount, '')) != 'CONTRAINDICATED'
-    AND (dr.administration_notes NOT ILIKE '%pediatric%'
-         OR dr.administration_notes IS NULL)
+    AND (
+      $2::text[] && ARRAY['pediatric','neonate','infant']
+      OR dr.administration_notes NOT ILIKE '%pediatric%'
+      OR dr.administration_notes IS NULL
+    )
 )
 SELECT
   bf.formulation_id,

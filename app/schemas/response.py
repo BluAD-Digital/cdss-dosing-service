@@ -24,6 +24,7 @@ class DosingResponse(BaseModel):
     salt_composition: str
     generic_name: str
     age_group: str
+    source: str = "primary"
     dosing: list[DosingRow]
     cached: bool = False
     query_time_ms: float
