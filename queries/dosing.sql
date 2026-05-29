@@ -25,10 +25,55 @@ candidate_formulations AS (
 best_formulation AS (
   SELECT DISTINCT ON (rxcui)
     formulation_id,
-    rxcui
-  FROM candidate_formulations
+    rxcui,
+    best_dose_basis
+  FROM (
+    SELECT
+      cf.formulation_id,
+      cf.rxcui,
+      cf.has_dailymed,
+      cf.has_openfda,
+      cf.has_drugbank,
+      cf.has_rxnorm,
+      cf.dosing_row_count,
+      MIN(
+        CASE COALESCE(dr.dose_basis, '')
+          WHEN 'fixed'    THEN 1
+          WHEN 'per_kg'   THEN 2
+          WHEN 'per_m2'   THEN 3
+          WHEN 'titrated' THEN 4
+          ELSE                 5
+        END
+      ) AS dose_basis_priority,
+      (array_agg(
+        dr.dose_basis
+        ORDER BY
+          CASE COALESCE(dr.dose_basis, '')
+            WHEN 'fixed'    THEN 1
+            WHEN 'per_kg'   THEN 2
+            WHEN 'per_m2'   THEN 3
+            WHEN 'titrated' THEN 4
+            ELSE                 5
+          END ASC
+      ))[1] AS best_dose_basis
+    FROM candidate_formulations cf
+    JOIN drugdb.dosing_regimen dr ON dr.formulation_id = cf.formulation_id
+    WHERE dr.age_group        = ANY($2::text[])
+      AND dr.renal_function   = 'any'
+      AND dr.hepatic_function = 'any'
+      AND dr.pregnancy_status = 'any'
+      AND dr.frequency        IS NOT NULL
+      AND UPPER(COALESCE(dr.dose_amount, '')) != 'CONTRAINDICATED'
+      AND (dr.administration_notes NOT ILIKE '%pediatric%'
+           OR dr.administration_notes IS NULL)
+    GROUP BY
+      cf.formulation_id, cf.rxcui,
+      cf.has_dailymed, cf.has_openfda, cf.has_drugbank, cf.has_rxnorm,
+      cf.dosing_row_count
+  ) cf_ranked
   ORDER BY
     rxcui,
+    dose_basis_priority ASC,
     CASE
       WHEN has_dailymed = true THEN 1
       WHEN has_openfda  = true THEN 2
@@ -72,7 +117,7 @@ ranked AS (
     AND dr.renal_function   = 'any'
     AND dr.hepatic_function = 'any'
     AND dr.pregnancy_status = 'any'
-    AND dr.dose_basis       = 'fixed'
+    AND dr.dose_basis       IS NOT DISTINCT FROM bf.best_dose_basis
     AND dr.frequency        IS NOT NULL
     AND UPPER(COALESCE(dr.dose_amount, '')) != 'CONTRAINDICATED'
     AND (dr.administration_notes NOT ILIKE '%pediatric%'

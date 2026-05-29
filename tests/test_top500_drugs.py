@@ -232,7 +232,24 @@ async def test_one(conn, csv_row: dict, age_groups: list[str]) -> dict:
 # Main
 # ──────────────────────────────────────────────────────────────────────────────
 
-async def main(csv_path: str, age: int) -> None:
+def _load_resume_log(log_path: str) -> tuple[list[dict], set[str]]:
+    """Parse JSON debug lines from a previous run. Returns (results, done_ranks)."""
+    results = []
+    done_ranks: set[str] = set()
+    with open(log_path, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line.startswith("{"):
+                try:
+                    r = json.loads(line)
+                    results.append(r)
+                    done_ranks.add(str(r.get("rank", "")))
+                except json.JSONDecodeError:
+                    pass
+    return results, done_ranks
+
+
+async def main(csv_path: str, age: int, resume_log: str | None = None) -> None:
     age_groups = age_to_groups(age)
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     log_path = Path(__file__).parent / f"drug_test_age{age}_{ts}.log"
@@ -245,28 +262,63 @@ async def main(csv_path: str, age: int) -> None:
     with open(csv_path, newline="", encoding="utf-8") as f:
         drugs = list(csv.DictReader(f))
 
-    pool = await asyncpg.create_pool(DB_URL, min_size=2, max_size=5, command_timeout=30)
+    # Load previously completed results when resuming
+    prior_results: list[dict] = []
+    done_ranks: set[str] = set()
+    if resume_log:
+        prior_results, done_ranks = _load_resume_log(resume_log)
+        logger.info(f"Resuming from {resume_log} — {len(prior_results)} drugs already done, skipping them.")
 
-    results = []
+    pool = await asyncpg.create_pool(DB_URL, min_size=2, max_size=5, command_timeout=120)
+
+    results: list[dict] = list(prior_results)
     counts: dict[str, int] = {
-        "primary": 0, "fallback": 0, "404_not_found": 0, "not_in_db": 0,
+        "primary": 0, "fallback": 0, "404_not_found": 0, "not_in_db": 0, "error": 0,
     }
+    # Seed counts from prior results
+    for r in prior_results:
+        counts[r.get("result", "error")] = counts.get(r.get("result", "error"), 0) + 1
 
-    async with pool.acquire() as conn:
-        for i, row in enumerate(drugs, 1):
-            result = await test_one(conn, row, age_groups)
-            results.append(result)
-            counts[result["result"]] += 1
+    ICONS["error"] = "!"
 
+    for i, row in enumerate(drugs, 1):
+        rank = str(row.get("Rank") or row.get("#", ""))
+        if rank in done_ranks:
+            continue  # already processed in a prior run
+
+        brand_col = row.get("Brand Name") or row.get("Brand Name (India)", "")
+        try:
+            async with pool.acquire() as conn:
+                result = await test_one(conn, row, age_groups)
+        except Exception as exc:
+            result = {
+                "rank": rank,
+                "brand_name": brand_col,
+                "composition": row.get("Composition / Salt(s)") or row.get("Salt Composition", ""),
+                "category": row.get("Therapeutic Category", ""),
+                "rx_otc": row.get("Rx/OTC", ""),
+                "age_groups": age_groups,
+                "drug_id_1mg": None,
+                "db_brand_name": None,
+                "db_salt_composition": None,
+                "match_combinations": None,
+                "result": "error",
+                "error": str(exc),
+            }
+            logger.warning(f"[{i:3d}/{len(drugs)}] ! error           | {brand_col[:28]:<28} | {exc}")
+
+        results.append(result)
+        counts[result["result"]] = counts.get(result["result"], 0) + 1
+
+        if result["result"] != "error":
             icon = ICONS[result["result"]]
-            brand_col = row.get("Brand Name") or row.get("Brand Name (India)", "")
             logger.info(
                 f"[{i:3d}/{len(drugs)}] {icon} {result['result']:<15} | "
                 f"{brand_col[:28]:<28} | "
                 f"drug_id={result['drug_id_1mg'] or 'N/A':<10} | "
                 f"match_combo={result['match_combinations'] or '-'}"
             )
-            logger.debug(json.dumps(result, ensure_ascii=False))
+        logger.debug(json.dumps(result, ensure_ascii=False))
 
     await pool.close()
 
@@ -274,13 +326,16 @@ async def main(csv_path: str, age: int) -> None:
     logger.info("=" * 80)
     logger.info("SUMMARY")
     logger.info(f"  Total tested   : {total}")
+    have_dosing = counts["primary"] + counts["fallback"]
     logger.info(f"  ✓ primary      : {counts['primary']:4d}  ({counts['primary']/total*100:.1f}%)")
     logger.info(f"  ~ fallback     : {counts['fallback']:4d}  ({counts['fallback']/total*100:.1f}%)")
     logger.info(f"  ✗ 404_not_found: {counts['404_not_found']:4d}  ({counts['404_not_found']/total*100:.1f}%)")
     logger.info(f"  ? not_in_db    : {counts['not_in_db']:4d}  ({counts['not_in_db']/total*100:.1f}%)")
+    logger.info(f"  ! error        : {counts['error']:4d}  ({counts['error']/total*100:.1f}%)")
+    logger.info(f"  ─ HAVE DOSING  : {have_dosing:4d}  ({have_dosing/total*100:.1f}%)")
     logger.info("=" * 80)
 
-    problem_drugs = [r for r in results if r["result"] in ("404_not_found", "not_in_db")]
+    problem_drugs = [r for r in results if r["result"] in ("404_not_found", "not_in_db", "error")]
     if problem_drugs:
         logger.info(f"\nDrugs with NO dosing data ({len(problem_drugs)}):")
         logger.info(f"  {'Rank':<5} {'Brand Name':<30} {'Result':<15} {'drug_id':<12} {'match_combinations'}")
@@ -305,5 +360,10 @@ if __name__ == "__main__":
         "--age", type=int, default=30,
         help="Patient age to test age-group filtering (default: 30 = adult)",
     )
+    parser.add_argument(
+        "--resume-log",
+        default=None,
+        help="Path to a previous log file — skip already-processed drugs and combine results.",
+    )
     args = parser.parse_args()
-    asyncio.run(main(args.csv, args.age))
+    asyncio.run(main(args.csv, args.age, resume_log=args.resume_log))

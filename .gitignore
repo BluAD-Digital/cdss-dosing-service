@@ -3,4 +3,5 @@ __pycache__/
 *.pyc
 .pytest_cache/
 tests/*.log
+tests/indian_brand_coverage/logs/
 tests/missing_brand_diagnosis.csv
