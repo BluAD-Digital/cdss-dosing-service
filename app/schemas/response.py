@@ -15,6 +15,7 @@ class DosingRow(BaseModel):
     duration: str | None
     indication: str | None
     instructions: str | None
+    food_timing: str | None
 
 
 class DosingResponse(BaseModel):
@@ -25,6 +26,7 @@ class DosingResponse(BaseModel):
     generic_name: str
     age_group: str
     source: str = "primary"
+    is_partial_match: bool = False
     dosing: list[DosingRow]
     cached: bool = False
     query_time_ms: float

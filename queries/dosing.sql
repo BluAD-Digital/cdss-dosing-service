@@ -97,6 +97,7 @@ ranked AS (
     dr.duration,
     dr.indication,
     dr.administration_notes,
+    dr.food_timing,
     ROW_NUMBER() OVER (
       PARTITION BY
         dr.frequency,
@@ -145,7 +146,8 @@ SELECT
   r.dose_unit,
   r.duration,
   LOWER(r.indication)      AS indication,
-  r.administration_notes   AS instructions
+  r.administration_notes   AS instructions,
+  r.food_timing
 FROM ranked r
 CROSS JOIN best_formulation bf
 JOIN drugdb.indian_brand ib

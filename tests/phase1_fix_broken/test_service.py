@@ -51,6 +51,7 @@ def _make_row(**overrides):
         "duration":         "5 days",
         "indication":       "pain",
         "instructions":     None,
+        "food_timing":      None,
     }
     defaults.update(overrides)
     row = MagicMock()
@@ -106,13 +107,15 @@ def _pool():
 def _patch_repo(*, exists=True, primary=None, fallback=None):
     primary  = primary  if primary  is not None else []
     fallback = fallback if fallback is not None else []
-    return (
-        patch("app.services.dosing_service.dosing_repo.drug_exists",
-              new=AsyncMock(return_value=exists)),
-        patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-              new=AsyncMock(return_value=primary)),
-        patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-              new=AsyncMock(return_value=fallback)),
+    if primary:
+        return_value = (primary, "primary", False)
+    elif fallback:
+        return_value = (fallback, "fallback", False)
+    else:
+        return_value = ([], "none", False)
+    return patch(
+        "app.services.dosing_service.dosing_repo.fetch_dosing_with_fallback",
+        new=AsyncMock(return_value=return_value),
     )
 
 
@@ -125,10 +128,9 @@ async def test_cache_miss_calls_db_and_returns_result():
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
     rows  = [_make_row()]
-    p1, p2, p3 = _patch_repo(primary=rows)
-    with p1, p2 as mock_fetch, p3:
+    with _patch_repo(primary=rows) as mock_repo:
         result = await get_dosing("457491", 35, _pool(), redis)
-    mock_fetch.assert_awaited_once()
+    mock_repo.assert_awaited_once()
     assert isinstance(result, DosingResponse)
     assert result.cached is False
 
@@ -137,8 +139,7 @@ async def test_cache_miss_calls_db_and_returns_result():
 async def test_cache_miss_populates_redis():
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[_make_row()])
-    with p1, p2, p3:
+    with _patch_repo(primary=[_make_row()]):
         await get_dosing("457491", 35, _pool(), redis)
     assert redis.has_key("dosing:457491:adult")
 
@@ -148,11 +149,9 @@ async def test_cache_hit_skips_db():
     from app.services.dosing_service import get_dosing
     payload = _cached_payload()
     redis   = FakeRedis({"dosing:457491:adult": payload})
-    p1, p2, p3 = _patch_repo()
-    with p1, p2 as mock_fetch, p3 as mock_fallback:
+    with _patch_repo() as mock_repo:
         result = await get_dosing("457491", 35, _pool(), redis)
-    mock_fetch.assert_not_awaited()
-    mock_fallback.assert_not_awaited()
+    mock_repo.assert_not_awaited()
     assert result.cached is True
     assert result.query_time_ms == 0.0
 
@@ -162,8 +161,7 @@ async def test_cache_hit_returns_correct_drug_id():
     from app.services.dosing_service import get_dosing
     payload = _cached_payload(drug_id_1mg="999888")
     redis   = FakeRedis({"dosing:999888:adult": payload})
-    p1, p2, p3 = _patch_repo()
-    with p1, p2, p3:
+    with _patch_repo():
         result = await get_dosing("999888", 35, _pool(), redis)
     assert result.drug_id_1mg == "999888"
 
@@ -172,8 +170,7 @@ async def test_cache_hit_returns_correct_drug_id():
 async def test_query_time_ms_positive_on_db_hit():
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[_make_row()])
-    with p1, p2, p3:
+    with _patch_repo(primary=[_make_row()]):
         result = await get_dosing("457491", 35, _pool(), redis)
     assert result.query_time_ms >= 0
 
@@ -183,8 +180,7 @@ async def test_cache_hit_query_time_is_zero():
     from app.services.dosing_service import get_dosing
     payload = _cached_payload()
     redis   = FakeRedis({"dosing:457491:adult": payload})
-    p1, p2, p3 = _patch_repo()
-    with p1, p2, p3:
+    with _patch_repo():
         result = await get_dosing("457491", 35, _pool(), redis)
     assert result.query_time_ms == 0.0
 
@@ -194,34 +190,21 @@ async def test_cache_hit_query_time_is_zero():
 # ═══════════════════════════════════════════════════════════════
 
 @pytest.mark.asyncio
-async def test_primary_hit_does_not_call_fallback():
+async def test_primary_hit_returns_primary_source():
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[_make_row()])
-    with p1, p2, p3 as mock_fallback:
-        await get_dosing("457491", 35, _pool(), redis)
-    mock_fallback.assert_not_awaited()
+    with _patch_repo(primary=[_make_row()]):
+        result = await get_dosing("457491", 35, _pool(), redis)
+    assert result.source == "primary"
 
 
 @pytest.mark.asyncio
-async def test_empty_primary_triggers_fallback():
+async def test_empty_primary_uses_fallback_source():
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[], fallback=[_make_row()])
-    with p1, p2, p3 as mock_fallback:
-        await get_dosing("457491", 35, _pool(), redis)
-    mock_fallback.assert_awaited_once()
-
-
-@pytest.mark.asyncio
-async def test_drug_not_exists_skips_primary_calls_fallback():
-    from app.services.dosing_service import get_dosing
-    redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(exists=False, fallback=[_make_row()])
-    with p1, p2 as mock_fetch, p3 as mock_fallback:
-        await get_dosing("457491", 35, _pool(), redis)
-    mock_fetch.assert_not_awaited()
-    mock_fallback.assert_awaited_once()
+    with _patch_repo(primary=[], fallback=[_make_row()]):
+        result = await get_dosing("457491", 35, _pool(), redis)
+    assert result.source == "fallback"
 
 
 @pytest.mark.asyncio
@@ -229,8 +212,7 @@ async def test_both_primary_and_fallback_empty_raises_404():
     from fastapi import HTTPException
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[], fallback=[])
-    with p1, p2, p3:
+    with _patch_repo(primary=[], fallback=[]):
         with pytest.raises(HTTPException) as exc_info:
             await get_dosing("457491", 35, _pool(), redis)
     assert exc_info.value.status_code == 404
@@ -241,8 +223,7 @@ async def test_both_primary_and_fallback_empty_raises_404():
 async def test_fallback_result_is_returned_as_valid_response():
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[], fallback=[_make_row(brand_name="FallbackBrand")])
-    with p1, p2, p3:
+    with _patch_repo(primary=[], fallback=[_make_row(brand_name="FallbackBrand")]):
         result = await get_dosing("457491", 35, _pool(), redis)
     assert isinstance(result, DosingResponse)
     assert result.brand_name == "FallbackBrand"
@@ -263,10 +244,9 @@ async def test_fallback_result_is_returned_as_valid_response():
 async def test_correct_age_groups_passed_to_primary_fetch(age, expected_groups, expected_primary):
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[_make_row()])
-    with p1, p2 as mock_fetch, p3:
+    with _patch_repo(primary=[_make_row()]) as mock_repo:
         await get_dosing("457491", age, _pool(), redis)
-    passed_groups = mock_fetch.call_args[0][2]
+    passed_groups = mock_repo.call_args[0][2]
     assert passed_groups == expected_groups
 
 
@@ -281,8 +261,7 @@ async def test_correct_age_groups_passed_to_primary_fetch(age, expected_groups, 
 async def test_response_age_group_matches_patient_age(age, expected_primary):
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[_make_row()])
-    with p1, p2, p3:
+    with _patch_repo(primary=[_make_row()]):
         result = await get_dosing("457491", age, _pool(), redis)
     assert result.age_group == expected_primary
 
@@ -299,10 +278,9 @@ async def test_correct_age_groups_passed_to_fallback(age, expected_primary):
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
     expected_groups = age_to_groups(age)
-    p1, p2, p3 = _patch_repo(primary=[], fallback=[_make_row()])
-    with p1, p2, p3 as mock_fallback:
+    with _patch_repo(primary=[], fallback=[_make_row()]) as mock_repo:
         await get_dosing("457491", age, _pool(), redis)
-    passed_groups = mock_fallback.call_args[0][2]
+    passed_groups = mock_repo.call_args[0][2]
     assert passed_groups == expected_groups
 
 
@@ -326,8 +304,7 @@ async def test_correct_age_groups_passed_to_fallback(age, expected_primary):
 async def test_cache_key_format(drug_id, age, expected_key):
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[_make_row()])
-    with p1, p2, p3:
+    with _patch_repo(primary=[_make_row()]):
         await get_dosing(drug_id, age, _pool(), redis)
     assert redis.has_key(expected_key), (
         f"Expected key '{expected_key}', found: {list(redis._store.keys())}"
@@ -342,8 +319,7 @@ async def test_cache_key_format(drug_id, age, expected_key):
 async def test_brand_name_from_db_row():
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[_make_row(brand_name="Augmentin")])
-    with p1, p2, p3:
+    with _patch_repo(primary=[_make_row(brand_name="Augmentin")]):
         result = await get_dosing("1146701", 35, _pool(), redis)
     assert result.brand_name == "Augmentin"
 
@@ -352,8 +328,7 @@ async def test_brand_name_from_db_row():
 async def test_salt_composition_from_db_row():
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[_make_row(salt_composition="Amoxicillin 500mg + Clavulanic Acid 125mg")])
-    with p1, p2, p3:
+    with _patch_repo(primary=[_make_row(salt_composition="Amoxicillin 500mg + Clavulanic Acid 125mg")]):
         result = await get_dosing("1146701", 35, _pool(), redis)
     assert result.salt_composition == "Amoxicillin 500mg + Clavulanic Acid 125mg"
 
@@ -362,8 +337,7 @@ async def test_salt_composition_from_db_row():
 async def test_generic_name_from_db_row():
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[_make_row(generic_name="Amoxicillin / Clavulanic Acid")])
-    with p1, p2, p3:
+    with _patch_repo(primary=[_make_row(generic_name="Amoxicillin / Clavulanic Acid")]):
         result = await get_dosing("1146701", 35, _pool(), redis)
     assert result.generic_name == "Amoxicillin / Clavulanic Acid"
 
@@ -372,8 +346,7 @@ async def test_generic_name_from_db_row():
 async def test_formulation_id_from_db_row():
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[_make_row(formulation_id=9999)])
-    with p1, p2, p3:
+    with _patch_repo(primary=[_make_row(formulation_id=9999)]):
         result = await get_dosing("457491", 35, _pool(), redis)
     assert result.formulation_id == "9999"
 
@@ -382,7 +355,7 @@ async def test_formulation_id_from_db_row():
 async def test_dosing_row_fields_from_db():
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[_make_row(
+    with _patch_repo(primary=[_make_row(
         frequency="three times daily",
         route="intravenous",
         dose_amount="250",
@@ -390,8 +363,7 @@ async def test_dosing_row_fields_from_db():
         duration="10 days",
         indication="bacterial infection",
         instructions="infuse over 30 minutes",
-    )])
-    with p1, p2, p3:
+    )]):
         result = await get_dosing("457491", 35, _pool(), redis)
     row = result.dosing[0]
     assert row.frequency  == "three times daily"
@@ -413,8 +385,7 @@ async def test_multiple_dosing_rows_all_returned():
         _make_row(frequency="three times",   indication="severe pain"),
         _make_row(frequency="four times",    indication="acute fever"),
     ]
-    p1, p2, p3 = _patch_repo(primary=rows)
-    with p1, p2, p3:
+    with _patch_repo(primary=rows):
         result = await get_dosing("457491", 35, _pool(), redis)
     assert len(result.dosing) == 4
 
@@ -438,12 +409,8 @@ async def test_db_error_raises_500():
     async def failing_fetch(*args, **kwargs):
         raise _FakeDBError()
 
-    with patch("app.services.dosing_service.dosing_repo.drug_exists",
-               new=AsyncMock(return_value=True)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-               side_effect=failing_fetch), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-               new=AsyncMock(return_value=[])):
+    with patch("app.services.dosing_service.dosing_repo.fetch_dosing_with_fallback",
+               side_effect=failing_fetch):
         with pytest.raises(HTTPException) as exc_info:
             await get_dosing("457491", 35, _pool(), redis)
 
@@ -456,8 +423,7 @@ async def test_404_detail_contains_drug_id_and_age():
     from fastapi import HTTPException
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[], fallback=[])
-    with p1, p2, p3:
+    with _patch_repo(primary=[], fallback=[]):
         with pytest.raises(HTTPException) as exc_info:
             await get_dosing("MISSING_DRUG", 35, _pool(), redis)
     detail = exc_info.value.detail
@@ -475,8 +441,7 @@ async def test_404_for_all_age_groups_when_no_data(age):
     from fastapi import HTTPException
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[], fallback=[])
-    with p1, p2, p3:
+    with _patch_repo(primary=[], fallback=[]):
         with pytest.raises(HTTPException) as exc_info:
             await get_dosing("UNKNOWN", age, _pool(), redis)
     assert exc_info.value.status_code == 404
@@ -502,8 +467,7 @@ async def test_404_for_all_age_groups_when_no_data(age):
 async def test_various_drugs_return_correct_drug_id(drug_id, brand):
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[_make_row(brand_name=brand)])
-    with p1, p2, p3:
+    with _patch_repo(primary=[_make_row(brand_name=brand)]):
         result = await get_dosing(drug_id, 35, _pool(), redis)
     assert result.drug_id_1mg == drug_id
     assert result.brand_name  == brand
@@ -522,15 +486,10 @@ async def test_second_call_same_key_hits_cache_not_db():
     async def counting_fetch(*args, **kwargs):
         nonlocal db_calls
         db_calls += 1
-        return [_make_row()]
+        return ([_make_row()], "primary", False)
 
-    with patch("app.services.dosing_service.dosing_repo.drug_exists",
-               new=AsyncMock(return_value=True)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-               side_effect=counting_fetch), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-               new=AsyncMock(return_value=[])):
-
+    with patch("app.services.dosing_service.dosing_repo.fetch_dosing_with_fallback",
+               side_effect=counting_fetch):
         first  = await get_dosing("457491", 35, _pool(), redis)
         second = await get_dosing("457491", 35, _pool(), redis)
 
@@ -547,8 +506,7 @@ async def test_second_call_same_key_hits_cache_not_db():
 async def test_different_drug_ids_have_separate_cache_entries():
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[_make_row()])
-    with p1, p2, p3:
+    with _patch_repo(primary=[_make_row()]):
         await get_dosing("drug_A", 35, _pool(), redis)
         await get_dosing("drug_B", 35, _pool(), redis)
     assert redis.has_key("dosing:drug_A:adult")
@@ -561,8 +519,7 @@ async def test_different_drug_ids_have_separate_cache_entries():
 async def test_same_drug_different_ages_have_separate_cache_entries():
     from app.services.dosing_service import get_dosing
     redis = FakeRedis()
-    p1, p2, p3 = _patch_repo(primary=[_make_row()])
-    with p1, p2, p3:
+    with _patch_repo(primary=[_make_row()]):
         await get_dosing("457491", 10, _pool(), redis)
         await get_dosing("457491", 35, _pool(), redis)
         await get_dosing("457491", 70, _pool(), redis)

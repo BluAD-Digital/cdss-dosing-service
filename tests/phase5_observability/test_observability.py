@@ -467,7 +467,7 @@ def test_dosing_response_log_query_time_non_negative(logs):
 
 
 def test_dosing_response_log_age_group_is_valid(logs):
-    valid_groups = {"neonate", "infant", "pediatric", "adult", "geriatric"}
+    valid_groups = {"neonate", "infant", "pediatric", "adolescent", "adult", "geriatric"}
     invalid = [l for l in logs["response_lines"]
                if l.get("age_group") not in valid_groups]
     assert len(invalid) == 0, (
@@ -498,7 +498,7 @@ def test_cache_hit_lines_have_cache_key(logs):
 
 def test_cache_key_format_is_dosing_drug_group(logs):
     """Cache keys must follow the format 'dosing:{drug_id}:{age_group}'."""
-    pattern = re.compile(r"^dosing:.+:(neonate|infant|pediatric|adult|geriatric)$")
+    pattern = re.compile(r"^dosing:.+:(neonate|infant|pediatric|adolescent|adult|geriatric)$")
     invalid = [l for l in logs["miss_lines"] + logs["hit_lines"]
                if "cache_key" in l and not pattern.match(str(l["cache_key"]))]
     assert len(invalid) == 0, (
@@ -630,12 +630,17 @@ def test_router_logs_use_correct_logger(logs):
 
 
 def test_service_logs_use_correct_logger(logs):
-    service_logs = [l for l in logs["all_lines"]
-                    if l.get("event") in ("cache MISS", "cache HIT",
-                                          "primary miss, trying fallback")]
-    wrong = [l for l in service_logs
-             if l.get("logger") != "app.services.dosing_service"]
-    assert len(wrong) == 0
+    cache_logs = [l for l in logs["all_lines"]
+                  if l.get("event") in ("cache MISS", "cache HIT")]
+    wrong_cache = [l for l in cache_logs
+                   if l.get("logger") != "app.services.dosing_service"]
+    assert len(wrong_cache) == 0
+
+    fallback_logs = [l for l in logs["all_lines"]
+                     if l.get("event") == "primary miss, trying fallback"]
+    wrong_fallback = [l for l in fallback_logs
+                      if l.get("logger") != "app.repositories.dosing_repo"]
+    assert len(wrong_fallback) == 0
 
 
 def test_middleware_logs_use_app_main_logger(logs):

@@ -5,3 +5,5 @@ __pycache__/
 tests/*.log
 tests/indian_brand_coverage/logs/
 tests/missing_brand_diagnosis.csv
+
+graphify-out/

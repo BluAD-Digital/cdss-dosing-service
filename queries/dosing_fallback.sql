@@ -4,24 +4,45 @@ WITH salt_ingredients AS (
   WHERE ib.drug_id_1mg = $1
   LIMIT 1
 ),
-resolvable_rxcuis AS (
+active_resolvable AS (
+  -- active/null type: must pass the full DML chain
   SELECT DISTINCT r.rxcui, dml.master_linkage_id
   FROM salt_ingredients si
   CROSS JOIN LATERAL unnest(si.rxcui) AS r(rxcui)
   JOIN drugdb.ingredients i ON i.rxcui = r.rxcui
   JOIN public."DrugMasterLinkage" dml ON dml.unii_ids @> ARRAY[i.unii::text]
-  WHERE i.unii IS NOT NULL
+  WHERE (i.type = 'active' OR i.type IS NULL)
+    AND i.unii IS NOT NULL
     AND array_length(dml.rxcui_ids, 1) = 1
 ),
-all_pass_check AS (
-  SELECT 1
+inactive_resolvable AS (
+  -- inactive type: auto-pass, use any DML row for linkage (pick by most rxcui matches)
+  SELECT DISTINCT ON (r.rxcui) r.rxcui, dml.master_linkage_id
   FROM salt_ingredients si
-  WHERE (SELECT COUNT(DISTINCT rxcui) FROM resolvable_rxcuis) = array_length(si.rxcui, 1)
+  CROSS JOIN LATERAL unnest(si.rxcui) AS r(rxcui)
+  JOIN drugdb.ingredients i ON i.rxcui = r.rxcui
+  JOIN public."DrugMasterLinkage" dml ON dml.unii_ids @> ARRAY[i.unii::text]
+  WHERE i.type = 'inactive'
+    AND i.unii IS NOT NULL
+  ORDER BY r.rxcui, array_length(dml.rxcui_ids, 1) DESC
+),
+resolvable_rxcuis AS (
+  SELECT rxcui, master_linkage_id FROM active_resolvable
+  UNION
+  SELECT rxcui, master_linkage_id FROM inactive_resolvable
+),
+pass_counts AS (
+  SELECT
+    (SELECT COUNT(DISTINCT rxcui) FROM resolvable_rxcuis)   AS resolved,
+    (SELECT array_length(rxcui, 1) FROM salt_ingredients)   AS total
+),
+is_partial AS (
+  SELECT resolved < total AND resolved >= 1 AS flag FROM pass_counts
 ),
 linkage AS (
   SELECT DISTINCT master_linkage_id
   FROM resolvable_rxcuis
-  WHERE EXISTS (SELECT 1 FROM all_pass_check)
+  WHERE (SELECT resolved >= 1 FROM pass_counts)
 ),
 candidate_formulations AS (
   SELECT
@@ -107,6 +128,7 @@ best_formulation AS (
 ),
 ranked AS (
   SELECT
+    bf.formulation_id,
     dr.frequency,
     dr.route,
     dr.dose_amount,
@@ -115,6 +137,7 @@ ranked AS (
     dr.duration,
     dr.indication,
     dr.administration_notes,
+    dr.food_timing,
     ROW_NUMBER() OVER (
       PARTITION BY
         dr.frequency,
@@ -148,24 +171,25 @@ ranked AS (
     )
 )
 SELECT
-  bf.formulation_id,
+  r.formulation_id,
   ib.brand_name,
   ib.salt_composition,
   (
     SELECT STRING_AGG(i.name, ' / ' ORDER BY i.name)
     FROM drugdb.drug_ingredient_mapping dim
     JOIN drugdb.ingredients i ON i.id = dim.ingredient_id
-    WHERE dim.formulation_id = bf.formulation_id
+    WHERE dim.formulation_id = r.formulation_id
   ) AS generic_name,
   r.frequency,
   r.route,
   r.dose_amount,
   r.dose_unit,
   r.duration,
-  LOWER(r.indication)      AS indication,
-  r.administration_notes   AS instructions
+  LOWER(r.indication)           AS indication,
+  r.administration_notes        AS instructions,
+  r.food_timing,
+  (SELECT flag FROM is_partial)  AS is_partial_match
 FROM ranked r
-CROSS JOIN best_formulation bf
 JOIN LATERAL (
   SELECT brand_name, salt_composition
   FROM drugdb.indian_brand

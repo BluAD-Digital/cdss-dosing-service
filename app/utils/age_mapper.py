@@ -3,8 +3,10 @@ def age_to_groups(age: int) -> list[str]:
         return ["neonate"]
     if age < 2:
         return ["infant", "neonate"]
-    if age < 18:
+    if age < 12:
         return ["pediatric", "any"]
+    if age < 18:
+        return ["adolescent", "adult", "any"]
     if age < 65:
         return ["adult", "any"]
     return ["geriatric", "adult", "any"]

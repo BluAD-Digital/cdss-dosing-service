@@ -11,7 +11,7 @@ Goals:
 """
 
 import pytest
-from unittest.mock import AsyncMock, MagicMock, call, patch
+from unittest.mock import AsyncMock, MagicMock, patch
 
 from app.utils.age_mapper import age_to_groups, age_to_primary_group
 
@@ -34,6 +34,7 @@ def _make_db_row(**overrides):
         "duration": "7 days",
         "indication": "infection",
         "instructions": None,
+        "food_timing": None,
     }
     defaults.update(overrides)
     row = MagicMock()
@@ -41,23 +42,21 @@ def _make_db_row(**overrides):
     return row
 
 
-def _patch_repo(
-    *,
-    exists: bool = True,
-    primary_rows=None,
-    fallback_rows=None,
-):
-    """Context manager that patches all three repo calls at once."""
+def _patch_repo(*, primary_rows=None, fallback_rows=None):
+    """Patch fetch_dosing_with_fallback to return primary rows if non-empty, else fallback rows."""
     primary_rows = primary_rows if primary_rows is not None else []
     fallback_rows = fallback_rows if fallback_rows is not None else []
 
-    return (
-        patch("app.services.dosing_service.dosing_repo.drug_exists",
-              new=AsyncMock(return_value=exists)),
-        patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-              new=AsyncMock(return_value=primary_rows)),
-        patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-              new=AsyncMock(return_value=fallback_rows)),
+    if primary_rows:
+        return_value = (primary_rows, "primary", False)
+    elif fallback_rows:
+        return_value = (fallback_rows, "fallback", False)
+    else:
+        return_value = ([], "none", False)
+
+    return patch(
+        "app.services.dosing_service.dosing_repo.fetch_dosing_with_fallback",
+        new=AsyncMock(return_value=return_value),
     )
 
 
@@ -76,9 +75,9 @@ def _make_async_deps():
 @pytest.mark.parametrize("age,expected_groups,expected_primary", [
     (0,  ["neonate"],                   "neonate"),
     (1,  ["infant", "neonate"],         "infant"),
-    (2,  ["pediatric", "any"],          "pediatric"),
-    (17, ["pediatric", "any"],          "pediatric"),
-    (18, ["adult", "any"],              "adult"),
+    (2,  ["pediatric", "any"],             "pediatric"),
+    (17, ["adolescent", "adult", "any"],  "adolescent"),
+    (18, ["adult", "any"],                "adult"),
     (64, ["adult", "any"],              "adult"),
     (65, ["geriatric", "adult", "any"], "geriatric"),
     (90, ["geriatric", "adult", "any"], "geriatric"),
@@ -125,7 +124,7 @@ def test_geriatric_has_adult_and_any():
 
 
 # ---------------------------------------------------------------------------
-# 3. Service passes correct age_groups to primary repo call
+# 3. Service passes correct age_groups to repo
 # ---------------------------------------------------------------------------
 
 @pytest.mark.asyncio
@@ -142,17 +141,15 @@ async def test_service_passes_correct_age_groups_to_primary(age, expected_age_gr
     pool, redis = _make_async_deps()
     rows = [_make_db_row()]
 
-    p_exists, p_primary, p_fallback = _patch_repo(primary_rows=rows)
-    with p_exists, p_primary as mock_primary, p_fallback:
+    with _patch_repo(primary_rows=rows) as mock_repo:
         await get_dosing("457491", age, pool, redis)
 
-    _, call_kwargs = mock_primary.call_args
-    passed_groups = mock_primary.call_args[0][2]   # positional: pool, drug_id, age_groups
+    passed_groups = mock_repo.call_args[0][2]   # positional: pool, drug_id, age_groups
     assert passed_groups == expected_age_groups
 
 
 # ---------------------------------------------------------------------------
-# 4. Fallback triggered when primary returns empty (drug exists)
+# 4. Fallback triggered when primary returns empty
 # ---------------------------------------------------------------------------
 
 @pytest.mark.asyncio
@@ -169,21 +166,11 @@ async def test_fallback_called_when_primary_empty(age, expected_age_groups):
     pool, redis = _make_async_deps()
     fallback_rows = [_make_db_row()]
 
-    p_exists, p_primary, p_fallback = _patch_repo(
-        exists=True,
-        primary_rows=[],
-        fallback_rows=fallback_rows,
-    )
-    with p_exists, p_primary as mock_primary, p_fallback as mock_fallback:
+    with _patch_repo(primary_rows=[], fallback_rows=fallback_rows) as mock_repo:
         result = await get_dosing("457491", age, pool, redis)
 
-    mock_primary.assert_awaited_once()
-    mock_fallback.assert_awaited_once()
-
-    # fallback also receives the same age_groups
-    passed_groups = mock_fallback.call_args[0][2]
-    assert passed_groups == expected_age_groups
-
+    mock_repo.assert_awaited_once()
+    assert result.source == "fallback"
     assert result.age_group == age_to_primary_group(age)
 
 
@@ -205,62 +192,33 @@ async def test_fallback_passes_correct_age_groups(age, expected_age_groups):
     pool, redis = _make_async_deps()
     fallback_rows = [_make_db_row()]
 
-    p_exists, p_primary, p_fallback = _patch_repo(
-        primary_rows=[], fallback_rows=fallback_rows
-    )
-    with p_exists, p_primary, p_fallback as mock_fallback:
+    with _patch_repo(primary_rows=[], fallback_rows=fallback_rows) as mock_repo:
         await get_dosing("457491", age, pool, redis)
 
-    passed_groups = mock_fallback.call_args[0][2]
+    passed_groups = mock_repo.call_args[0][2]
     assert passed_groups == expected_age_groups
 
 
 # ---------------------------------------------------------------------------
-# 6. Fallback NOT called when primary succeeds
+# 6. Primary path returns correct source label
 # ---------------------------------------------------------------------------
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("age", [0, 1, 10, 35, 70])
-async def test_fallback_not_called_when_primary_succeeds(age):
+async def test_primary_path_source_label(age):
     from app.services.dosing_service import get_dosing
 
     pool, redis = _make_async_deps()
     rows = [_make_db_row()]
 
-    p_exists, p_primary, p_fallback = _patch_repo(primary_rows=rows)
-    with p_exists, p_primary, p_fallback as mock_fallback:
-        await get_dosing("457491", age, pool, redis)
+    with _patch_repo(primary_rows=rows):
+        result = await get_dosing("457491", age, pool, redis)
 
-    mock_fallback.assert_not_awaited()
-
-
-# ---------------------------------------------------------------------------
-# 7. Fallback called when drug does NOT exist (drug_exists=False)
-# ---------------------------------------------------------------------------
-
-@pytest.mark.asyncio
-@pytest.mark.parametrize("age", [0, 1, 10, 35, 70])
-async def test_fallback_called_when_drug_not_found_in_primary_table(age):
-    from app.services.dosing_service import get_dosing
-
-    pool, redis = _make_async_deps()
-    fallback_rows = [_make_db_row()]
-
-    p_exists, p_primary, p_fallback = _patch_repo(
-        exists=False,
-        primary_rows=[],
-        fallback_rows=fallback_rows,
-    )
-    with p_exists, p_primary as mock_primary, p_fallback as mock_fallback:
-        await get_dosing("000000", age, pool, redis)
-
-    # primary fetch skipped entirely when drug doesn't exist
-    mock_primary.assert_not_awaited()
-    mock_fallback.assert_awaited_once()
+    assert result.source == "primary"
 
 
 # ---------------------------------------------------------------------------
-# 8. 404 raised when BOTH primary and fallback return nothing
+# 7. 404 raised when both primary and fallback return nothing
 # ---------------------------------------------------------------------------
 
 @pytest.mark.asyncio
@@ -271,8 +229,7 @@ async def test_404_when_both_queries_empty(age):
 
     pool, redis = _make_async_deps()
 
-    p_exists, p_primary, p_fallback = _patch_repo(primary_rows=[], fallback_rows=[])
-    with p_exists, p_primary, p_fallback:
+    with _patch_repo(primary_rows=[], fallback_rows=[]):
         with pytest.raises(HTTPException) as exc_info:
             await get_dosing("457491", age, pool, redis)
 
@@ -282,7 +239,7 @@ async def test_404_when_both_queries_empty(age):
 
 
 # ---------------------------------------------------------------------------
-# 9. Response age_group field reflects primary group for each age
+# 8. Response age_group field reflects primary group for each age
 # ---------------------------------------------------------------------------
 
 @pytest.mark.asyncio
@@ -299,15 +256,14 @@ async def test_response_age_group_field(age, expected_primary):
     pool, redis = _make_async_deps()
     rows = [_make_db_row()]
 
-    p_exists, p_primary, p_fallback = _patch_repo(primary_rows=rows)
-    with p_exists, p_primary, p_fallback:
+    with _patch_repo(primary_rows=rows):
         result = await get_dosing("457491", age, pool, redis)
 
     assert result.age_group == expected_primary
 
 
 # ---------------------------------------------------------------------------
-# 10. Both primary and fallback paths return a valid DosingResponse for each group
+# 9. Both primary and fallback paths return a valid DosingResponse for each group
 # ---------------------------------------------------------------------------
 
 @pytest.mark.asyncio
@@ -319,8 +275,7 @@ async def test_primary_path_returns_valid_response(age):
     pool, redis = _make_async_deps()
     rows = [_make_db_row()]
 
-    p_exists, p_primary, p_fallback = _patch_repo(primary_rows=rows)
-    with p_exists, p_primary, p_fallback:
+    with _patch_repo(primary_rows=rows):
         result = await get_dosing("457491", age, pool, redis)
 
     assert isinstance(result, DosingResponse)
@@ -337,10 +292,7 @@ async def test_fallback_path_returns_valid_response(age):
     pool, redis = _make_async_deps()
     fallback_rows = [_make_db_row()]
 
-    p_exists, p_primary, p_fallback = _patch_repo(
-        primary_rows=[], fallback_rows=fallback_rows
-    )
-    with p_exists, p_primary, p_fallback:
+    with _patch_repo(primary_rows=[], fallback_rows=fallback_rows):
         result = await get_dosing("457491", age, pool, redis)
 
     assert isinstance(result, DosingResponse)
@@ -348,7 +300,7 @@ async def test_fallback_path_returns_valid_response(age):
 
 
 # ---------------------------------------------------------------------------
-# 11. GAP documentation: dose_basis='fixed' blocks weight-based pediatric dosing
+# 10. GAP documentation: dose_basis='fixed' blocks weight-based pediatric dosing
 #     These are marker tests — they always pass but document the known SQL gap.
 # ---------------------------------------------------------------------------
 

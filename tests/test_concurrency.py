@@ -46,6 +46,7 @@ def _make_row(**overrides):
         "duration":        "5 days",
         "indication":      "pain",
         "instructions":    None,
+        "food_timing":     None,
     }
     defaults.update(overrides)
     row = MagicMock()
@@ -95,6 +96,9 @@ def _pool() -> MagicMock:
     return MagicMock()
 
 
+_PATCH = "app.services.dosing_service.dosing_repo.fetch_dosing_with_fallback"
+
+
 # ──────────────────────────────────────────────────────────────────────────────
 # 1. Concurrent requests for different drugs — data isolation
 # ──────────────────────────────────────────────────────────────────────────────
@@ -108,15 +112,9 @@ async def test_concurrent_different_drugs_are_isolated():
     redis = FakeRedis()
 
     async def mock_fetch(pool, drug_id, age_groups):
-        return [_make_row(brand_name=f"Brand-{drug_id}")]
+        return ([_make_row(brand_name=f"Brand-{drug_id}")], "primary", False)
 
-    with patch("app.services.dosing_service.dosing_repo.drug_exists",
-               new=AsyncMock(return_value=True)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-               side_effect=mock_fetch), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-               new=AsyncMock(return_value=[])):
-
+    with patch(_PATCH, side_effect=mock_fetch):
         results = await asyncio.gather(*[
             get_dosing(drug_id, 35, _pool(), redis)
             for drug_id in drug_ids
@@ -140,13 +138,7 @@ async def test_concurrent_same_drug_same_age_all_succeed():
     redis = FakeRedis()
     rows = [_make_row(brand_name="SharedBrand")]
 
-    with patch("app.services.dosing_service.dosing_repo.drug_exists",
-               new=AsyncMock(return_value=True)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-               new=AsyncMock(return_value=rows)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-               new=AsyncMock(return_value=[])):
-
+    with patch(_PATCH, new=AsyncMock(return_value=(rows, "primary", False))):
         results = await asyncio.gather(*[
             get_dosing("drug_X", 35, _pool(), redis)
             for _ in range(CONCURRENCY)
@@ -179,23 +171,15 @@ async def test_same_drug_different_ages_use_separate_cache_keys():
     redis = FakeRedis()
 
     async def mock_fetch(pool, drug_id, age_groups):
-        # Return the primary age group so we can verify it ended up in the response
         primary = age_groups[0]
-        return [_make_row(brand_name=f"brand-{primary}")]
+        return ([_make_row(brand_name=f"brand-{primary}")], "primary", False)
 
-    with patch("app.services.dosing_service.dosing_repo.drug_exists",
-               new=AsyncMock(return_value=True)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-               side_effect=mock_fetch), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-               new=AsyncMock(return_value=[])):
-
+    with patch(_PATCH, side_effect=mock_fetch):
         results = await asyncio.gather(*[
             get_dosing("drug_shared", age, _pool(), redis)
             for age, _ in test_cases
         ])
 
-    # All three should have produced separate cache keys
     assert redis.key_count == len(test_cases)
 
     for (age, expected_group), result in zip(test_cases, results):
@@ -221,17 +205,11 @@ async def test_cache_hit_faster_than_db_miss():
 
     async def slow_fetch(pool, drug_id, age_groups):
         await asyncio.sleep(DB_DELAY)
-        return [_make_row()]
+        return ([_make_row()], "primary", False)
 
     redis = FakeRedis()
 
-    with patch("app.services.dosing_service.dosing_repo.drug_exists",
-               new=AsyncMock(return_value=True)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-               side_effect=slow_fetch), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-               new=AsyncMock(return_value=[])):
-
+    with patch(_PATCH, side_effect=slow_fetch):
         # Cold miss — must hit slow DB
         t0 = time.perf_counter()
         await get_dosing("drug_timing", 35, _pool(), redis)
@@ -266,29 +244,17 @@ async def test_error_in_one_concurrent_request_does_not_affect_others():
 
     async def selective_fetch(pool, drug_id, age_groups):
         if drug_id == bad_drug:
-            return []        # triggers 404 path
-        return rows
+            return ([], "none", False)
+        return (rows, "primary", False)
 
-    async def selective_exists(pool, drug_id):
-        return drug_id != bad_drug
-
-    with patch("app.services.dosing_service.dosing_repo.drug_exists",
-               side_effect=selective_exists), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-               side_effect=selective_fetch), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-               new=AsyncMock(return_value=[])):
-
+    with patch(_PATCH, side_effect=selective_fetch):
         tasks = [get_dosing(d, 35, _pool(), redis) for d in good_drugs]
         tasks.append(get_dosing(bad_drug, 35, _pool(), redis))
-
         outcomes = await asyncio.gather(*tasks, return_exceptions=True)
 
-    # Good drugs → DosingResponse
     for i, drug_id in enumerate(good_drugs):
         assert isinstance(outcomes[i], DosingResponse), f"{drug_id} should have succeeded"
 
-    # Bad drug → HTTPException 404
     bad_outcome = outcomes[-1]
     assert isinstance(bad_outcome, HTTPException)
     assert bad_outcome.status_code == 404
@@ -314,13 +280,7 @@ async def test_cache_key_format(drug_id, age, expected_key):
     redis = FakeRedis()
     rows  = [_make_row()]
 
-    with patch("app.services.dosing_service.dosing_repo.drug_exists",
-               new=AsyncMock(return_value=True)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-               new=AsyncMock(return_value=rows)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-               new=AsyncMock(return_value=[])):
-
+    with patch(_PATCH, new=AsyncMock(return_value=(rows, "primary", False))):
         await get_dosing(drug_id, age, _pool(), redis)
 
     assert redis.has_key(expected_key), (
@@ -351,13 +311,7 @@ async def test_cache_serialization_round_trip():
         indication="infection",
     )]
 
-    with patch("app.services.dosing_service.dosing_repo.drug_exists",
-               new=AsyncMock(return_value=True)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-               new=AsyncMock(return_value=rows)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-               new=AsyncMock(return_value=[])):
-
+    with patch(_PATCH, new=AsyncMock(return_value=(rows, "primary", False))):
         first  = await get_dosing("rt_drug", 35, _pool(), redis)   # writes cache
         second = await get_dosing("rt_drug", 35, _pool(), redis)   # reads cache
 
@@ -388,15 +342,11 @@ async def test_concurrent_cold_requests_all_hit_db():
     CONCURRENCY = 5
     db_calls: list[int] = []
 
-    # Each fetch yields before recording itself, so every coroutine that passes
-    # a cache-miss check gets a chance to enter the DB path before any write
-    # happens.  This simulates real network latency.
     async def yielding_fetch(pool, drug_id, age_groups):
         await asyncio.sleep(0)   # yield — lets other coroutines advance
         db_calls.append(1)
-        return [_make_row()]
+        return ([_make_row()], "primary", False)
 
-    # FakeRedis also yields on get() so all N reads start before any write.
     class YieldingFakeRedis(FakeRedis):
         async def get(self, key: str) -> str | None:
             await asyncio.sleep(0)
@@ -410,32 +360,16 @@ async def test_concurrent_cold_requests_all_hit_db():
 
     redis = YieldingFakeRedis()
 
-    with patch("app.services.dosing_service.dosing_repo.drug_exists",
-               new=AsyncMock(return_value=True)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-               side_effect=yielding_fetch), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-               new=AsyncMock(return_value=[])):
-
+    with patch(_PATCH, side_effect=yielding_fetch):
         results = await asyncio.gather(*[
             get_dosing("same_drug", 35, _pool(), redis)
             for _ in range(CONCURRENCY)
         ])
 
-    # All requests must succeed regardless of how many hit the DB.
     assert len(results) == CONCURRENCY
     assert all(isinstance(r, DosingResponse) for r in results)
-
-    # At least one request must have queried the DB (the cache was cold).
     assert len(db_calls) >= 1, "Expected at least one DB call on a cold cache"
-
-    # Without a distributed lock, multiple concurrent requests may all see a
-    # cache-miss and each query the DB independently (thundering herd).
-    # The exact count depends on asyncio scheduling — it is >= 1 and <= N.
-    # Documenting observed count so a future lock implementation becomes visible:
     print(f"\n  [thundering-herd] DB calls for {CONCURRENCY} concurrent cold requests: {len(db_calls)}")
-
-    # After all requests complete, the cache must be populated.
     assert redis.has_key("dosing:same_drug:adult"), "Cache should be populated after concurrent requests"
 
 
@@ -457,7 +391,6 @@ async def test_db_error_does_not_corrupt_sibling_cache():
     redis = FakeRedis()
     rows  = [_make_row()]
 
-    # Minimal subclass that bypasses asyncpg's complex __init__
     class _FakeDBError(asyncpg.PostgresError):
         def __init__(self):
             Exception.__init__(self, "simulated connection error")
@@ -465,15 +398,9 @@ async def test_db_error_does_not_corrupt_sibling_cache():
     async def selective_fetch(pool, drug_id, age_groups):
         if drug_id == "broken_drug":
             raise _FakeDBError()
-        return rows
+        return (rows, "primary", False)
 
-    with patch("app.services.dosing_service.dosing_repo.drug_exists",
-               new=AsyncMock(return_value=True)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-               side_effect=selective_fetch), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-               new=AsyncMock(return_value=[])):
-
+    with patch(_PATCH, side_effect=selective_fetch):
         outcomes = await asyncio.gather(
             get_dosing("good_drug", 35, _pool(), redis),
             get_dosing("broken_drug", 35, _pool(), redis),
@@ -486,12 +413,9 @@ async def test_db_error_does_not_corrupt_sibling_cache():
     assert isinstance(bad_result, HTTPException)
     assert bad_result.status_code == 500
 
-    # Good drug's cache entry should exist and be uncorrupted
     assert redis.has_key("dosing:good_drug:adult")
     cached = redis.get_parsed("dosing:good_drug:adult")
     assert cached["drug_id_1mg"] == "good_drug"
-
-    # Broken drug should not have written anything to cache
     assert not redis.has_key("dosing:broken_drug:adult")
 
 
@@ -516,13 +440,7 @@ async def test_concurrent_age_group_labels_are_correct():
     ]
     redis = FakeRedis()
 
-    with patch("app.services.dosing_service.dosing_repo.drug_exists",
-               new=AsyncMock(return_value=True)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-               new=AsyncMock(return_value=[_make_row()])), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-               new=AsyncMock(return_value=[])):
-
+    with patch(_PATCH, new=AsyncMock(return_value=([_make_row()], "primary", False))):
         results = await asyncio.gather(*[
             get_dosing("multi_age_drug", age, _pool(), redis)
             for age, _ in age_cases
@@ -548,15 +466,9 @@ async def test_high_concurrency_stress():
     redis = FakeRedis()
 
     async def mock_fetch(pool, drug_id, age_groups):
-        return [_make_row(brand_name=f"b-{drug_id}")]
+        return ([_make_row(brand_name=f"b-{drug_id}")], "primary", False)
 
-    with patch("app.services.dosing_service.dosing_repo.drug_exists",
-               new=AsyncMock(return_value=True)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-               side_effect=mock_fetch), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-               new=AsyncMock(return_value=[])):
-
+    with patch(_PATCH, side_effect=mock_fetch):
         tasks = [
             get_dosing(drug_id, age, _pool(), redis)
             for drug_id in drugs
@@ -566,7 +478,6 @@ async def test_high_concurrency_stress():
 
     assert len(results) == 50
     assert all(isinstance(r, DosingResponse) for r in results)
-    # Each (drug_id, age_group) pair should have its own cache entry
     assert redis.key_count == len(drugs) * len(ages)
 
 
@@ -584,17 +495,11 @@ async def test_second_request_is_served_from_cache_not_db():
     async def counting_fetch(pool, drug_id, age_groups):
         nonlocal db_calls
         db_calls += 1
-        return [_make_row()]
+        return ([_make_row()], "primary", False)
 
     redis = FakeRedis()
 
-    with patch("app.services.dosing_service.dosing_repo.drug_exists",
-               new=AsyncMock(return_value=True)), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing",
-               side_effect=counting_fetch), \
-         patch("app.services.dosing_service.dosing_repo.fetch_dosing_fallback",
-               new=AsyncMock(return_value=[])):
-
+    with patch(_PATCH, side_effect=counting_fetch):
         first  = await get_dosing("cached_drug", 35, _pool(), redis)
         second = await get_dosing("cached_drug", 35, _pool(), redis)
 

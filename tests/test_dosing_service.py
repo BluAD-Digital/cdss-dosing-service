@@ -8,6 +8,7 @@ from app.schemas.response import DosingResponse
 
 def _make_row(**overrides):
     defaults = {
+        "formulation_id": 1001,
         "brand_name": "TestBrand",
         "salt_composition": "Paracetamol 500mg",
         "generic_name": "Paracetamol",
@@ -18,6 +19,7 @@ def _make_row(**overrides):
         "duration": "5 days",
         "indication": "pain",
         "instructions": None,
+        "food_timing": None,
     }
     defaults.update(overrides)
     row = MagicMock()
@@ -34,7 +36,8 @@ async def test_cache_miss_calls_repo():
 
     rows = [_make_row()]
 
-    with patch("app.services.dosing_service.dosing_repo.fetch_dosing", new=AsyncMock(return_value=rows)) as mock_repo:
+    with patch("app.services.dosing_service.dosing_repo.fetch_dosing_with_fallback",
+               new=AsyncMock(return_value=(rows, "primary", False))) as mock_repo:
         from app.services.dosing_service import get_dosing
         result = await get_dosing("457491", 35, pool, redis)
 
@@ -50,17 +53,21 @@ async def test_cache_hit_skips_repo():
 
     cached_payload = {
         "drug_id_1mg": "457491",
+        "formulation_id": "1001",
         "brand_name": "TestBrand",
         "salt_composition": "Paracetamol 500mg",
         "generic_name": "Paracetamol",
         "age_group": "adult",
+        "source": "primary",
+        "is_partial_match": False,
         "dosing": [],
         "cached": False,
         "query_time_ms": 12.5,
     }
     redis.get = AsyncMock(return_value=json.dumps(cached_payload))
 
-    with patch("app.services.dosing_service.dosing_repo.fetch_dosing", new=AsyncMock()) as mock_repo:
+    with patch("app.services.dosing_service.dosing_repo.fetch_dosing_with_fallback",
+               new=AsyncMock()) as mock_repo:
         from app.services.dosing_service import get_dosing
         result = await get_dosing("457491", 35, pool, redis)
 
@@ -77,7 +84,8 @@ async def test_empty_rows_raises_404():
     redis = AsyncMock()
     redis.get = AsyncMock(return_value=None)
 
-    with patch("app.services.dosing_service.dosing_repo.fetch_dosing", new=AsyncMock(return_value=[])):
+    with patch("app.services.dosing_service.dosing_repo.fetch_dosing_with_fallback",
+               new=AsyncMock(return_value=([], "none", False))):
         from app.services.dosing_service import get_dosing
         with pytest.raises(HTTPException) as exc_info:
             await get_dosing("999999", 35, pool, redis)
@@ -94,7 +102,8 @@ async def test_response_structure():
 
     rows = [_make_row()]
 
-    with patch("app.services.dosing_service.dosing_repo.fetch_dosing", new=AsyncMock(return_value=rows)):
+    with patch("app.services.dosing_service.dosing_repo.fetch_dosing_with_fallback",
+               new=AsyncMock(return_value=(rows, "primary", False))):
         from app.services.dosing_service import get_dosing
         result = await get_dosing("457491", 35, pool, redis)
 

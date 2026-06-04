@@ -192,7 +192,7 @@ async def classify_drug(conn, drug_id: str, age_groups: list[str]) -> str:
     return "404_not_found"
 
 
-async def test_one(conn, csv_row: dict, age_groups: list[str]) -> dict:
+async def check_one(conn, csv_row: dict, age_groups: list[str]) -> dict:
     # Support both old CSV format ("Brand Name") and new ("Brand Name (India)")
     brand_name = csv_row.get("Brand Name") or csv_row.get("Brand Name (India)", "")
     db_rows = await find_drug(conn, brand_name)
@@ -289,7 +289,7 @@ async def main(csv_path: str, age: int, resume_log: str | None = None) -> None:
         brand_col = row.get("Brand Name") or row.get("Brand Name (India)", "")
         try:
             async with pool.acquire() as conn:
-                result = await test_one(conn, row, age_groups)
+                result = await check_one(conn, row, age_groups)
         except Exception as exc:
             result = {
                 "rank": rank,

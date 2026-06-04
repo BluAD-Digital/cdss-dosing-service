@@ -47,6 +47,7 @@ def _make_dosing_row(**overrides) -> DosingRow:
         duration         = "5 days",
         indication       = "pain relief",
         instructions     = "take with food",
+        food_timing      = None,
     )
     defaults.update(overrides)
     return DosingRow(**defaults)

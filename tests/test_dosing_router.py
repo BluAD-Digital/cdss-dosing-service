@@ -11,6 +11,7 @@ URL = "/api/v1/dosing"
 
 SAMPLE_RESPONSE = DosingResponse(
     drug_id_1mg="457491",
+    formulation_id="1001",
     brand_name="Crocin",
     salt_composition="Paracetamol 500mg",
     generic_name="Paracetamol",
@@ -18,12 +19,14 @@ SAMPLE_RESPONSE = DosingResponse(
     dosing=[
         DosingRow(
             frequency="twice daily",
+            frequency_meaning=None,
             route="oral",
             dose_amount="500",
             dose_unit="mg",
             duration="5 days",
             indication="pain relief",
             instructions="take with food",
+            food_timing=None,
         )
     ],
     cached=False,
