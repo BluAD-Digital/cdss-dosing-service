@@ -6,7 +6,7 @@ A production-grade FastAPI microservice that provides evidence-based drug dosing
 
 ## Architecture
 
-```
+```text
 HTTP Request
      │
      ▼
@@ -26,7 +26,9 @@ HTTP Request
   ├── Redis cache  → HIT: return immediately
   │                  MISS: continue
   ▼
-[Repository]  dosing_repo.fetch_dosing()
+[Repository]  dosing_repo.fetch_dosing_with_fallback()
+  ├── Primary query (dosing.sql)      → RxCUI direct match
+  └── Fallback query (dosing_fallback.sql) → UNII-based ingredient resolution
      │
      ▼
 [PostgreSQL 16]  drugdb schema
@@ -44,12 +46,14 @@ HTTP Request
 
 Returns dosing recommendations for a drug and patient age.
 
-**Request**
-```
+#### Request
+
+```http
 POST /api/v1/dosing
 Content-Type: application/json
 X-API-Key: your-secret-api-key
 ```
+
 ```json
 {
   "drug_id_1mg": "457491",
@@ -57,32 +61,40 @@ X-API-Key: your-secret-api-key
 }
 ```
 
-**Response (200)**
+#### Response (200)
+
 ```json
 {
   "drug_id_1mg": "457491",
+  "formulation_id": "abc-123",
   "brand_name": "Crocin",
   "salt_composition": "Paracetamol 500 MG",
   "generic_name": "Paracetamol",
   "age_group": "adult",
+  "source": "primary",
+  "is_partial_match": false,
   "dosing": [
     {
-      "frequency": "every 4-6 hours",
+      "frequency": "q4-6h",
+      "frequency_meaning": "every 4-6 hours",
       "route": "oral",
       "dose_amount": "325-650",
       "dose_unit": "mg",
       "duration": null,
       "indication": "pain",
-      "instructions": "Do not exceed 4g/day"
+      "instructions": "Do not exceed 4g/day",
+      "food_timing": null
     },
     {
-      "frequency": "every 6 hours",
+      "frequency": "q6h",
+      "frequency_meaning": "every 6 hours",
       "route": "oral",
       "dose_amount": "500",
       "dose_unit": "mg",
       "duration": null,
       "indication": "fever",
-      "instructions": null
+      "instructions": null,
+      "food_timing": "after food"
     }
   ],
   "cached": false,
@@ -90,13 +102,46 @@ X-API-Key: your-secret-api-key
 }
 ```
 
-**Error responses**
-| Status | body.error         | Cause                          |
-|--------|--------------------|--------------------------------|
-| 401    | `unauthorized`     | Missing or wrong X-API-Key     |
-| 404    | `not_found`        | Drug not in DB or no dosing    |
-| 422    | `validation_error` | age < 0 or > 120, missing field|
-| 500    | `internal_error`   | DB error (details not exposed) |
+#### Response fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `drug_id_1mg` | string | Echo of the requested drug ID |
+| `formulation_id` | string | Internal formulation identifier from the drug registry |
+| `brand_name` | string | Indian brand name from the 1mg catalog |
+| `salt_composition` | string | Salt/ingredient composition string |
+| `generic_name` | string | Ingredient names joined by ` / ` |
+| `age_group` | string | Primary age cohort resolved from the input age |
+| `source` | string | `"primary"` (RxCUI match) or `"fallback"` (UNII-based match) |
+| `is_partial_match` | bool | `true` when only a subset of the drug's ingredients resolved via UNII in the fallback path |
+| `dosing` | array | One object per unique dosing row (see below) |
+| `cached` | bool | `true` when the response was served from Redis |
+| `query_time_ms` | float | DB query time in milliseconds (`0.0` when cached) |
+
+#### DosingRow fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `frequency` | string\|null | Raw frequency code, e.g. `"q8h"` |
+| `frequency_meaning` | string\|null | Human-readable expansion, e.g. `"every 8 hours"` |
+| `route` | string\|null | Administration route, e.g. `"oral"`, `"iv"` |
+| `dose_amount` | string\|null | Dose quantity as a string, e.g. `"500"` or `"325-650"` |
+| `dose_unit` | string\|null | Unit, e.g. `"mg"`, `"mcg"` |
+| `duration` | string\|null | Course length if specified |
+| `indication` | string\|null | Clinical indication, lowercased |
+| `instructions` | string\|null | Administration notes |
+| `food_timing` | string\|null | Food relationship, e.g. `"after food"`, `"before food"`, `null` if unspecified |
+
+#### Error responses
+
+| Status | body.error | Cause |
+|--------|------------|-------|
+| 401 | `unauthorized` | Missing or wrong X-API-Key |
+| 404 | `not_found` | Drug not in DB or no dosing data for this age |
+| 422 | `validation_error` | age < 0 or > 120, missing field |
+| 500 | `internal_error` | DB error (details not exposed) |
+
+---
 
 ### GET /health
 
@@ -105,6 +150,66 @@ No auth required. Returns 200 when both DB and Redis are reachable, 503 otherwis
 ```json
 {"status": "ok", "db": "connected", "cache": "connected"}
 ```
+
+---
+
+## Age group mapping
+
+| Patient age | age_groups passed to query | primary_group (cache key) |
+|-------------|---------------------------|--------------------------|
+| < 1 | `["neonate"]` | `neonate` |
+| 1 – 1 | `["infant", "neonate"]` | `infant` |
+| 2 – 11 | `["pediatric", "any"]` | `pediatric` |
+| 12 – 17 | `["adolescent", "adult", "any"]` | `adolescent` |
+| 18 – 64 | `["adult", "any"]` | `adult` |
+| ≥ 65 | `["geriatric", "adult", "any"]` | `geriatric` |
+
+---
+
+## Query strategy — primary and fallback
+
+Every dosing request tries two SQL queries in sequence on the same DB connection.
+
+### Primary (`queries/dosing.sql`)
+
+Resolves the drug's RxCUI(s) from `indian_brand` (excluding `drugbank` and `us_unapproved` match types), finds the best-evidenced formulation in `drug`, and fetches dosing rows filtered for the patient's age group. Returns `source = "primary"`, `is_partial_match = false`.
+
+### Fallback (`queries/dosing_fallback.sql`)
+
+Used when the primary returns 0 rows. Resolves each RxCUI through its ingredient UNII identifier into `DrugMasterLinkage`, then finds a formulation by `master_linkage_id` instead of `rxcui`. Handles active and inactive ingredients separately:
+
+- **Active / untyped ingredients** — must each resolve through a single-RxCUI `DrugMasterLinkage` entry.
+- **Inactive ingredients** — automatically pass; any `DrugMasterLinkage` row containing the UNII is used.
+
+If at least one ingredient resolves, the query proceeds and sets `is_partial_match = true` when not all ingredients resolved. If no ingredients resolve, returns 0 rows and the service raises 404.
+
+Returns `source = "fallback"`.
+
+### Formulation ranking (both queries)
+
+Within each RxCUI, the best formulation is chosen by data source quality:
+
+1. DailyMed
+2. OpenFDA
+3. DrugBank
+4. RxNorm
+
+Ties broken by most dosing rows, then `formulation_id` ascending.
+
+### Dosing row deduplication
+
+`ROW_NUMBER()` partitioned by `(frequency, route, dose_value, dose_unit, indication)` keeps one row per unique dose. Within each partition, the row with both `indication` and `instructions` wins.
+
+Hard filters applied in both queries:
+
+| Filter | Value |
+|--------|-------|
+| `renal_function` | `any` |
+| `hepatic_function` | `any` |
+| `pregnancy_status` | `any` |
+| `frequency` | `IS NOT NULL` |
+| `dose_amount` | not `CONTRAINDICATED` |
+| Pediatric guard | `administration_notes NOT ILIKE '%pediatric%'` unless the patient is pediatric/infant/neonate |
 
 ---
 
@@ -119,7 +224,7 @@ cp .env.example .env
 
 Edit `.env` — fill in your PostgreSQL connection string and choose an API key:
 
-```
+```env
 DATABASE_URL=postgresql://cdss_app:your_password@178.236.185.230:5432/drugdb
 REDIS_URL=redis://redis:6379
 API_KEY=generate-a-strong-random-key
@@ -177,11 +282,13 @@ pytest tests/ --cov=app --cov-report=term-missing
 The service is structured so each new endpoint is self-contained. Follow this pattern:
 
 **1. Add the SQL query**
-```
+
+```text
 queries/interactions.sql   ← new SQL file
 ```
 
 **2. Add the repository**
+
 ```python
 # app/repositories/interactions_repo.py
 _SQL = (Path(__file__).parent.parent.parent / "queries" / "interactions.sql").read_text()
@@ -191,6 +298,7 @@ async def fetch_interactions(pool, drug_id_1mg, drug_id_2):
 ```
 
 **3. Add the service**
+
 ```python
 # app/services/interactions_service.py
 async def get_interactions(drug_id_1mg, drug_id_2, pool, redis):
@@ -198,12 +306,14 @@ async def get_interactions(drug_id_1mg, drug_id_2, pool, redis):
 ```
 
 **4. Add the schemas** (if different from existing ones)
+
 ```python
 # app/schemas/request.py  — add InteractionRequest
 # app/schemas/response.py — add InteractionResponse
 ```
 
 **5. Add the router**
+
 ```python
 # app/api/v1/routers/interactions.py
 router = APIRouter(tags=["interactions"])
@@ -214,6 +324,7 @@ async def get_interactions(...):
 ```
 
 **6. Register in main.py** — one line:
+
 ```python
 from app.api.v1.routers.interactions import router as interactions_router
 app.include_router(interactions_router, prefix="/api/v1")
@@ -225,18 +336,18 @@ No restructuring required. Each endpoint is an independent vertical slice.
 
 ## Environment variables
 
-| Variable               | Default      | Description                                     |
-|------------------------|--------------|-------------------------------------------------|
-| `DATABASE_URL`         | required     | asyncpg DSN for PostgreSQL 16                   |
-| `REDIS_URL`            | required     | Redis connection URL                            |
-| `API_KEY`              | required     | Secret key for `X-API-Key` header auth          |
-| `POOL_MIN_SIZE`        | `5`          | Minimum asyncpg pool connections                |
-| `POOL_MAX_SIZE`        | `20`         | Maximum asyncpg pool connections                |
-| `POOL_COMMAND_TIMEOUT` | `10`         | Per-query timeout in seconds                    |
-| `CACHE_TTL_SECONDS`    | `86400`      | Redis TTL for cached dosing responses (24 hrs)  |
-| `WORKERS`              | `4`          | Gunicorn worker count                           |
-| `LOG_LEVEL`            | `INFO`       | `DEBUG`, `INFO`, `WARNING`, `ERROR`             |
-| `ENVIRONMENT`          | `production` | `production` → JSON logs; other → colored logs  |
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `DATABASE_URL` | required | asyncpg DSN for PostgreSQL 16 |
+| `REDIS_URL` | required | Redis connection URL |
+| `API_KEY` | required | Secret key for `X-API-Key` header auth |
+| `POOL_MIN_SIZE` | `5` | Minimum asyncpg pool connections |
+| `POOL_MAX_SIZE` | `20` | Maximum asyncpg pool connections |
+| `POOL_COMMAND_TIMEOUT` | `10` | Per-query timeout in seconds |
+| `CACHE_TTL_SECONDS` | `86400` | Redis TTL for cached dosing responses (24 hrs) |
+| `WORKERS` | `4` | Gunicorn worker count |
+| `LOG_LEVEL` | `INFO` | `DEBUG`, `INFO`, `WARNING`, `ERROR` |
+| `ENVIRONMENT` | `production` | `production` → JSON logs; other → colored logs |
 
 ---
 
@@ -376,16 +487,59 @@ The `frequency_meaning` field in every dosing row is resolved from 134 known fre
 
 ---
 
-## Query logic — the 4-CTE approach
+## File structure
 
-The dosing SQL uses four CTEs to reliably select the best evidence for any Indian-market drug:
-
-1. **`salt_ingredients`** — resolves the 1mg drug ID to its RxCUI(s) via `indian_brand`, excluding drugbank-only or US-unapproved matches.
-
-2. **`candidate_formulations`** — joins those RxCUIs against the `drug` formulation table, counting how many dosing rows each formulation has.
-
-3. **`best_formulation`** — uses `DISTINCT ON (rxcui)` to pick the single best formulation per RxCUI, ranked by data source quality (DailyMed > OpenFDA > DrugBank > RxNorm) then by dosing row count. This ensures the richest evidence source wins.
-
-4. **`ranked`** — deduplicates dosing rows with `ROW_NUMBER()` partitioned by (frequency, route, dose_value, dose_unit, indication). Within each partition the most complete row (has both indication and notes) wins. Filters enforce `fixed` dosing, exclude contraindicated entries, exclude adult-only notes from pediatric queries, and respect the age group list built from the patient's age.
-
-The final `SELECT` joins back to `indian_brand` for brand metadata and `drug_ingredient_mapping` for the generic name, then orders by frequency and dose value for consistent display.
+```text
+cdss-dosing-service/
+├── docker-compose.yml
+├── Dockerfile
+├── requirements.txt
+├── README.md
+│
+├── app/
+│   ├── main.py                  FastAPI app: lifespan, middleware, /health, router registration
+│   ├── config.py                Pydantic Settings — all env vars with defaults
+│   │
+│   ├── api/
+│   │   ├── deps.py              get_db / get_cache FastAPI dependencies
+│   │   └── v1/routers/
+│   │       └── dosing.py        POST /api/v1/dosing router
+│   │
+│   ├── schemas/
+│   │   ├── request.py           DosingRequest (drug_id_1mg, age)
+│   │   └── response.py          DosingResponse, DosingRow, ErrorResponse
+│   │
+│   ├── services/
+│   │   └── dosing_service.py    Orchestration: cache check → repo → cache write
+│   │
+│   ├── repositories/
+│   │   └── dosing_repo.py       fetch_dosing_with_fallback() — runs primary then fallback SQL
+│   │
+│   ├── cache/
+│   │   └── redis.py             get_cached / set_cached helpers
+│   │
+│   ├── db/
+│   │   └── postgres.py          asyncpg pool create/close
+│   │
+│   └── utils/
+│       ├── age_mapper.py        age_to_groups(), age_to_primary_group()
+│       ├── frequency_mapper.py  resolve_frequency() — 134 code → meaning mappings
+│       └── logger.py            structlog JSON/colored logger, request-id context
+│
+├── queries/
+│   ├── dosing.sql               Primary dosing query (RxCUI direct match)
+│   └── dosing_fallback.sql      Fallback query (UNII → DrugMasterLinkage)
+│
+├── nginx/                       Nginx config (rate-limit, gzip, reverse proxy)
+│
+└── tests/
+    ├── conftest.py
+    ├── test_age_mapper.py
+    ├── test_dosing_service.py
+    ├── test_dosing_router.py
+    ├── test_age_group_coverage.py
+    ├── test_concurrency.py
+    ├── test_top500_drugs.py
+    ├── smoke_test.py
+    └── phase*/                  Phase-gated test suites (broken, reliability, security, observability)
+```
