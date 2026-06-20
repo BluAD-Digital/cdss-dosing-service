@@ -10,6 +10,7 @@ from app.config import settings
 from app.repositories import dosing_repo
 from app.schemas.response import DosingResponse, DosingRow
 from app.utils.age_mapper import age_to_groups, age_to_primary_group
+from app.utils.duration_normalizer import normalize_duration
 from app.utils.frequency_mapper import resolve_frequency
 from app.utils.logger import get_logger
 
@@ -57,7 +58,7 @@ async def get_dosing(
             route=r["route"],
             dose_amount=r["dose_amount"],
             dose_unit=r["dose_unit"],
-            duration=r["duration"],
+            duration=normalize_duration(r["duration"]),
             indication=r["indication"],
             instructions=r["instructions"],
             food_timing=r["food_timing"],
